@@ -92,7 +92,7 @@ namespace Zombie
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
-        {//
+        {   //
             _timer2 += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             foreach (var sprite in _sprites.ToArray())

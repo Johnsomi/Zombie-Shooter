@@ -63,7 +63,7 @@ namespace Zombie
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            var playerTexture = Content.Load<Texture2D>("topDownSoldier (2)");
+            var playerTexture = Content.Load<Texture2D>("topDownSoldier2");
 
             _sprites = new List<Sprite>()
             {
@@ -74,7 +74,7 @@ namespace Zombie
                 }
             };
             //
-            _targetTexture = Content.Load<Texture2D>("target (2)");
+            _targetTexture = Content.Load<Texture2D>("target2");
         }
 
         /// <summary>
@@ -139,7 +139,7 @@ namespace Zombie
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.White);
+            GraphicsDevice.Clear(Color.Black);
 
             spriteBatch.Begin();
 

@@ -36,10 +36,6 @@ namespace EatingGame
             Content.RootDirectory = "Content";
 
             Random = new Random();
-
-            ScreenWidth = graphics.PreferredBackBufferWidth;
-            ScreenHeight = graphics.PreferredBackBufferHeight;
-
         }
 
         /// <summary>
@@ -50,7 +46,13 @@ namespace EatingGame
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            graphics.PreferredBackBufferWidth = GraphicsDevice.DisplayMode.Width;
+            graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height;
+            graphics.IsFullScreen = true;
+            graphics.ApplyChanges();
+            //
+            ScreenWidth = graphics.PreferredBackBufferWidth;
+            ScreenHeight = graphics.PreferredBackBufferHeight;
 
             base.Initialize();
         }
@@ -130,7 +132,7 @@ namespace EatingGame
 
         private void SpawnFood()
         {
-            if (_timer > 0.25)
+            if (_timer > 0.01)
             {
                 _timer = 0;
 

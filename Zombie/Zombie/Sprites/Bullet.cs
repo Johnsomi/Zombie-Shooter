@@ -26,6 +26,20 @@ namespace Zombie.Sprites
                 IsRemoved = true;
 
             Position += Direction * LinearVelocity;
+
+            //
+            foreach (var sprite in sprites)
+            {
+                if (sprite is Player)
+                    continue;
+                if (sprite is Bullet)
+                    continue;
+                if (sprite.Rectangle.Intersects(this.Rectangle))
+                {
+                    //Score++;
+                    sprite.IsRemoved = true;
+                }
+            }
         }
     }
 }

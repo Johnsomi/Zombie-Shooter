@@ -81,7 +81,7 @@ namespace EatingGame
                     },
                     Position = new Vector2(100, 100),
                     Color = Color.Blue,
-                    Speed = 5f,
+                    Speed = 9f,
                 },
                 new Player(playerTexture)
                 {
@@ -94,7 +94,7 @@ namespace EatingGame
                     },
                     Position = new Vector2(ScreenWidth - 100 - playerTexture.Width, 100),
                     Color = Color.Red,
-                    Speed = 5f,
+                    Speed = 9f,
                 },
             };
 
@@ -164,7 +164,7 @@ namespace EatingGame
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.White);
+            GraphicsDevice.Clear(Color.Black);
 
             spriteBatch.Begin();
 
@@ -176,7 +176,7 @@ namespace EatingGame
             foreach(var sprite in _sprites)
             {
                 if (sprite is Player)
-                    spriteBatch.DrawString(_font, string.Format("Player {0}: {1}", ++i, ((Player)sprite).Score), new Vector2(10, fontY += 20), Color.Black);
+                    spriteBatch.DrawString(_font, string.Format("Player {0}: {1}", ++i, ((Player)sprite).Score), new Vector2(10, fontY += 30), Color.Green);
                     
             }
 

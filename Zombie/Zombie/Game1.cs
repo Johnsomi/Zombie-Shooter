@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Collections.Generic;
+using Zombie.Sprites;
 
 namespace Zombie
 {
@@ -11,7 +13,9 @@ namespace Zombie
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        
+
+        private List<Sprite> _sprites;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -26,7 +30,10 @@ namespace Zombie
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            graphics.PreferredBackBufferWidth = GraphicsDevice.DisplayMode.Width;
+            graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height;
+            graphics.IsFullScreen = true;
+            graphics.ApplyChanges();
 
             base.Initialize();
         }
@@ -40,7 +47,16 @@ namespace Zombie
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
+            var playerTexture = Content.Load<Texture2D>("topDownSoldier (2)");
+
+            _sprites = new List<Sprite>()
+            {
+                new Player(playerTexture)
+                {
+                    Position = new Vector2(960, 540),
+                    Bullet = new Bullet(Content.Load<Texture2D>("circle")),
+                }
+            };
         }
 
         /// <summary>
@@ -59,12 +75,24 @@ namespace Zombie
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
+            foreach (var sprite in _sprites.ToArray())
+                sprite.Update(gameTime, _sprites);
 
-            // TODO: Add your update logic here
+            PostUpdate();
 
             base.Update(gameTime);
+        }
+
+        private void PostUpdate()
+        {
+            for (int i = 0; i < _sprites.Count; i++)
+            {
+                if (_sprites[i].IsRemoved)
+                {
+                    _sprites.RemoveAt(i);
+                    i--;
+                }
+            }
         }
 
         /// <summary>
@@ -75,7 +103,12 @@ namespace Zombie
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            spriteBatch.Begin();
+
+            foreach (var sprite in _sprites)
+                sprite.Draw(spriteBatch);
+
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }

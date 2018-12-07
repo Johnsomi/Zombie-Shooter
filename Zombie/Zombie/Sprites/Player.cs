@@ -1,19 +1,19 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 
-namespace shooting_ship.Sprites
+namespace Zombie.Sprites
 {
-    public class Ship : Sprite
+    public class Player : Sprite
     {
         public Bullet Bullet;
 
-        public Ship(Texture2D texture)
+        public Player(Texture2D texture)
             : base(texture)
         {
 
@@ -47,17 +47,19 @@ namespace shooting_ship.Sprites
         }
 
         private void AddBullet(List<Sprite> sprites)
-        { 
-                var bullet = Bullet.Clone() as Bullet;
-                bullet.Direction = this.Direction;
-                bullet.Position = this.Position;
-                bullet.LinearVelocity = this.LinearVelocity * 2;
-                bullet.LifeSpan = 2f;
-                bullet.Parent = this;
+        {
+            var bullet = Bullet.Clone() as Bullet;
+            bullet.Direction = this.Direction;
+            bullet.Position = this.Position;
+            bullet.LinearVelocity = this.LinearVelocity * 2;
+            bullet.LifeSpan = 2f;
+            bullet.Parent = this;
 
-                sprites.Add(bullet);
+            sprites.Add(bullet);
 
-            
+
         }
     }
+
+
 }

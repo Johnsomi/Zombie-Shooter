@@ -21,6 +21,9 @@ namespace Zombie.Sprites
 
         public override void Update(GameTime gameTime, List<Sprite> sprites)
         {
+            //
+            Position = Vector2.Clamp(Position, new Vector2(0, 0), new Vector2(Game1.ScreenWidth - this.Rectangle.Width, Game1.ScreenHeight - this.Rectangle.Height));
+
             _previousKey = _currentKey;
             _currentKey = Keyboard.GetState();
 
@@ -43,6 +46,19 @@ namespace Zombie.Sprites
             {
                 var bullet = Bullet.Clone() as Bullet;
                 AddBullet(sprites);
+            }
+            
+            //
+            foreach (var sprite in sprites)
+            {
+                if (sprite is Player)
+                    continue;
+
+                if (sprite.Rectangle.Intersects(this.Rectangle))
+                {
+                    //Score++;
+                    sprite.IsRemoved = true;
+                }
             }
         }
 

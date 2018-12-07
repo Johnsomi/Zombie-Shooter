@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 using System.Collections.Generic;
 using Zombie.Sprites;
 
@@ -13,14 +14,25 @@ namespace Zombie
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        //
+        public static Random Random;
+        //
+        public static int ScreenWidth;
+        public static int ScreenHeight;
 
         private List<Sprite> _sprites;
-
+        //
+        private float _timer2;
+        //
+        private Texture2D _targetTexture;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            //
+            Random = new Random();
+
         }
 
         /// <summary>
@@ -35,6 +47,9 @@ namespace Zombie
             graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height;
             graphics.IsFullScreen = true;
             graphics.ApplyChanges();
+            //
+            ScreenWidth = graphics.PreferredBackBufferWidth;
+            ScreenHeight = graphics.PreferredBackBufferHeight;
 
             base.Initialize();
         }
@@ -58,6 +73,8 @@ namespace Zombie
                     Bullet = new Bullet(Content.Load<Texture2D>("circle")),
                 }
             };
+            //
+            _targetTexture = Content.Load<Texture2D>("target (2)");
         }
 
         /// <summary>
@@ -75,13 +92,33 @@ namespace Zombie
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
-        {
+        {//
+            _timer2 += (float)gameTime.ElapsedGameTime.TotalSeconds;
+
             foreach (var sprite in _sprites.ToArray())
                 sprite.Update(gameTime, _sprites);
 
             PostUpdate();
+            //
+            SpawnTarget();
 
             base.Update(gameTime);
+        }
+        //
+        private void SpawnTarget()
+        {
+            if (_timer2 > 0.5)
+            {
+                _timer2 = 0;
+
+                var xPos = Random.Next(0, ScreenWidth - _targetTexture.Width);
+                var yPos = Random.Next(0, ScreenHeight - _targetTexture.Height);
+
+                _sprites.Add(new Sprite(_targetTexture)
+                {
+                    Position = new Vector2(xPos, yPos),
+                });
+            }
         }
 
         private void PostUpdate()

@@ -19,6 +19,10 @@ namespace shooting_ship
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
+
+            //graphics.PreferredBackBufferWidth = 800;  // set this value to the desired width of your window
+            //graphics.PreferredBackBufferHeight = 800;   // set this value to the desired height of your window
+            //graphics.ApplyChanges();
             Content.RootDirectory = "Content";
         }
 
@@ -31,6 +35,10 @@ namespace shooting_ship
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            graphics.PreferredBackBufferWidth = GraphicsDevice.DisplayMode.Width;
+            graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height;
+            graphics.IsFullScreen = true;
+            graphics.ApplyChanges();
 
             base.Initialize();
         }

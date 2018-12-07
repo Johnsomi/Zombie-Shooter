@@ -47,6 +47,7 @@
     <Compile Include="Sprites\Bullet.cs" />
     <Compile Include="Sprites\Player.cs" />
     <Compile Include="Sprites\Sprite.cs" />
+    <Compile Include="Sprites\Zombies.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

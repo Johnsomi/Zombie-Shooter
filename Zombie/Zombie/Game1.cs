@@ -16,6 +16,7 @@ namespace Zombie
 
         private List<Sprite> _sprites;
 
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);

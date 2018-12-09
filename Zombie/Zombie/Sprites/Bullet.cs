@@ -12,6 +12,8 @@ namespace Zombie.Sprites
     {
         private float _timer;
 
+        public int Score;
+
         public Bullet(Texture2D texture)
             : base(texture)
         {
@@ -36,7 +38,7 @@ namespace Zombie.Sprites
                     continue;
                 if (sprite.Rectangle.Intersects(this.Rectangle))
                 {
-                    //Score++;
+                    Score++;
                     sprite.IsRemoved = true;
                 }
             }

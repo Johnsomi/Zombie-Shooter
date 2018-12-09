@@ -20,6 +20,8 @@ namespace Zombie
         public static int ScreenWidth;
         public static int ScreenHeight;
 
+        private SpriteFont _font;
+
         private List<Sprite> _sprites;
         //
         private float _timer2;
@@ -75,6 +77,7 @@ namespace Zombie
             };
             //
             _targetTexture = Content.Load<Texture2D>("target2");
+            _font = Content.Load<SpriteFont>("Font");
         }
 
         /// <summary>
@@ -145,6 +148,15 @@ namespace Zombie
 
             foreach (var sprite in _sprites)
                 sprite.Draw(spriteBatch);
+
+            var fontY = 10;
+            var i = 0;
+            foreach (var sprite in _sprites)
+            {
+                if (sprite is Player || sprite is Bullet)// Crashes if you shoot
+                    spriteBatch.DrawString(_font, string.Format("Player {0}: {1}", ++i, ((Player)sprite).Score), new Vector2(10, fontY += 30), Color.Green);
+
+            }
 
             spriteBatch.End();
 

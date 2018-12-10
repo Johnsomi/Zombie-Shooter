@@ -30,15 +30,19 @@ namespace Zombie.Sprites
             Position += Direction * LinearVelocity;
 
             //
+            Player player = (Player) sprites[0];
             foreach (var sprite in sprites)
             {
                 if (sprite is Player)
+                {
+                    player = (Player)sprite;
                     continue;
+                }
                 if (sprite is Bullet)
                     continue;
                 if (sprite.Rectangle.Intersects(this.Rectangle))
                 {
-                    Score++;
+                    player.Score++;
                     sprite.IsRemoved = true;
                 }
             }

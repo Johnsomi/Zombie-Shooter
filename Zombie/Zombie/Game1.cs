@@ -153,9 +153,9 @@ namespace Zombie
             var i = 0;
             foreach (var sprite in _sprites)
             {
-                if (sprite is Player || sprite is Bullet)// Crashes if you shoot
+                if (sprite is Player)// Crashes if you shoot
                     spriteBatch.DrawString(_font, string.Format("Player {0}: {1}", ++i, ((Player)sprite).Score), new Vector2(10, fontY += 30), Color.Green);
-
+               
             }
 
             spriteBatch.End();

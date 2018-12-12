@@ -73,6 +73,11 @@ namespace Zombie
                 {
                     Position = new Vector2(960, 540),
                     Bullet = new Bullet(Content.Load<Texture2D>("circle")),
+                },
+                new Player2(playerTexture)
+                {
+                    Position = new Vector2(1200, 600),
+                    Bullet2 = new Bullet2(Content.Load<Texture2D>("circle")),
                 }
             };
             //
@@ -155,7 +160,8 @@ namespace Zombie
             {
                 if (sprite is Player)
                     spriteBatch.DrawString(_font, string.Format("Player {0}: {1}", ++i, ((Player)sprite).Score), new Vector2(10, fontY += 30), Color.Green);
-               
+                if (sprite is Player2)
+                    spriteBatch.DrawString(_font, string.Format("Player {0}: {1}", ++i, ((Player2)sprite).Score), new Vector2(10, fontY += 30), Color.Green);
             }
 
             spriteBatch.End();

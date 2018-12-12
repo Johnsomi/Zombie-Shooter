@@ -18,12 +18,15 @@ namespace Zombie.Sprites
 
         public Vector2 Position;
         public Vector2 Origin;
+        //
+        public Color Color = Color.White;
 
         public Vector2 Direction;
         public float RotationVelocity = 3f;
         public float LinearVelocity = 4f;
 
         public Sprite Parent;
+        public Sprite Parent2;
 
         public float LifeSpan = 0f;
 
@@ -51,7 +54,7 @@ namespace Zombie.Sprites
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(_texture, Position, null, Color.White, _rotation, Origin, 1, SpriteEffects.None, 0);
+            spriteBatch.Draw(_texture, Position, null, Color, _rotation, Origin, 1, SpriteEffects.None, 0);
         }
 
         public object Clone()

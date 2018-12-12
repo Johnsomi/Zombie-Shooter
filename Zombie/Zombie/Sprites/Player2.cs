@@ -1,21 +1,21 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace Zombie.Sprites
 {
-    public class Player : Sprite
+    public class Player2 : Sprite
     {
-        public Bullet Bullet;
+        public Bullet2 Bullet2;
 
         public int Score;
 
-        public Player(Texture2D texture)
+        public Player2(Texture2D texture)
             : base(texture)
         {
 
@@ -29,35 +29,35 @@ namespace Zombie.Sprites
             _previousKey = _currentKey;
             _currentKey = Keyboard.GetState();
 
-            if (_currentKey.IsKeyDown(Keys.A))
+            if (_currentKey.IsKeyDown(Keys.Left))
                 _rotation -= MathHelper.ToRadians(RotationVelocity);
-            if (_currentKey.IsKeyDown(Keys.D))
+            if (_currentKey.IsKeyDown(Keys.Right))
                 _rotation += MathHelper.ToRadians(RotationVelocity);
 
             Direction = new Vector2((float)Math.Cos(MathHelper.ToRadians(90) - _rotation), -(float)Math.Sin(MathHelper.ToRadians(90) - _rotation));
 
-            if (_currentKey.IsKeyDown(Keys.W))
+            if (_currentKey.IsKeyDown(Keys.Up))
                 Position += Direction * LinearVelocity;
 
-            if (_currentKey.IsKeyDown(Keys.S))
+            if (_currentKey.IsKeyDown(Keys.Down))
                 Position -= Direction * LinearVelocity;
 
 
-            if (_currentKey.IsKeyDown(Keys.Space) &&
-                _previousKey.IsKeyUp(Keys.Space))
+            if (_currentKey.IsKeyDown(Keys.Enter) &&
+                _previousKey.IsKeyUp(Keys.Enter))
             {
-                var bullet = Bullet.Clone() as Bullet;
-                AddBullet(sprites);
+                var bullet2 = Bullet2.Clone() as Bullet2;
+                AddBullet2(sprites);
             }
-            
+
             //
             foreach (var sprite in sprites)
             {
-                if (sprite is Player)
-                    continue;
-                if (sprite is Bullet)
-                    continue;
                 if (sprite is Player2)
+                    continue;
+                if (sprite is Bullet2)
+                    continue;
+                if (sprite is Player)
                     continue;
                 if (sprite.Rectangle.Intersects(this.Rectangle))
                 {
@@ -67,20 +67,18 @@ namespace Zombie.Sprites
             }
         }
 
-        private void AddBullet(List<Sprite> sprites)
+        private void AddBullet2(List<Sprite> sprites)
         {
-            var bullet = Bullet.Clone() as Bullet;
-            bullet.Direction = this.Direction;
-            bullet.Position = this.Position;
-            bullet.LinearVelocity = this.LinearVelocity * 2;
-            bullet.LifeSpan = 2f;
-            bullet.Parent = this;
+            var bullet2 = Bullet2.Clone() as Bullet2;
+            bullet2.Direction = this.Direction;
+            bullet2.Position = this.Position;
+            bullet2.LinearVelocity = this.LinearVelocity * 2;
+            bullet2.LifeSpan = 2f;
+            bullet2.Parent2 = this;
 
-            sprites.Add(bullet);
+            sprites.Add(bullet2);
 
 
         }
     }
-
-
 }

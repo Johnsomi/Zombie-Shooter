@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Sprite_Follow_Sprite.Sprites;
+using System.Collections.Generic;
 
 namespace Sprite_Follow_Sprite
 {
@@ -11,6 +13,8 @@ namespace Sprite_Follow_Sprite
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+
+        private List<Sprite> _sprites;
 
         public Game1()
         {
@@ -40,7 +44,30 @@ namespace Sprite_Follow_Sprite
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
+            var texture = Content.Load<Texture2D>("Square");
+
+            var player = new Player(texture)
+            {
+                Colour = Color.Green,
+                Position = new Vector2(100, 100),
+            };
+
+            _sprites = new List<Sprite>()
+      {
+        player,
+        new Sprite(texture)
+        {
+          Colour = Color.Blue,
+          Position = new Vector2(200, 200),
+        }.SetFollowTarget(player, 75f),
+        new Sprite(texture)
+        {
+          Colour = Color.Orange,
+          Position = new Vector2(400, 200),
+          FollowTarget = player,
+          FollowDistance = 150f,
+        }
+      };
         }
 
         /// <summary>
@@ -59,10 +86,8 @@ namespace Sprite_Follow_Sprite
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
-
-            // TODO: Add your update logic here
+            foreach (var sprite in _sprites)
+                sprite.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -75,7 +100,12 @@ namespace Sprite_Follow_Sprite
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            spriteBatch.Begin();
+
+            foreach (var sprite in _sprites)
+                sprite.Draw(gameTime, spriteBatch);
+
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }

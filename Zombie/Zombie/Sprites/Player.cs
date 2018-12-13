@@ -46,8 +46,9 @@ namespace Zombie.Sprites
             if (_currentKey.IsKeyDown(Keys.Space) &&
                 _previousKey.IsKeyUp(Keys.Space))
             {
-                var bullet = Bullet.Clone() as Bullet;
-                AddBullet(sprites);
+                Shoot();
+                //var bullet = Bullet.Clone() as Bullet;
+                //AddBullet(sprites);
             }
             
             //
@@ -57,17 +58,29 @@ namespace Zombie.Sprites
                     continue;
                 if (sprite is Bullet)
                     continue;
-                if (sprite is Player2)
-                    continue;
+                //if (sprite is Player2)
+                    //continue;
                 if (sprite.Rectangle.Intersects(this.Rectangle))
                 {
                     Score++;
-                    sprite.IsRemoved = true;
+                    //sprite.IsRemoved = true;
                 }
             }
         }
 
-        private void AddBullet(List<Sprite> sprites)
+        private void Shoot()
+        {
+            var bullet = Bullet.Clone() as Bullet;
+            bullet.Direction = this.Direction;
+            bullet.Position = this.Position;
+            bullet.LinearVelocity = this.LinearVelocity * 2;
+            bullet.LifeSpan = 2f;
+            bullet.Parent = this;
+
+            Children.Add(bullet);
+        }
+
+        /*private void AddBullet(List<Sprite> sprites)
         {
             var bullet = Bullet.Clone() as Bullet;
             bullet.Direction = this.Direction;
@@ -79,8 +92,7 @@ namespace Zombie.Sprites
             sprites.Add(bullet);
 
 
-        }
+        }*/
+
     }
-
-
 }

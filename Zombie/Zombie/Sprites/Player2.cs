@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Zombie.Sprites
 {
-    public class Player2 : Sprite
+    /*public class Player2 : Sprite
     {
         public Bullet2 Bullet2;
 
@@ -80,5 +80,5 @@ namespace Zombie.Sprites
 
 
         }
-    }
+    }*/
 }

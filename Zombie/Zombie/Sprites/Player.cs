@@ -46,9 +46,9 @@ namespace Zombie.Sprites
             if (_currentKey.IsKeyDown(Keys.Space) &&
                 _previousKey.IsKeyUp(Keys.Space))
             {
-                Shoot();
-                //var bullet = Bullet.Clone() as Bullet;
-                //AddBullet(sprites);
+                //Shoot();
+                var bullet = Bullet.Clone() as Bullet;
+                AddBullet(sprites);
             }
             
             //
@@ -68,7 +68,7 @@ namespace Zombie.Sprites
             }
         }
 
-        private void Shoot()
+        /*private void Shoot()
         {
             var bullet = Bullet.Clone() as Bullet;
             bullet.Direction = this.Direction;
@@ -76,11 +76,11 @@ namespace Zombie.Sprites
             bullet.LinearVelocity = this.LinearVelocity * 2;
             bullet.LifeSpan = 2f;
             bullet.Parent = this;
-
+            sprites.Add(bullet);
             Children.Add(bullet);
-        }
+        }*/
 
-        /*private void AddBullet(List<Sprite> sprites)
+        private void AddBullet(List<Sprite> sprites)
         {
             var bullet = Bullet.Clone() as Bullet;
             bullet.Direction = this.Direction;
@@ -92,7 +92,7 @@ namespace Zombie.Sprites
             sprites.Add(bullet);
 
 
-        }*/
+        }
 
     }
 }

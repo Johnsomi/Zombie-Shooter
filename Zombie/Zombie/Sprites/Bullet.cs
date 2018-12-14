@@ -43,12 +43,12 @@ namespace Zombie.Sprites
                 if (sprite.Rectangle.Intersects(this.Rectangle))
                 {
                     player.Score++;
-                    //sprite.IsRemoved = true;
+                    sprite.IsRemoved = true;
                 }
             }
         }
 
-        public override void OnCollide(Sprite sprite)
+        /*public override void OnCollide(Sprite sprite)
         {
             
             if (sprite == this.Parent)
@@ -62,6 +62,6 @@ namespace Zombie.Sprites
                 sprite.IsRemoved = true;
             }
             //IsRemoved = true;
-        }
+        }*/
     }
 }

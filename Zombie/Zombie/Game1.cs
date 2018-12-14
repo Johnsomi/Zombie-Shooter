@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using Zombie.Sprites;
@@ -67,7 +66,7 @@ namespace Zombie
 
             var playerTexture = Content.Load<Texture2D>("topDownSoldier2");
 
-            var bulletPrefab = new Bullet(Content.Load<Texture2D>("circle"));
+            //var bulletPrefab = new Bullet(Content.Load<Texture2D>("circle"));
 
 
             //------------------------------------------------------------------
@@ -76,9 +75,9 @@ namespace Zombie
                 new Player(playerTexture)
                 {
                     Position = new Vector2(960, 540),
-                    //Bullet = new Bullet(Content.Load<Texture2D>("circle")),
-                    Bullet = bulletPrefab,
-                    Color = Color.Blue,
+                    Bullet = new Bullet(Content.Load<Texture2D>("circle")),
+                    //Bullet = bulletPrefab,
+                    //Color = Color.Blue,
                 }
                 /*new Sprite(playerTexture)
                 {
@@ -156,15 +155,15 @@ namespace Zombie
             // 2. Add "Children" to the list of "_sprites" and clear
             // 3. Remove all "IsRemoved" sprites
 
-            foreach (var spriteA in _sprites)
+            /*foreach (var spriteA in _sprites)
             {
                 foreach (var spriteB in _sprites)
                 {
                     if (spriteA == spriteB)
                         continue;
 
-                    if (spriteA.Intersects(spriteB))
-                        spriteA.OnCollide(spriteB);
+             //       if (spriteA.Intersects(spriteB))
+              //          spriteA.OnCollide(spriteB);
                 }
             }
 
@@ -175,7 +174,7 @@ namespace Zombie
                     _sprites.Add(child);
 
                 _sprites[i].Children.Clear();
-            }
+            }*/
 
             //Keep down part
             for (int i = 0; i < _sprites.Count; i++)

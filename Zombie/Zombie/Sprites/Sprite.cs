@@ -19,7 +19,7 @@ namespace Zombie.Sprites
         public Vector2 Position;
         public Vector2 Origin;
         //-----
-        public List<Sprite> Children { get; set; }
+        //public List<Sprite> Children { get; set; }
 
         //
         public Color Color = Color.White;
@@ -37,7 +37,7 @@ namespace Zombie.Sprites
 
         public readonly Color[] TextureData;
 
-        public Matrix Transform
+        /*public Matrix Transform
         {
             get
             {
@@ -45,7 +45,7 @@ namespace Zombie.Sprites
                     Matrix.CreateRotationZ(_rotation) *
                     Matrix.CreateTranslation(new Vector3(Position, 0));
             }
-        }
+        }*/
 
         //
         public Rectangle Rectangle
@@ -61,7 +61,7 @@ namespace Zombie.Sprites
             _texture = texture;
             Origin = new Vector2(_texture.Width / 2, _texture.Height / 2);
 
-            Children = new List<Sprite>();
+            //Children = new List<Sprite>();
 
             TextureData = new Color[_texture.Width * _texture.Height];
             _texture.GetData(TextureData);
@@ -77,7 +77,7 @@ namespace Zombie.Sprites
             spriteBatch.Draw(_texture, Position, null, Color, _rotation, Origin, 1, SpriteEffects.None, 0);
         }
 
-        public bool Intersects(Sprite sprite)
+        /*public bool Intersects(Sprite sprite)
         {
             // Calculate a matrix which transforms from A's local space into
             // world space and then into B's local space
@@ -126,15 +126,15 @@ namespace Zombie.Sprites
                 // Move to the next row
                 yPosInB += stepY;
             }
-
+            
             // No intersection found
             return false;
-        }
+        }*/
 
-        public virtual void OnCollide(Sprite sprite)
+        /*public virtual void OnCollide(Sprite sprite)
         {
 
-        }
+        }*/
 
         public object Clone()
         {

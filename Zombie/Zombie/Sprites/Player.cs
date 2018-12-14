@@ -63,7 +63,7 @@ namespace Zombie.Sprites
                 if (sprite.Rectangle.Intersects(this.Rectangle))
                 {
                     Score++;
-                    //sprite.IsRemoved = true;
+                    sprite.IsRemoved = true;
                 }
             }
         }

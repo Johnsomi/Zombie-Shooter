@@ -24,9 +24,9 @@ namespace Zombie
 
         private List<Sprite> _sprites;
         //
-        //private float _timer2;
+        private float _timer2;
         //
-        //private Texture2D _targetTexture;
+        private Texture2D _targetTexture;
 
         public Game1()
         {
@@ -79,26 +79,26 @@ namespace Zombie
                     //Bullet = new Bullet(Content.Load<Texture2D>("circle")),
                     Bullet = bulletPrefab,
                     Color = Color.Blue,
-                },
-                new Sprite(playerTexture)
+                }
+                /*new Sprite(playerTexture)
                 {
                     Position = new Vector2(200,200),
                     Color = Color.Red,
-                },
+                }
                 new Sprite(Content.Load<Texture2D>("target2"))
                 {
                     Position = new Vector2(500,200),
                     Color = Color.Red,
                 }
-                /*new Player2(playerTexture)
+                new Player2(playerTexture)
                 {
                     Position = new Vector2(1200, 600),
                     Bullet2 = new Bullet2(Content.Load<Texture2D>("circle")),
                 }*/
             };
             //
-            //_targetTexture = Content.Load<Texture2D>("target2");
-            //_font = Content.Load<SpriteFont>("Font");
+            _targetTexture = Content.Load<Texture2D>("target2");
+            _font = Content.Load<SpriteFont>("Font");
             //--------------------------------------------------------------------
         }
 
@@ -119,22 +119,22 @@ namespace Zombie
         protected override void Update(GameTime gameTime)
         {
             //
-            //_timer2 += (float)gameTime.ElapsedGameTime.TotalSeconds;
+            _timer2 += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            //foreach (var sprite in _sprites.ToArray())
-            //sprite.Update(gameTime, _sprites);
+            foreach (var sprite in _sprites.ToArray())
+            sprite.Update(gameTime, _sprites);
 
-            foreach (var sprite in _sprites)
-                sprite.Update(gameTime, _sprites);
+            //foreach (var sprite in _sprites)
+                //sprite.Update(gameTime, _sprites);
 
             PostUpdate();
             //
-            //SpawnTarget();
+            SpawnTarget();
 
             base.Update(gameTime);
         }
         //
-        /*private void SpawnTarget()
+        private void SpawnTarget()
         {
             if (_timer2 > 0.5)
             {
@@ -148,7 +148,7 @@ namespace Zombie
                     Position = new Vector2(xPos, yPos),
                 });
             }
-        }*/
+        }
 
         private void PostUpdate()
         {
@@ -176,6 +176,7 @@ namespace Zombie
 
                 _sprites[i].Children.Clear();
             }
+
             //Keep down part
             for (int i = 0; i < _sprites.Count; i++)
             {
@@ -199,17 +200,16 @@ namespace Zombie
 
             foreach (var sprite in _sprites)
                 sprite.Draw(spriteBatch);
-            //added gameTime to line above
 
-            /*var fontY = 10;
+            var fontY = 10;
             var i = 0;
             foreach (var sprite in _sprites)
             {
                 if (sprite is Player)
                     spriteBatch.DrawString(_font, string.Format("Player {0}: {1}", ++i, ((Player)sprite).Score), new Vector2(10, fontY += 30), Color.Green);
-                if (sprite is Player2)
-                    spriteBatch.DrawString(_font, string.Format("Player {0}: {1}", ++i, ((Player2)sprite).Score), new Vector2(10, fontY += 30), Color.Green);
-            }*/
+                //if (sprite is Player2)
+                  //  spriteBatch.DrawString(_font, string.Format("Player {0}: {1}", ++i, ((Player2)sprite).Score), new Vector2(10, fontY += 30), Color.Green);
+            }
 
             spriteBatch.End();
 

@@ -66,9 +66,6 @@ namespace Zombie
 
             var playerTexture = Content.Load<Texture2D>("topDownSoldier2");
 
-            //var bulletPrefab = new Bullet(Content.Load<Texture2D>("circle"));
-
-
             //------------------------------------------------------------------
             _sprites = new List<Sprite>()
             {

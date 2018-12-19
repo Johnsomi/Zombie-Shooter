@@ -65,7 +65,7 @@ namespace Sprite_Follow_Sprite
           Colour = Color.Orange,
           Position = new Vector2(400, 200),
           FollowTarget = player,
-          FollowDistance = 150f,
+          FollowDistance = 1f,
         }
       };
         }

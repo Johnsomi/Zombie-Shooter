@@ -76,24 +76,13 @@ namespace Zombie
                 {
                     Position = new Vector2(960, 540),
                     Bullet = new Bullet(Content.Load<Texture2D>("circle")),
-                    //Bullet = bulletPrefab,
-                    //Color = Color.Blue,
-                }
-                /*new Sprite(playerTexture)
-                {
-                    Position = new Vector2(200,200),
-                    Color = Color.Red,
-                }
-                new Sprite(Content.Load<Texture2D>("target2"))
-                {
-                    Position = new Vector2(500,200),
-                    Color = Color.Red,
-                }
+                },
                 new Player2(playerTexture)
                 {
-                    Position = new Vector2(1200, 600),
+                    Position = new Vector2(200,200),
                     Bullet2 = new Bullet2(Content.Load<Texture2D>("circle")),
-                }*/
+                    Color = Color.Red,
+                }               
             };
             //
             _targetTexture = Content.Load<Texture2D>("target2");
@@ -124,7 +113,7 @@ namespace Zombie
             sprite.Update(gameTime, _sprites);
 
             //foreach (var sprite in _sprites)
-                //sprite.Update(gameTime, _sprites);
+              //  sprite.Update(gameTime, _sprites);
 
             PostUpdate();
             //
@@ -151,31 +140,6 @@ namespace Zombie
 
         private void PostUpdate()
         {
-            // 1. Check collision between all current "Sprites"
-            // 2. Add "Children" to the list of "_sprites" and clear
-            // 3. Remove all "IsRemoved" sprites
-
-            /*foreach (var spriteA in _sprites)
-            {
-                foreach (var spriteB in _sprites)
-                {
-                    if (spriteA == spriteB)
-                        continue;
-
-             //       if (spriteA.Intersects(spriteB))
-              //          spriteA.OnCollide(spriteB);
-                }
-            }
-
-            int count = _sprites.Count;
-            for (int i = 0; i < count; i++)
-            {
-                foreach (var child in _sprites[i].Children)
-                    _sprites.Add(child);
-
-                _sprites[i].Children.Clear();
-            }*/
-
             //Keep down part
             for (int i = 0; i < _sprites.Count; i++)
             {
@@ -206,8 +170,8 @@ namespace Zombie
             {
                 if (sprite is Player)
                     spriteBatch.DrawString(_font, string.Format("Player {0}: {1}", ++i, ((Player)sprite).Score), new Vector2(10, fontY += 30), Color.Green);
-                //if (sprite is Player2)
-                  //  spriteBatch.DrawString(_font, string.Format("Player {0}: {1}", ++i, ((Player2)sprite).Score), new Vector2(10, fontY += 30), Color.Green);
+                if (sprite is Player2)
+                    spriteBatch.DrawString(_font, string.Format("Player {0}: {1}", ++i, ((Player2)sprite).Score), new Vector2(10, fontY += 30), Color.Green);
             }
 
             spriteBatch.End();

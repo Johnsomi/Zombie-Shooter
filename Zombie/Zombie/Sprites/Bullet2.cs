@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Zombie.Sprites
 {
-    /*public class Bullet2 : Sprite
+    public class Bullet2 : Sprite
     {
         private float _timer;
 
@@ -48,5 +48,5 @@ namespace Zombie.Sprites
                 }
             }
         }
-    }*/
+    }
 }

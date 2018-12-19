@@ -47,21 +47,5 @@ namespace Zombie.Sprites
                 }
             }
         }
-
-        /*public override void OnCollide(Sprite sprite)
-        {
-            
-            if (sprite == this.Parent)
-                return;
-
-            if (sprite is Bullet)
-                return;
-            if (sprite.Rectangle.Intersects(this.Rectangle))
-            {
-                //Score++;
-                sprite.IsRemoved = true;
-            }
-            //IsRemoved = true;
-        }*/
     }
 }

@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Zombie.Sprites
 {
-    /*public class Player2 : Sprite
+    public class Player2 : Sprite
     {
         public Bullet2 Bullet2;
 
@@ -74,11 +74,11 @@ namespace Zombie.Sprites
             bullet2.Position = this.Position;
             bullet2.LinearVelocity = this.LinearVelocity * 2;
             bullet2.LifeSpan = 2f;
-            bullet2.Parent2 = this;
+            bullet2.Parent = this;
 
             sprites.Add(bullet2);
 
 
         }
-    }*/
+    }
 }

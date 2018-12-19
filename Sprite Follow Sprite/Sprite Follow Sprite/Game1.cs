@@ -53,21 +53,23 @@ namespace Sprite_Follow_Sprite
             };
 
             _sprites = new List<Sprite>()
-      {
-        player,
-        new Sprite(texture)
-        {
-          Colour = Color.Blue,
-          Position = new Vector2(200, 200),
-        }.SetFollowTarget(player, 75f),
-        new Sprite(texture)
-        {
-          Colour = Color.Orange,
-          Position = new Vector2(400, 200),
-          FollowTarget = player,
-          FollowDistance = 1f,
-        }
-      };
+            {
+                player,
+                new Sprite(texture)
+                {
+                Colour = Color.Blue,
+                Position = new Vector2(200, 400),
+                FollowTarget = player,
+                FollowDistance = 10f,
+                },//.SetFollowTarget(player, 1f),
+                new Sprite(texture)
+                {
+                Colour = Color.Orange,
+                Position = new Vector2(600, 200),
+                FollowTarget = player,
+                FollowDistance = 10f,
+                }
+            };
         }
 
         /// <summary>

@@ -114,7 +114,7 @@ namespace Sprite_Death_and_Respawn
             foreach (var sprite in _sprites)
                 sprite.Update(gameTime, _sprites);
 
-            if(_timer > 0.25f)
+            if(_timer > 0.5f)
             {
                 _timer = 0;
                 _sprites.Add(new Bomb(Content.Load<Texture2D>("skullBomb(1)")));

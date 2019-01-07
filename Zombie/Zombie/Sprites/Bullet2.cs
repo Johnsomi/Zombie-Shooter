@@ -41,6 +41,8 @@ namespace Zombie.Sprites
                 }
                 if (sprite is Bullet2)
                     continue;
+                if (sprite is Player)
+                    continue;
                 if (sprite.Rectangle.Intersects(this.Rectangle))
                 {
                     player2.Score++;

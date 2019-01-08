@@ -11,6 +11,7 @@ namespace Zombie
     /// </summary>
     public class Game1 : Game
     {
+        //before
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         //

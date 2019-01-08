@@ -68,29 +68,21 @@ namespace Zombie
             var playerTexture = Content.Load<Texture2D>("topDownSoldier2");
 
             //------------------------------------------------------------------
-            var player = new Player(playerTexture)
-            {
-                Position = new Vector2(960, 540),
-                Bullet = new Bullet(Content.Load<Texture2D>("circle")),
-            };
-            
             _sprites = new List<Sprite>()
             {
-
-                var player = new Player(playerTexture)
-            {
-                Position = new Vector2(960, 540),
-                Bullet = new Bullet(Content.Load<Texture2D>("circle")),
+                new Player(playerTexture)
+                {
+                    Position = new Vector2(960, 540),
+                    Bullet = new Bullet(Content.Load<Texture2D>("circle")),
+                },
+               /* new Player2(playerTexture)
+                {
+                    Position = new Vector2(200,200),
+                    Bullet2 = new Bullet2(Content.Load<Texture2D>("circle")),
+                    Color = Color.Red,
+                } */              
             };
-
-            /* new Player2(playerTexture)
-             {
-                 Position = new Vector2(200,200),
-                 Bullet2 = new Bullet2(Content.Load<Texture2D>("circle")),
-                 Color = Color.Red,
-             } */
-        };
-            player
+            //
             _targetTexture = Content.Load<Texture2D>("target2");
             _font = Content.Load<SpriteFont>("Font");
             //--------------------------------------------------------------------
@@ -112,7 +104,7 @@ namespace Zombie
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            
+            //
             _timer2 += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             foreach (var sprite in _sprites.ToArray())
@@ -122,12 +114,12 @@ namespace Zombie
             //sprite.Update(gameTime, _sprites);
 
             PostUpdate();
-            
+            //
             SpawnTarget();
 
             base.Update(gameTime);
         }
-        
+        //
         private void SpawnTarget()
         {
             if (_timer2 > 0.5)
@@ -140,8 +132,6 @@ namespace Zombie
                 _sprites.Add(new Sprite(_targetTexture)
                 {
                     Position = new Vector2(xPos, yPos),
-                    //
-                    FollowTarget = 
                 });
             }
         }

@@ -11,6 +11,7 @@ namespace Zombie.Sprites
 {
     public class Player : Sprite
     {
+        
         public Bullet Bullet;
 
         public int Score;
@@ -18,7 +19,7 @@ namespace Zombie.Sprites
         public Player(Texture2D texture)
             : base(texture)
         {
-
+            
         }
 
         public override void Update(GameTime gameTime, List<Sprite> sprites)

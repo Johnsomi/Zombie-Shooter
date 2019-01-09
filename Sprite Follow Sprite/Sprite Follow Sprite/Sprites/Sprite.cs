@@ -120,7 +120,7 @@ namespace Sprite_Follow_Sprite.Sprites
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(_texture, Position, null, Colour, _rotation, Origin, 1f, SpriteEffects.None, Layer);
+            spriteBatch.Draw(_texture, Position, null, Colour, _rotation, Origin, 1, SpriteEffects.None, Layer);
         }
 
         /// <summary>

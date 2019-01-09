@@ -51,10 +51,10 @@ namespace Zombie.Sprites
             _texture = texture;
             Origin = new Vector2(_texture.Width / 2, _texture.Height / 2);
 
-            
-
             TextureData = new Color[_texture.Width * _texture.Height];
             _texture.GetData(TextureData);
+
+
         }
 
         public virtual void Update(GameTime gameTime, List<Sprite> sprites)

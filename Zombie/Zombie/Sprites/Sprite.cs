@@ -20,7 +20,7 @@ namespace Zombie.Sprites
         public Vector2 Origin;
         
 
-        //
+        
         public Color Color = Color.White;
 
         public Vector2 Direction;
@@ -34,10 +34,12 @@ namespace Zombie.Sprites
         public bool IsRemoved = false;
 
         public readonly Color[] TextureData;
-
-       
-
         //
+        public float FollowDistance { get; set; }
+        //
+        public Sprite FollowTarget { get; set; }
+
+        
         public Rectangle Rectangle
         {
             get
@@ -53,8 +55,30 @@ namespace Zombie.Sprites
 
             TextureData = new Color[_texture.Width * _texture.Height];
             _texture.GetData(TextureData);
+        }
 
+        //
+        public override void Update(GameTime gameTime)
+        {
+            Follow();
+        }
+        //
+        protected void Follow()
+        {
+            if (FollowTarget == null)
+                return;
 
+            var distance = FollowTarget.Position - this.Position;
+            _rotation = (float)Math.Atan2(distance.Y, distance.X);
+
+            Direction = new Vector2((float)Math.Cos(_rotation), (float)Math.Sin(_rotation));
+
+            var currentDistance = Vector2.Distance(this.Position, FollowTarget.Position);
+            if (currentDistance > FollowDistance)
+            {
+                var t = MathHelper.Min((float)Math.Abs(currentDistance - FollowDistance), LinearVelocity);
+                var velocity = Direction * t;
+            }
         }
 
         public virtual void Update(GameTime gameTime, List<Sprite> sprites)
@@ -70,6 +94,16 @@ namespace Zombie.Sprites
         public object Clone()
         {
             return this.MemberwiseClone();
+        }
+
+        //
+        public Sprite SetFollowTarget(Sprite followTarget, float followDistance)
+        {
+            FollowTarget = followTarget;
+
+            FollowDistance = followDistance;
+
+            return this;
         }
     }
 }

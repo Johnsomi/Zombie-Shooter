@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Zombie.Sprites
 {
-    public class Sprite : ICloneable
+    public class Sprite :  ICloneable
     {
         protected Texture2D _texture;
         protected float _rotation;
@@ -35,9 +35,9 @@ namespace Zombie.Sprites
 
         public readonly Color[] TextureData;
         //
-        public float FollowDistance { get; set; }
+        public float FollowDistance;
         //
-        public Sprite FollowTarget { get; set; }
+        public Sprite FollowTarget;
 
         
         public Rectangle Rectangle
@@ -55,13 +55,11 @@ namespace Zombie.Sprites
 
             TextureData = new Color[_texture.Width * _texture.Height];
             _texture.GetData(TextureData);
+
         }
 
         //
-        public override void Update(GameTime gameTime)
-        {
-            Follow();
-        }
+        
         //
         protected void Follow()
         {
@@ -78,12 +76,15 @@ namespace Zombie.Sprites
             {
                 var t = MathHelper.Min((float)Math.Abs(currentDistance - FollowDistance), LinearVelocity);
                 var velocity = Direction * t;
+
+                Position += velocity;
             }
         }
 
         public virtual void Update(GameTime gameTime, List<Sprite> sprites)
         {
-
+            //
+            Follow();
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)

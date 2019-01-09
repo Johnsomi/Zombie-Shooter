@@ -20,6 +20,8 @@ namespace Zombie
         public static int ScreenWidth;
         public static int ScreenHeight;
 
+        Sprite soldier;
+
         private SpriteFont _font;
 
         private List<Sprite> _sprites;
@@ -66,15 +68,24 @@ namespace Zombie
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             var playerTexture = Content.Load<Texture2D>("topDownSoldier2");
-
+            _targetTexture = Content.Load<Texture2D>("target2");
             //------------------------------------------------------------------
+            //
+            soldier = new Player(playerTexture)
+            {
+                Position = new Vector2(960, 540),
+                Bullet = new Bullet(Content.Load<Texture2D>("circle")),
+            };
+
             _sprites = new List<Sprite>()
             {
-                new Player(playerTexture)
+
+                soldier,
+                /*new Player(playerTexture)
                 {
                     Position = new Vector2(960, 540),
                     Bullet = new Bullet(Content.Load<Texture2D>("circle")),
-                },
+                },*/
                /* new Player2(playerTexture)
                 {
                     Position = new Vector2(200,200),
@@ -82,8 +93,7 @@ namespace Zombie
                     Color = Color.Red,
                 } */              
             };
-            //
-            _targetTexture = Content.Load<Texture2D>("target2");
+            
             _font = Content.Load<SpriteFont>("Font");
             //--------------------------------------------------------------------
         }
@@ -132,6 +142,11 @@ namespace Zombie
                 _sprites.Add(new Sprite(_targetTexture)
                 {
                     Position = new Vector2(xPos, yPos),
+                    //
+                    FollowTarget = soldier,
+                    //
+                    FollowDistance = 10f,
+                  
                 });
             }
         }

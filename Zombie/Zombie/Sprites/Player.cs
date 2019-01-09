@@ -42,6 +42,8 @@ namespace Zombie.Sprites
             if (_currentKey.IsKeyDown(Keys.S))
                 Position -= Direction * LinearVelocity;
 
+            //
+            
 
             if (_currentKey.IsKeyDown(Keys.Space) &&
                 _previousKey.IsKeyUp(Keys.Space))

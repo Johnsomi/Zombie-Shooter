@@ -13,6 +13,9 @@ namespace Zombie.Sprites
     {
         public Bullet Bullet;
 
+        //-
+        public bool HasDied = false;
+
         public int Score;
 
         public Player(Texture2D texture)
@@ -63,8 +66,10 @@ namespace Zombie.Sprites
                   //  continue;
                 if (sprite.Rectangle.Intersects(this.Rectangle))
                 {
-                    Score++;
-                    sprite.IsRemoved = true;
+                    //-
+                    this.HasDied = true;
+                    //Score++;
+                    //sprite.IsRemoved = true;
                 }
             }
         }

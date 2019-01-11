@@ -26,6 +26,8 @@ namespace Zombie.Sprites
         public Vector2 Direction;
         public float RotationVelocity = 3f;
         public float LinearVelocity = 4f;
+        //-
+        public float Speed;
 
         public Sprite Parent;
 

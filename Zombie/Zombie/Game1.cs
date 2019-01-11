@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using Zombie.Sprites;
@@ -29,6 +30,8 @@ namespace Zombie
         private float _timer2;
         //
         private Texture2D _targetTexture;
+
+        private bool _hasStarted = false;
 
         public Game1()
         {
@@ -66,9 +69,16 @@ namespace Zombie
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            _targetTexture = Content.Load<Texture2D>("ZombieT1");
+            _font = Content.Load<SpriteFont>("Font");
+            //-
+            Restart();
+        }
 
+        private void Restart()
+        {
             var playerTexture = Content.Load<Texture2D>("topDownSoldier2");
-            _targetTexture = Content.Load<Texture2D>("target2");
+            //_targetTexture = Content.Load<Texture2D>("target2");
             //------------------------------------------------------------------
             //
             soldier = new Player(playerTexture)
@@ -93,8 +103,10 @@ namespace Zombie
                     Color = Color.Red,
                 } */              
             };
-            
-            _font = Content.Load<SpriteFont>("Font");
+
+            //-
+            _hasStarted = false;
+            //_font = Content.Load<SpriteFont>("Font");
             //--------------------------------------------------------------------
         }
 
@@ -114,7 +126,13 @@ namespace Zombie
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            //
+            //-
+            if (Keyboard.GetState().IsKeyDown(Keys.Enter))
+                _hasStarted = true;
+
+            if (!_hasStarted)
+                return;
+
             _timer2 += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             foreach (var sprite in _sprites.ToArray())
@@ -132,7 +150,7 @@ namespace Zombie
         //
         private void SpawnTarget()
         {
-            if (_timer2 > 0.5)
+            if (_timer2 > 2.0)
             {
                 _timer2 = 0;
 
@@ -153,13 +171,27 @@ namespace Zombie
 
         private void PostUpdate()
         {
+            
             //Keep down part
             for (int i = 0; i < _sprites.Count; i++)
             {
+                //-
+                var sprite = _sprites[i];
+
                 if (_sprites[i].IsRemoved)
                 {
                     _sprites.RemoveAt(i);
                     i--;
+                }
+
+                //-
+                if(sprite is Player)
+                {
+                    var soldier = sprite as Player;
+                    if (soldier.HasDied)
+                    {
+                        Restart();
+                    }
                 }
             }
         }

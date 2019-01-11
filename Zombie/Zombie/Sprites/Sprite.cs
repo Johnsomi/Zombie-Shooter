@@ -24,7 +24,7 @@ namespace Zombie.Sprites
         public Color Color = Color.White;
 
         public Vector2 Direction;
-        public float RotationVelocity = 3f;
+        public float RotationVelocity = 4f;
         public float LinearVelocity = 4f;
         //-
         public float Speed;

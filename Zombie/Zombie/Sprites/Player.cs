@@ -11,6 +11,12 @@ namespace Zombie.Sprites
 {
     public class Player : Sprite
     {
+        //-
+        Rectangle HitBox;
+        
+        //-
+        private Vector2 Origin2;
+
         public Bullet Bullet;
 
         //-
@@ -54,8 +60,11 @@ namespace Zombie.Sprites
                 var bullet = Bullet.Clone() as Bullet;
                 AddBullet(sprites);
             }
+            //-
+            HitBox = new Rectangle(this.Rectangle.X, this.Rectangle.Y, 80, 80);
+            //-
+            Origin2 = new Vector2(50, 50);
             
-            //
             foreach (var sprite in sprites)
             {
                 if (sprite is Player)
@@ -64,9 +73,11 @@ namespace Zombie.Sprites
                     continue;
                 //if (sprite is Player2)
                   //  continue;
-                if (sprite.Rectangle.Intersects(this.Rectangle))
+
+                //-
+                if (sprite.Rectangle.Intersects(HitBox))
                 {
-                    //-
+                    
                     this.HasDied = true;
                     //Score++;
                     //sprite.IsRemoved = true;
@@ -85,6 +96,13 @@ namespace Zombie.Sprites
 
             sprites.Add(bullet);
 
+
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(_texture, Position, null, Color, _rotation, Origin, 1, SpriteEffects.None, 0);
+            spriteBatch.Draw(_texture, HitBox, null, Color.Red, _rotation, Origin2, SpriteEffects.None, 0);
 
         }
 

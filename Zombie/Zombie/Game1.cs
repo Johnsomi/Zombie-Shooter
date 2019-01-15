@@ -154,7 +154,7 @@ namespace Zombie
             {
                 _timer2 = 0;
 
-                var xPos = Random.Next(0, ScreenWidth - _targetTexture.Width);
+                var xPos = Random.Next(ScreenWidth - (_targetTexture.Width * 2), ScreenWidth - _targetTexture.Width);
                 var yPos = Random.Next(0, ScreenHeight - _targetTexture.Height);
 
                 _sprites.Add(new Sprite(_targetTexture)

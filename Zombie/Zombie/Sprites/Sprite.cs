@@ -18,8 +18,11 @@ namespace Zombie.Sprites
 
         public Vector2 Position;
         public Vector2 Origin;
-        
 
+        //-
+        Rectangle HitBoxZ;
+        //-
+        //private Vector2 Origin3;
         
         public Color Color = Color.White;
 
@@ -87,11 +90,16 @@ namespace Zombie.Sprites
         {
             //
             Follow();
+            //-
+            //HitBoxZ = new Rectangle(this.Rectangle.X, this.Rectangle.Y, 70, 60);
+            //-
+            //Origin3 = new Vector2(50, 45);
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(_texture, Position, null, Color, _rotation, Origin, 1, SpriteEffects.None, 0);
+            //spriteBatch.Draw(_texture, Rectangle, null, Color.Red, _rotation, Origin, SpriteEffects.None, 0);
         }
 
         public object Clone()

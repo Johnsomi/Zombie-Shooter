@@ -20,6 +20,8 @@ namespace Zombie.Sprites
 
         }
 
+
+
         public override void Update(GameTime gameTime, List<Sprite> sprites)
         {
             _timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -42,12 +44,36 @@ namespace Zombie.Sprites
                     continue;
                 //if (sprite is Player2)
                   //  continue;
+
+
+                //-----
+                if (sprite.IsRemoved == true)
+                {
+                    //player.Score++;
+                }
+
                 if (sprite.Rectangle.Intersects(this.Rectangle))
                 {
-                    player.Score++;
-                    sprite.IsRemoved = true;
+                    //player.Score++;
+                    //sprite.IsRemoved = true;
                 }
             }
+        }
+
+        //-----
+        public override void OnCollide(Sprite sprite)
+        {
+            if (sprite == this.Parent)
+                return;
+
+            if (sprite is Bullet)
+
+
+            if (sprite is Sprite)
+                return;
+
+            sprite.IsRemoved = true;
+            //player.Score++;
         }
     }
 }

@@ -171,6 +171,18 @@ namespace Zombie
 
         private void PostUpdate()
         {
+            //-----
+            foreach(var spriteA in _sprites)
+            {
+                foreach(var spriteB in _sprites)
+                {
+                    if (spriteA == spriteB)
+                        continue;
+
+                    if (spriteA.Intersects(spriteB))
+                        spriteA.OnCollide(spriteB);
+                }
+            }
             
             //Keep down part
             for (int i = 0; i < _sprites.Count; i++)
@@ -180,8 +192,16 @@ namespace Zombie
 
                 if (_sprites[i].IsRemoved)
                 {
+                    //-----
+                    Player player = (Player)_sprites[0];
+                    if (sprite is Sprite)
+                    {
+                        player.Score++;
+                    }
+                    
                     _sprites.RemoveAt(i);
                     i--;
+                    
                 }
 
                 //-

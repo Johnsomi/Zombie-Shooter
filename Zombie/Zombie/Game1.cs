@@ -139,7 +139,7 @@ namespace Zombie
 
             _timer2 += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            foreach (var sprite in _sprites)
+            foreach (var sprite in _sprites.ToArray())
             sprite.Update(gameTime, _sprites);
 
             //foreach (var sprite in _sprites)

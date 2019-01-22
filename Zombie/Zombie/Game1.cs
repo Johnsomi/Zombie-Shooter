@@ -21,6 +21,10 @@ namespace Zombie
         public static int ScreenWidth;
         public static int ScreenHeight;
 
+        public double G = 2.0;
+
+        public int GCount;
+
         Sprite soldier;
 
         private SpriteFont _font;
@@ -135,7 +139,7 @@ namespace Zombie
 
             _timer2 += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            foreach (var sprite in _sprites.ToArray())
+            foreach (var sprite in _sprites)
             sprite.Update(gameTime, _sprites);
 
             //foreach (var sprite in _sprites)
@@ -150,8 +154,16 @@ namespace Zombie
         //
         private void SpawnTarget()
         {
-            if (_timer2 > 2.0)
+            if (_timer2 > G)
             {
+                GCount++;
+
+                if (GCount == 2)
+                {
+                    G = G - 0.1;
+                    GCount = 0;
+                }
+
                 _timer2 = 0;
 
                 var xPos = Random.Next(ScreenWidth - (_targetTexture.Width * 2), ScreenWidth - _targetTexture.Width);
@@ -203,6 +215,7 @@ namespace Zombie
                             player.Score--;
                         }
                     }
+
                     
                     _sprites.RemoveAt(i);
                     i--;

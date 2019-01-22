@@ -195,8 +195,13 @@ namespace Zombie
                     //-----
                     Player player = (Player)_sprites[0];
                     if (sprite is Sprite)
-                    {
+                    {                       
                         player.Score++;
+
+                        if (sprite is Bullet)
+                        {
+                            player.Score--;
+                        }
                     }
                     
                     _sprites.RemoveAt(i);

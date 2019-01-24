@@ -30,6 +30,8 @@ namespace Zombie
         private SpriteFont _font;
 
         private List<Sprite> _sprites;
+
+        private List<Sprite> ZomList;
         //
         private float _timer2;
         //
@@ -108,6 +110,11 @@ namespace Zombie
                 } */              
             };
 
+            ZomList = new List<Sprite>()
+            {
+
+            };
+
             //-
             _hasStarted = false;
             //_font = Content.Load<SpriteFont>("Font");
@@ -139,12 +146,18 @@ namespace Zombie
 
             _timer2 += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
+            
+
             foreach (var sprite in _sprites.ToArray())
             {
                 sprite.Update(gameTime, _sprites);
             }
-            //foreach (var sprite in _sprites)
-            //sprite.Update(gameTime, _sprites);
+
+
+            foreach (var sprite in ZomList)
+            {
+                sprite.Update(gameTime, ZomList);
+            }
 
             PostUpdate();
             //
@@ -170,7 +183,7 @@ namespace Zombie
                 var xPos = Random.Next(ScreenWidth - (_targetTexture.Width * 2), ScreenWidth - _targetTexture.Width);
                 var yPos = Random.Next(0, ScreenHeight - _targetTexture.Height);
 
-                _sprites.Add(new Sprite(_targetTexture)
+                ZomList.Add(new Sprite(_targetTexture)
                 {
                     Position = new Vector2(xPos, yPos),
                     //
@@ -196,7 +209,9 @@ namespace Zombie
                         spriteA.OnCollide(spriteB);
                 }
             }
-            
+
+
+
             //Keep down part
             for (int i = 0; i < _sprites.Count; i++)
             {
@@ -247,6 +262,10 @@ namespace Zombie
 
             foreach (var sprite in _sprites)
                 sprite.Draw(spriteBatch);
+
+            foreach (var sprite in ZomList)
+                sprite.Draw(spriteBatch);
+
 
             var fontY = 10;
             var i = 0;

@@ -18,7 +18,7 @@ namespace Zombie.Sprites
         private Vector2 Origin2;
 
         public Bullet Bullet;
-
+        
         //-
         public bool HasDied = false;
 
@@ -39,17 +39,17 @@ namespace Zombie.Sprites
             _currentKey = Keyboard.GetState();
 
             if (_currentKey.IsKeyDown(Keys.A))
-                _rotation -= MathHelper.ToRadians(RotationVelocity);
+                _rotation -= MathHelper.ToRadians(RotationVelocity - 2f);
             if (_currentKey.IsKeyDown(Keys.D))
-                _rotation += MathHelper.ToRadians(RotationVelocity);
+                _rotation += MathHelper.ToRadians(RotationVelocity - 2f);
 
             Direction = new Vector2((float)Math.Cos(MathHelper.ToRadians(90) - _rotation), -(float)Math.Sin(MathHelper.ToRadians(90) - _rotation));
 
             if (_currentKey.IsKeyDown(Keys.W))
-                Position += Direction * LinearVelocity;
+                Position += Direction * (playerVelocity - 2f);
 
             if (_currentKey.IsKeyDown(Keys.S))
-                Position -= Direction * LinearVelocity;
+                Position -= Direction * (playerVelocity - 2f);
 
             //
             

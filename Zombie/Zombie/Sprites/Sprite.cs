@@ -30,6 +30,10 @@ namespace Zombie.Sprites
         public Vector2 Direction;
         public float RotationVelocity = 4f;
         public float LinearVelocity = 4f;
+
+        public float playerVelocity = 4f;
+
+        public float ZombieVelocity = 2f;
         //-
         public float Speed;
 
@@ -92,7 +96,7 @@ namespace Zombie.Sprites
             var currentDistance = Vector2.Distance(this.Position, FollowTarget.Position);
             if (currentDistance > FollowDistance)
             {
-                var t = MathHelper.Min((float)Math.Abs(currentDistance - FollowDistance), LinearVelocity);
+                var t = MathHelper.Min((float)Math.Abs(currentDistance - FollowDistance), ZombieVelocity);
                 var velocity = Direction * t;
 
                 Position += velocity;

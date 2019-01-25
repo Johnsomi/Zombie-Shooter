@@ -25,6 +25,10 @@ namespace Zombie
 
         public int GCount;
 
+        public int ZSCount;
+
+        
+
         Sprite soldier;
 
         private SpriteFont _font;
@@ -112,7 +116,7 @@ namespace Zombie
 
             ZomList = new List<Sprite>()
             {
-
+                
             };
 
             //-
@@ -154,7 +158,12 @@ namespace Zombie
             }
 
 
-            foreach (var sprite in ZomList)
+            foreach (var sprite in ZomList.ToArray())
+            {
+                sprite.Update(gameTime, ZomList);
+            }
+
+            foreach(var sprite in _sprites.ToArray())
             {
                 sprite.Update(gameTime, ZomList);
             }
@@ -172,7 +181,14 @@ namespace Zombie
             {
                 GCount++;
 
-                if (GCount == 2)
+                ZSCount++;
+
+                if (ZSCount == 5)
+                {
+
+                }
+
+                if (GCount == 2 && G > 0.4)
                 {
                     G = G - 0.1;
                     GCount = 0;
@@ -200,7 +216,7 @@ namespace Zombie
             //-----
             foreach(var spriteA in _sprites)
             {
-                foreach(var spriteB in _sprites)
+                foreach(var spriteB in ZomList)
                 {
                     if (spriteA == spriteB)
                         continue;
@@ -209,10 +225,8 @@ namespace Zombie
                         spriteA.OnCollide(spriteB);
                 }
             }
+            Player player = (Player)_sprites[0];
 
-
-
-            //Keep down part
             for (int i = 0; i < _sprites.Count; i++)
             {
                 //-
@@ -221,9 +235,9 @@ namespace Zombie
                 if (_sprites[i].IsRemoved)
                 {
                     //-----
-                    Player player = (Player)_sprites[0];
+                    
                     if (sprite is Sprite)
-                    {                       
+                    {
                         player.Score++;
 
                         if (sprite is Bullet)
@@ -232,14 +246,17 @@ namespace Zombie
                         }
                     }
 
-                    
+
                     _sprites.RemoveAt(i);
                     i--;
-                    
+
                 }
 
+                //Keep down part
+                
+
                 //-
-                if(sprite is Player)
+                if (sprite is Player)
                 {
                     var soldier = sprite as Player;
                     if (soldier.HasDied)
@@ -247,6 +264,26 @@ namespace Zombie
                         Restart();
                     }
                 }
+            }
+            for (int i = 0; i < ZomList.Count; i++)
+            {
+                //-
+                var sprite = ZomList[i];
+
+                if (ZomList[i].IsRemoved)
+                {
+                    //-----
+                    player.Score++;
+                    
+
+
+                    ZomList.RemoveAt(i);
+                    i--;
+
+                }
+
+                //Keep down part
+                
             }
         }
 

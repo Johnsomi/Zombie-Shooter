@@ -31,39 +31,14 @@ namespace Zombie.Sprites
 
             Position += Direction * LinearVelocity;
 
-            //
-            Player player = (Player) sprites[0];
-            foreach (var sprite in sprites)
-            {
-                if (sprite is Player)
-                {
-                    player = (Player)sprite;
-                    continue;
-                }
-                if (sprite is Bullet)
-                    continue;
-                //if (sprite is Player2)
-                  //  continue;
-
-
-                //-----
-                if (sprite.IsRemoved == true)
-                {
-                    //player.Score++;
-                }
-
-                if (sprite.Rectangle.Intersects(this.Rectangle))
-                {
-                    //player.Score++;
-                    //sprite.IsRemoved = true;
-                }
-            }
+          
+           
         }
 
         //-----
         public override void OnCollide(Sprite sprite)
         {
-            if (sprite == this.Parent)
+          /*  if (sprite == this.Parent)
                 return;
 
             if (sprite is Bullet)
@@ -71,7 +46,7 @@ namespace Zombie.Sprites
 
             if (sprite is Sprite)
                 return;
-
+                */
             sprite.IsRemoved = true;
             //player.Score++;
         }

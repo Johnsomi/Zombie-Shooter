@@ -27,6 +27,8 @@ namespace Zombie
 
         public int ZSCount;
 
+        public float ZombieVelocity = 2f;
+
         
 
         Sprite soldier;
@@ -185,7 +187,8 @@ namespace Zombie
 
                 if (ZSCount == 5)
                 {
-
+                    ZSCount = 0;
+                    
                 }
 
                 if (GCount == 2 && G > 0.4)

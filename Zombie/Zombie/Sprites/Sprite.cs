@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Zombie.Sprites
 {
-    public class Sprite :  ICloneable
+    public class Sprite : ICloneable
     {
         protected Texture2D _texture;
         protected float _rotation;
@@ -18,6 +18,8 @@ namespace Zombie.Sprites
 
         public Vector2 Position;
         public Vector2 Origin;
+
+        private float _timer3 = 0;
 
         //-
         Rectangle HitBoxZ;
@@ -33,7 +35,7 @@ namespace Zombie.Sprites
 
         public float playerVelocity = 4f;
 
-        public float ZombieVelocity = 2f;
+        public float ZombieVelocity = 3f;
         //-
         public float Speed;
 
@@ -107,6 +109,16 @@ namespace Zombie.Sprites
         {
             //
             Follow();
+
+            _timer3 += (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            if (_timer3 > 3)
+            {
+                ZombieVelocity = ZombieVelocity + 0.5f;
+
+                _timer3 = 0;
+            }
+
             //-
             //HitBoxZ = new Rectangle(this.Rectangle.X, this.Rectangle.Y, 70, 60);
             //-

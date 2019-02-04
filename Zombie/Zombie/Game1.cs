@@ -29,7 +29,7 @@ namespace Zombie
 
         public float ZombieVelocity = 2f;
 
-        
+        Rectangle HitBoxZom;
 
         Sprite soldier;
 
@@ -151,7 +151,6 @@ namespace Zombie
                 return;
 
             _timer2 += (float)gameTime.ElapsedGameTime.TotalSeconds;
-
             
 
             foreach (var sprite in _sprites.ToArray())
@@ -305,7 +304,7 @@ namespace Zombie
 
             foreach (var sprite in ZomList)
                 sprite.Draw(spriteBatch);
-
+            
 
             var fontY = 10;
             var i = 0;

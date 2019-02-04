@@ -24,7 +24,7 @@ namespace Zombie.Sprites
         //-
         Rectangle HitBoxZ;
         //-
-        //private Vector2 Origin3;
+        Vector2 Origin3;
         
         // Was = Color.White;
         public Color Color { get; set; }

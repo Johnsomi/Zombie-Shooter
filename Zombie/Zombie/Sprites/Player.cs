@@ -40,6 +40,7 @@ namespace Zombie.Sprites
 
             //
             Position = Vector2.Clamp(Position, new Vector2(0, 0), new Vector2(Game1.ScreenWidth - this.Rectangle.Width, Game1.ScreenHeight - this.Rectangle.Height));
+            
 
             _previousKey = _currentKey;
             _currentKey = Keyboard.GetState();

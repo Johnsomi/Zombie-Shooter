@@ -19,6 +19,9 @@ namespace Zombie.Sprites
         public Vector2 Position;
         public Vector2 Origin;
 
+        //______
+        public Vector2 BulletPosition;
+
         private float _timer3 = 0;
 
         //-

@@ -123,7 +123,7 @@ namespace Zombie.Sprites
 
             //-
             //Origin3 = new Vector2(35, 30);
-           // HitBoxZ = new Rectangle(this.Rectangle.X, this.Rectangle.Y, 70, 60);
+           //HitBoxZ = new Rectangle(this.Rectangle.X, this.Rectangle.Y, 70, 60);
             HitBoxZ = new Rectangle(this.Rectangle.X-_texture.Width/4, this.Rectangle.Y- _texture.Height/4, (int)(_texture.Width/1.5), (int)(_texture.Height/1.5));
             //-
             //

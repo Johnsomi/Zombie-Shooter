@@ -62,6 +62,8 @@ namespace Zombie
         /// </summary>
         protected override void Initialize()
         {
+            IsMouseVisible = true;
+            
             graphics.PreferredBackBufferWidth = GraphicsDevice.DisplayMode.Width;
             graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height;
             graphics.IsFullScreen = true;

@@ -29,6 +29,11 @@ namespace Zombie.Sprites
         // Was = Color.White;
         public Color Color { get; set; }
 
+        //_____________
+        public Vector2 MouseDirection;
+        public MouseState _currentMouse;
+        public MouseState _previousMouse;
+
         public Vector2 Direction;
         public float RotationVelocity = 4f;
         public float LinearVelocity = 4f;
@@ -120,6 +125,7 @@ namespace Zombie.Sprites
 
                 _timer3 = 0;
             }
+
 
             //-
             //Origin3 = new Vector2(35, 30);

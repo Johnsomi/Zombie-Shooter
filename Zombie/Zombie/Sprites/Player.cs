@@ -32,6 +32,12 @@ namespace Zombie.Sprites
 
         public override void Update(GameTime gameTime, List<Sprite> sprites)
         {
+
+            //___________________-
+            _previousMouse = _currentMouse;
+            _currentMouse = Mouse.GetState();
+            Vector2 MousePosition = new Vector2(_currentMouse.X, _currentMouse.Y);
+
             //
             Position = Vector2.Clamp(Position, new Vector2(0, 0), new Vector2(Game1.ScreenWidth - this.Rectangle.Width, Game1.ScreenHeight - this.Rectangle.Height));
 
@@ -44,6 +50,8 @@ namespace Zombie.Sprites
                 _rotation += MathHelper.ToRadians(RotationVelocity - 2f);
 
             Direction = new Vector2((float)Math.Cos(MathHelper.ToRadians(90) - _rotation), -(float)Math.Sin(MathHelper.ToRadians(90) - _rotation));
+
+            //Direction = MousePosition - Position;
 
             if (_currentKey.IsKeyDown(Keys.W))
                 Position += Direction * (playerVelocity - 2f);

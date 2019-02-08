@@ -223,7 +223,7 @@ namespace Zombie
                     if (spriteA == spriteB)
                         continue;
 
-                    if (spriteA.Intersects(spriteB))
+                    if (spriteA.Rectangle.Intersects(spriteB.HitBoxZ))
                         spriteA.OnCollide(spriteB);
                 }
             }

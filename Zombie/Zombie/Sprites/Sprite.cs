@@ -22,7 +22,7 @@ namespace Zombie.Sprites
         private float _timer3 = 0;
 
         //-
-        Rectangle HitBoxZ;
+        public Rectangle HitBoxZ;
         //-
         Vector2 Origin3;
         
@@ -75,6 +75,8 @@ namespace Zombie.Sprites
             _texture = texture;
             Origin = new Vector2(_texture.Width / 2, _texture.Height / 2);
 
+            Origin3 = new Vector2(_texture.Width / 2, _texture.Height / 2);
+
             TextureData = new Color[_texture.Width * _texture.Height];
             _texture.GetData(TextureData);
 
@@ -120,15 +122,17 @@ namespace Zombie.Sprites
             }
 
             //-
-            //HitBoxZ = new Rectangle(this.Rectangle.X, this.Rectangle.Y, 70, 60);
+            //Origin3 = new Vector2(35, 30);
+           // HitBoxZ = new Rectangle(this.Rectangle.X, this.Rectangle.Y, 70, 60);
+            HitBoxZ = new Rectangle(this.Rectangle.X-_texture.Width/4, this.Rectangle.Y- _texture.Height/4, (int)(_texture.Width/1.5), (int)(_texture.Height/1.5));
             //-
-            //Origin3 = new Vector2(50, 45);
+            //
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(_texture, Position, null, Color, _rotation, Origin, 1, SpriteEffects.None, 0);
-            //spriteBatch.Draw(_texture, Rectangle, null, Color.Red, _rotation, Origin, SpriteEffects.None, 0);
+            spriteBatch.Draw(_texture, HitBoxZ, null, Color.Red);
         }
 
         //-----

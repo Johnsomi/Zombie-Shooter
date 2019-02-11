@@ -42,6 +42,9 @@ namespace Zombie.Sprites
             _previousMouse = _currentMouse;
             _currentMouse = Mouse.GetState();
             Vector2 MousePosition = new Vector2(_currentMouse.X, _currentMouse.Y);
+            float DistanceX = MousePosition.X - (Position.X + Origin.X);
+            float DistanceY = MousePosition.Y - (Position.Y + Origin.Y);
+            _rotation = (float)Math.Atan2(DistanceY, DistanceX)+(float)(Math.PI*0.5f);
 
             //
             Position = Vector2.Clamp(Position, new Vector2(0, 0), new Vector2(Game1.ScreenWidth - this.Rectangle.Width, Game1.ScreenHeight - this.Rectangle.Height));
@@ -51,11 +54,11 @@ namespace Zombie.Sprites
             _previousKey = _currentKey;
             _currentKey = Keyboard.GetState();
 
-            if (_currentKey.IsKeyDown(Keys.A))
+           /* if (_currentKey.IsKeyDown(Keys.A))
                 _rotation -= MathHelper.ToRadians(RotationVelocity - 2f);
             if (_currentKey.IsKeyDown(Keys.D))
                 _rotation += MathHelper.ToRadians(RotationVelocity - 2f);
-
+                */
             Direction = new Vector2((float)Math.Cos(MathHelper.ToRadians(90) - _rotation), -(float)Math.Sin(MathHelper.ToRadians(90) - _rotation));
 
             //Direction = MousePosition - Position;
@@ -125,7 +128,7 @@ namespace Zombie.Sprites
         public override void Draw(SpriteBatch spriteBatch)
         {
             //spriteBatch.Draw(_texture, SpawnLocation, null, Color2, _rotation, OriginB, 1, SpriteEffects.None, 0);
-            spriteBatch.Draw(_texture, Position, null, Color, _rotation, Origin, 1, SpriteEffects.None, 0);
+            spriteBatch.Draw(_texture, Position, null, Color, _rotation , Origin, 1, SpriteEffects.None, 0);
             //spriteBatch.Draw(_texture, HitBox, null, Color.Red, _rotation, Origin2, SpriteEffects.None, 0);
             //spriteBatch.Draw(_texture, Position, null, Color2, _rotation, OriginB, 1, SpriteEffects.None, 0);
             

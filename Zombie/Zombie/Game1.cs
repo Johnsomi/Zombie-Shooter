@@ -99,6 +99,7 @@ namespace Zombie
             {
                 Position = new Vector2(960, 540),
                 Bullet = new Bullet(Content.Load<Texture2D>("circle")),
+                
             };
 
             _sprites = new List<Sprite>()
@@ -301,9 +302,13 @@ namespace Zombie
 
             spriteBatch.Begin();
 
-            foreach (var sprite in _sprites)
-                sprite.Draw(spriteBatch);
+            // foreach(var sprite in _sprites)
+            //     sprite.Draw(spriteBatch);
 
+            for (int SpriteIndex = _sprites.Count - 1; SpriteIndex >= 0; SpriteIndex-- )
+            {
+                _sprites[SpriteIndex].Draw(spriteBatch);
+            }
             foreach (var sprite in ZomList)
                 sprite.Draw(spriteBatch);
             

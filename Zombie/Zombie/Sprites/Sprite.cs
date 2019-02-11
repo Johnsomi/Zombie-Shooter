@@ -21,6 +21,7 @@ namespace Zombie.Sprites
 
         //______
         public Vector2 BulletPosition;
+        
 
         private float _timer3 = 0;
 
@@ -31,7 +32,7 @@ namespace Zombie.Sprites
         
         // Was = Color.White;
         public Color Color { get; set; }
-
+        public Color Color2 { get; set; }
         //_____________
         public Vector2 MouseDirection;
         public MouseState _currentMouse;
@@ -90,6 +91,7 @@ namespace Zombie.Sprites
 
             //-----
             Color = Color.White;
+            Color2 = Color.Blue;
         }
 
         //

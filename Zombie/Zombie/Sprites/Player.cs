@@ -13,12 +13,17 @@ namespace Zombie.Sprites
     {
         //-
         Rectangle HitBox;
-        
+
+        Rectangle BulletBox;
         //-
         private Vector2 Origin2;
 
+        private Vector2 OriginB;
+        private Vector2 OriginB2;
+
         public Bullet Bullet;
-        
+        Vector2 SpawnLocation;
+
         //-
         public bool HasDied = false;
 
@@ -27,7 +32,7 @@ namespace Zombie.Sprites
         public Player(Texture2D texture)
             : base(texture)
         {
-
+            SpawnLocation = new Vector2(this.Position.X , Position.Y);
         }
 
         public override void Update(GameTime gameTime, List<Sprite> sprites)
@@ -40,7 +45,8 @@ namespace Zombie.Sprites
 
             //
             Position = Vector2.Clamp(Position, new Vector2(0, 0), new Vector2(Game1.ScreenWidth - this.Rectangle.Width, Game1.ScreenHeight - this.Rectangle.Height));
-            
+            BulletPosition = Vector2.Clamp(Position, new Vector2(0, 0), new Vector2(Game1.ScreenWidth - HitBox.Width, Game1.ScreenHeight - HitBox.Height));
+
 
             _previousKey = _currentKey;
             _currentKey = Keyboard.GetState();
@@ -73,6 +79,11 @@ namespace Zombie.Sprites
             HitBox = new Rectangle(this.Rectangle.X, this.Rectangle.Y, 80, 80);
             //-
             Origin2 = new Vector2(50, 50);
+
+            BulletBox = new Rectangle(this.Rectangle.X, this.Rectangle.Y, 80, 80);
+
+            OriginB = new Vector2(16, 0);
+            
             
             foreach (var sprite in sprites)
             {
@@ -98,7 +109,10 @@ namespace Zombie.Sprites
         {
             var bullet = Bullet.Clone() as Bullet;
             bullet.Direction = this.Direction;
-            bullet.Position = this.Position;
+            double newX = OriginB.X * Math.Cos(_rotation);
+            double newY = OriginB.X * Math.Sin(_rotation);
+            SpawnLocation = new Vector2(this.Position.X + (float)newX, Position.Y + (float)newY);
+            bullet.Position = SpawnLocation;
             bullet.LinearVelocity = this.LinearVelocity * 2;
             bullet.LifeSpan = 2f;
             bullet.Parent = this;
@@ -110,8 +124,11 @@ namespace Zombie.Sprites
 
         public override void Draw(SpriteBatch spriteBatch)
         {
+            //spriteBatch.Draw(_texture, SpawnLocation, null, Color2, _rotation, OriginB, 1, SpriteEffects.None, 0);
             spriteBatch.Draw(_texture, Position, null, Color, _rotation, Origin, 1, SpriteEffects.None, 0);
-            spriteBatch.Draw(_texture, HitBox, null, Color.Red, _rotation, Origin2, SpriteEffects.None, 0);
+            //spriteBatch.Draw(_texture, HitBox, null, Color.Red, _rotation, Origin2, SpriteEffects.None, 0);
+            //spriteBatch.Draw(_texture, Position, null, Color2, _rotation, OriginB, 1, SpriteEffects.None, 0);
+            
 
         }
 

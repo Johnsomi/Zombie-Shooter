@@ -19,7 +19,6 @@ namespace Zombie.Sprites
         private Vector2 Origin2;
 
         private Vector2 OriginB;
-        private Vector2 OriginB2;
 
         public Bullet Bullet;
         Vector2 SpawnLocation;
@@ -69,15 +68,19 @@ namespace Zombie.Sprites
             if (_currentKey.IsKeyDown(Keys.S))
                 Position -= Direction * (playerVelocity - 2f);
 
-            //
-            
-
-            if (_currentKey.IsKeyDown(Keys.Space) &&
-                _previousKey.IsKeyUp(Keys.Space))
+            if(_currentMouse.LeftButton == ButtonState.Pressed && _previousMouse.LeftButton == ButtonState.Released)
             {
                 var bullet = Bullet.Clone() as Bullet;
                 AddBullet(sprites);
             }
+            
+
+            /*if (_currentKey.IsKeyDown(Keys.Space) &&
+                _previousKey.IsKeyUp(Keys.Space))
+            {
+                var bullet = Bullet.Clone() as Bullet;
+                AddBullet(sprites);
+            }*/
             //-
             HitBox = new Rectangle(this.Rectangle.X, this.Rectangle.Y, 80, 80);
             //-

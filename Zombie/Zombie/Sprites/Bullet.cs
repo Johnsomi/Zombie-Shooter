@@ -48,6 +48,7 @@ namespace Zombie.Sprites
                 return;
                 */
             sprite.IsRemoved = true;
+            IsRemoved = true;
             //player.Score++;
         }
     }

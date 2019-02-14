@@ -21,7 +21,6 @@ namespace Zombie.Sprites
 
         //______
         public Vector2 BulletPosition;
-        
 
         private float _timer3 = 0;
 
@@ -124,6 +123,8 @@ namespace Zombie.Sprites
 
             _timer3 += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
+            
+
             if (_timer3 > 3)
             {
                 ZombieVelocity = ZombieVelocity + 0.5f;
@@ -143,7 +144,7 @@ namespace Zombie.Sprites
         public virtual void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(_texture, Position, null, Color, _rotation, Origin, 1, SpriteEffects.None, 0);
-            spriteBatch.Draw(_texture, HitBoxZ, null, Color.Red);
+            //spriteBatch.Draw(_texture, HitBoxZ, null, Color.Red);
         }
 
         //-----

@@ -3,6 +3,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using Zombie.Managers;
 using Zombie.Sprites;
 
 namespace Zombie
@@ -27,9 +29,13 @@ namespace Zombie
 
         public int ZSCount;
 
+        public float ZomTimer;
+
         public float ZombieVelocity = 2f;
 
-        Rectangle HitBoxZom;
+        private int _score;
+
+        private ScoreManager _scoreManager;
 
         Sprite soldier;
 
@@ -83,8 +89,13 @@ namespace Zombie
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            //------
+            _scoreManager = ScoreManager.Load();
+
             _targetTexture = Content.Load<Texture2D>("ZombieT1");
             _font = Content.Load<SpriteFont>("Font");
+
+            
             //-
             Restart();
         }
@@ -97,7 +108,7 @@ namespace Zombie
             //
             soldier = new Player(playerTexture)
             {
-                Position = new Vector2(960, 540),
+                Position = new Vector2(360, 540),
                 Bullet = new Bullet(Content.Load<Texture2D>("circle")),
                 
             };
@@ -154,7 +165,9 @@ namespace Zombie
                 return;
 
             _timer2 += (float)gameTime.ElapsedGameTime.TotalSeconds;
-            
+
+            ZomTimer = (float)gameTime.ElapsedGameTime.TotalSeconds;
+
 
             foreach (var sprite in _sprites.ToArray())
             {
@@ -175,6 +188,8 @@ namespace Zombie
             PostUpdate();
             //
             SpawnTarget();
+
+
 
             base.Update(gameTime);
         }
@@ -201,7 +216,10 @@ namespace Zombie
 
                 _timer2 = 0;
 
-                var xPos = Random.Next(ScreenWidth - (_targetTexture.Width * 2), ScreenWidth - _targetTexture.Width);
+                int XTop = (ScreenWidth / 2) - (_targetTexture.Width * 2);
+                Rectangle SpawnTop = new Rectangle(XTop, 1, ScreenWidth - XTop - _targetTexture.Width, 1);
+
+                var xPos = Random.Next((ScreenWidth/2) - (_targetTexture.Width * 2), ScreenWidth - _targetTexture.Width);
                 var yPos = Random.Next(0, ScreenHeight - _targetTexture.Height);
 
                 ZomList.Add(new Sprite(_targetTexture)
@@ -244,10 +262,12 @@ namespace Zombie
                     if (sprite is Sprite)
                     {
                         player.Score++;
+                        
 
                         if (sprite is Bullet)
                         {
                             player.Score--;
+                            
                         }
                     }
 
@@ -266,6 +286,20 @@ namespace Zombie
                     var soldier = sprite as Player;
                     if (soldier.HasDied)
                     {
+                        _scoreManager.Add(new Models.Score()
+                        {
+                            PlayerName = "Me",
+                            Value = _score,
+                        }
+                        );
+
+                        ScoreManager.Save(_scoreManager);
+                        _score = 0;
+
+                        GCount = 0;
+                        ZSCount = 0;
+                        G = 2.0;
+                        
                         Restart();
                     }
                 }
@@ -279,7 +313,7 @@ namespace Zombie
                 {
                     //-----
                     player.Score++;
-                    
+                    _score++;
 
 
                     ZomList.RemoveAt(i);
@@ -311,7 +345,9 @@ namespace Zombie
             }
             foreach (var sprite in ZomList)
                 sprite.Draw(spriteBatch);
-            
+
+            //_____
+            spriteBatch.DrawString(_font, "Highscores:\n" + string.Join("\n", _scoreManager.Highscores.Select(c => c.PlayerName + ": " + c.Value).ToArray()), new Vector2(10, ScreenHeight/2), Color.Red);
 
             var fontY = 10;
             var i = 0;

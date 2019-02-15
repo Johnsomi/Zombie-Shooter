@@ -146,7 +146,7 @@ namespace Zombie
         protected override void Update(GameTime gameTime)
         {
             //-
-            if (Keyboard.GetState().IsKeyDown(Keys.Enter))
+            if (Keyboard.GetState().IsKeyDown(Keys.Space))
                 _hasStarted = true;
 
             if (!_hasStarted)
@@ -154,7 +154,7 @@ namespace Zombie
 
             _timer2 += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            ZomTimer = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            ZomTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
 
             foreach (var sprite in _sprites.ToArray())
@@ -190,6 +190,8 @@ namespace Zombie
 
                 ZSCount++;
 
+                
+
                 if (ZSCount == 5)
                 {
                     ZSCount = 0;
@@ -213,6 +215,7 @@ namespace Zombie
                 Rectangle SpawnBottom = new Rectangle(XTop, (ScreenHeight - 1 - _targetTexture.Height), ScreenWidth - XTop - _targetTexture.Width, 1);
 
                 Rectangle SpawnRight = new Rectangle((ScreenWidth - 1 - _targetTexture.Width), 1, 1, (ScreenHeight - _targetTexture.Height));
+                Rectangle SpawnLeft = new Rectangle(1, 1, 1, (ScreenHeight - _targetTexture.Height));
                 if(SpawnSelector == 0)
                 {
                     xPos = Random.Next(SpawnTop.X, SpawnTop.X + SpawnTop.Width);
@@ -229,6 +232,13 @@ namespace Zombie
                 {
                     xPos = Random.Next(SpawnRight.X, SpawnRight.X + SpawnRight.Width);
                     yPos = Random.Next(SpawnRight.Y, SpawnRight.Y + SpawnRight.Height);
+                }
+
+                if(ZomTimer >= 60)
+                {
+                    xPos = Random.Next(SpawnLeft.X, SpawnLeft.X + SpawnLeft.Width);
+                    yPos = Random.Next(SpawnLeft.Y, SpawnLeft.Y + SpawnLeft.Height);
+                    ZomTimer = 0;
                 }
                 ZomList.Add(new Sprite(_targetTexture)
                 {

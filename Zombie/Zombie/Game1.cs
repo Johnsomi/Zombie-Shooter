@@ -216,14 +216,15 @@ namespace Zombie
 
                 _timer2 = 0;
 
-                int SpawnSelector = Random.Next(0, 4);
+                int SpawnSelector = Random.Next(0, 3);
                 var xPos = 0;
                 var yPos = 0;
                 int XTop = (ScreenWidth / 2) - (_targetTexture.Width * 2);
+                
                 Rectangle SpawnTop = new Rectangle(XTop, 1, ScreenWidth - XTop - _targetTexture.Width, 1);
-                //Rectangle SpawnBottom = new Rectangle(XTop, )
-                //Rectangle SpawnLeft = new Rectangle()
-                //Rectangle SpawnRight = new Rectangle()
+                Rectangle SpawnBottom = new Rectangle(XTop, (ScreenHeight - 1 - _targetTexture.Height), ScreenWidth - XTop - _targetTexture.Width, 1);
+
+                Rectangle SpawnRight = new Rectangle((ScreenWidth - 1 - _targetTexture.Width), 1, 1, (ScreenHeight - _targetTexture.Height));
                 if(SpawnSelector == 0)
                 {
                     xPos = Random.Next(SpawnTop.X, SpawnTop.X + SpawnTop.Width);
@@ -232,15 +233,14 @@ namespace Zombie
                 }
                 else if (SpawnSelector == 1)
                 {
-
+                    xPos = Random.Next(SpawnBottom.X, SpawnBottom.X + SpawnBottom.Width);
+                    yPos = Random.Next(SpawnBottom.Y, SpawnBottom.Y + SpawnBottom.Height);
                 }
-                else if (SpawnSelector == 2)
-                {
-
-                }
+                
                 else
                 {
-
+                    xPos = Random.Next(SpawnRight.X, SpawnRight.X + SpawnRight.Width);
+                    yPos = Random.Next(SpawnRight.Y, SpawnRight.Y + SpawnRight.Height);
                 }
                 ZomList.Add(new Sprite(_targetTexture)
                 {

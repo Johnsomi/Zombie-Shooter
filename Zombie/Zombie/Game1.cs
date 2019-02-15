@@ -115,19 +115,7 @@ namespace Zombie
 
             _sprites = new List<Sprite>()
             {
-
-                soldier,
-                /*new Player(playerTexture)
-                {
-                    Position = new Vector2(960, 540),
-                    Bullet = new Bullet(Content.Load<Texture2D>("circle")),
-                },*/
-               /* new Player2(playerTexture)
-                {
-                    Position = new Vector2(200,200),
-                    Bullet2 = new Bullet2(Content.Load<Texture2D>("circle")),
-                    Color = Color.Red,
-                } */              
+                soldier,             
             };
 
             ZomList = new List<Sprite>()

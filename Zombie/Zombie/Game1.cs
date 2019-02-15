@@ -108,7 +108,7 @@ namespace Zombie
             //
             soldier = new Player(playerTexture)
             {
-                Position = new Vector2(360, 540),
+                Position = new Vector2((ScreenWidth / 4), (ScreenHeight / 2)),
                 Bullet = new Bullet(Content.Load<Texture2D>("circle")),
                 
             };

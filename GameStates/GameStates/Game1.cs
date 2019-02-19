@@ -12,6 +12,9 @@ namespace GameStates
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        //public static int ScreenWidth;
+        //public static int ScreenHeight;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -27,6 +30,13 @@ namespace GameStates
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            /*graphics.PreferredBackBufferWidth = GraphicsDevice.DisplayMode.Width;
+            graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height;
+            graphics.IsFullScreen = true;
+            graphics.ApplyChanges();
+            //
+            ScreenWidth = graphics.PreferredBackBufferWidth;
+            ScreenHeight = graphics.PreferredBackBufferHeight;*/
 
             base.Initialize();
         }

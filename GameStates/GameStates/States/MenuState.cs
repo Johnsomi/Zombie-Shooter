@@ -14,15 +14,18 @@ namespace GameStates.States
     {
         private List<Component> _components;
 
+        
+
         public MenuState(Game1 game, GraphicsDeviceManager graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
             var buttonTexture = _content.Load<Texture2D>("Button");
             var buttonFont = _content.Load<SpriteFont>("Font");
 
+            
 
             var newGameButton = new Button(buttonTexture, buttonFont)
             {
-                Position = new Vector2(ScreenWidth / 2, ScreenHeight / 2),
+                Position = new Vector2((ScreenWidth / 2) - (buttonTexture.Width / 2), (ScreenHeight / 2) - (buttonTexture.Height * 2)),
                 Text = "New Game",
             };
 
@@ -30,7 +33,7 @@ namespace GameStates.States
 
             var loadGameButton = new Button(buttonTexture, buttonFont)
             {
-                Position = new Vector2(300, 250),
+                Position = new Vector2((ScreenWidth / 2) - (buttonTexture.Width / 2), ScreenHeight / 2),
                 Text = "Load Game",
             };
 
@@ -38,7 +41,7 @@ namespace GameStates.States
 
             var quitGameButton = new Button(buttonTexture, buttonFont)
             {
-                Position = new Vector2(300, 300),
+                Position = new Vector2((ScreenWidth / 2) - (buttonTexture.Width / 2), (ScreenHeight / 2) + (buttonTexture.Height * 2)),
                 Text = "Quit",
             };
 

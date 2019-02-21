@@ -19,8 +19,8 @@ namespace GameStates.States
 
         protected Game1 _game;
 
-        public static int ScreenWidth;
-        public static int ScreenHeight;
+        public static float ScreenWidth;
+        public static float ScreenHeight;
 
         #endregion
 

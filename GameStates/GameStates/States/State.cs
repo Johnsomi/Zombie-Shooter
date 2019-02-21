@@ -15,9 +15,12 @@ namespace GameStates.States
 
         protected ContentManager _content;
 
-        protected GraphicsDevice _graphicsDevice;
+        protected GraphicsDeviceManager graphics;
 
         protected Game1 _game;
+
+        public static int ScreenWidth;
+        public static int ScreenHeight;
 
         #endregion
 
@@ -27,13 +30,19 @@ namespace GameStates.States
 
         public abstract void PostUpdate(GameTime gameTime);
 
-        public State(Game1 game, GraphicsDevice graphicsDevice, ContentManager content)
+        public State(Game1 game, GraphicsDeviceManager graphicsDevice, ContentManager content)
         {
             _game = game;
 
-            _graphicsDevice = graphicsDevice;
+            graphics = Game1.graphics;
 
             _content = content;
+
+            
+  
+            //
+            ScreenWidth = graphics.PreferredBackBufferWidth;
+            ScreenHeight = graphics.PreferredBackBufferHeight;
         }
 
         public abstract void Update(GameTime gameTime);

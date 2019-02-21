@@ -14,7 +14,7 @@ namespace GameStates.States
     {
         private List<Component> _components;
 
-        public MenuState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
+        public MenuState(Game1 game, GraphicsDeviceManager graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
             var buttonTexture = _content.Load<Texture2D>("Button");
             var buttonFont = _content.Load<SpriteFont>("Font");
@@ -22,7 +22,7 @@ namespace GameStates.States
 
             var newGameButton = new Button(buttonTexture, buttonFont)
             {
-                Position = new Vector2(300, 200),
+                Position = new Vector2(ScreenWidth / 2, ScreenHeight / 2),
                 Text = "New Game",
             };
 
@@ -63,7 +63,7 @@ namespace GameStates.States
 
         private void NewGameButton_Click(object sender, EventArgs e)
         {
-            _game.ChangeState(new GameState(_game, _graphicsDevice, _content));
+            _game.ChangeState(new GameState(_game, graphics, _content));
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)

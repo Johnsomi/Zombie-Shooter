@@ -10,7 +10,7 @@ namespace GameStates
     /// </summary>
     public class Game1 : Game
     {
-        GraphicsDeviceManager graphics;
+        public static GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
         private State _currentState;
@@ -22,8 +22,8 @@ namespace GameStates
             _nextState = state;
         }
 
-        //public static int ScreenWidth;
-        //public static int ScreenHeight;
+        public static int ScreenWidth;
+        public static int ScreenHeight;
 
         public Game1()
         {
@@ -41,13 +41,13 @@ namespace GameStates
         {
             IsMouseVisible = true;
             // TODO: Add your initialization logic here
-            /*graphics.PreferredBackBufferWidth = GraphicsDevice.DisplayMode.Width;
+            graphics.PreferredBackBufferWidth = GraphicsDevice.DisplayMode.Width;
             graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height;
             graphics.IsFullScreen = true;
             graphics.ApplyChanges();
             //
-            ScreenWidth = graphics.PreferredBackBufferWidth;
-            ScreenHeight = graphics.PreferredBackBufferHeight;*/
+           // ScreenWidth = graphics.PreferredBackBufferWidth;
+           // ScreenHeight = graphics.PreferredBackBufferHeight;
 
             base.Initialize();
         }
@@ -61,7 +61,7 @@ namespace GameStates
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            _currentState = new MenuState(this, graphics.GraphicsDevice, Content);
+            _currentState = new MenuState(this, graphics, Content);
         }
 
         /// <summary>

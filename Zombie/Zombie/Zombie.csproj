@@ -42,6 +42,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Component.cs" />
+    <Compile Include="Controls\Button.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Managers\ScoreManager.cs" />
     <Compile Include="Models\Score.cs" />
@@ -51,6 +52,9 @@
     <Compile Include="Sprites\Player.cs" />
     <Compile Include="Sprites\Sprite.cs" />
     <Compile Include="Sprites\Zombies.cs" />
+    <Compile Include="States\GameState.cs" />
+    <Compile Include="States\MenuState.cs" />
+    <Compile Include="States\State.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

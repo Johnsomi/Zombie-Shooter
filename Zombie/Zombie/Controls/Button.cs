@@ -1,13 +1,13 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
-namespace GameStates.Controls
+namespace Zombie.Controls
 {
     public class Button : Component
     {
@@ -35,6 +35,8 @@ namespace GameStates.Controls
 
         public Vector2 Position { get; set; }
 
+        private Vector2 Origin;
+
         public Rectangle Rectangle
         {
             get
@@ -52,7 +54,7 @@ namespace GameStates.Controls
         public Button(Texture2D texture, SpriteFont font)
         {
             _texture = texture;
-            
+
             _font = font;
 
             PenColour = Color.Black;
@@ -64,9 +66,9 @@ namespace GameStates.Controls
 
             if (_isHovering)
                 colour = Color.Gray;
-            var mouseRectangle = new Rectangle(_currentMouse.X, _currentMouse.Y - 20, 1, 1);
+
             spriteBatch.Draw(_texture, Rectangle, colour);
-            spriteBatch.Draw(_texture, mouseRectangle, Color.Red);
+
             if (!string.IsNullOrEmpty(Text))
             {
                 var x = (Rectangle.X + (Rectangle.Width / 2)) - (_font.MeasureString(Text).X / 2);
@@ -75,22 +77,15 @@ namespace GameStates.Controls
                 spriteBatch.DrawString(_font, Text, new Vector2(x, y), PenColour);
             }
         }
-
+        
         public override void Update(GameTime gameTime)
         {
             _previousMouse = _currentMouse;
             _currentMouse = Mouse.GetState();
 
-            var mouseRectangle = new Rectangle(_currentMouse.X, _currentMouse.Y - 20, 1, 1);
-
-            if(_currentMouse.RightButton == ButtonState.Pressed)
-            {
-                int X = _currentMouse.X;
-            }
+            var mouseRectangle = new Rectangle(_currentMouse.X, _currentMouse.Y, 1, 1);
 
             _isHovering = false;
-
-
 
             if (mouseRectangle.Intersects(Rectangle))
             {

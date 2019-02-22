@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Zombie.Managers;
 using Zombie.Sprites;
+using Zombie.States;
 
 namespace Zombie
 {
@@ -15,8 +16,17 @@ namespace Zombie
     public class Game1 : Game
     {
         //before
-        GraphicsDeviceManager graphics;
+        public static GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+
+        private State _currentState;
+
+        private State _nextState;
+
+        public void ChangeState(State state)
+        {
+            _nextState = state;
+        }
         //
         public static Random Random;
         //
@@ -91,6 +101,8 @@ namespace Zombie
             spriteBatch = new SpriteBatch(GraphicsDevice);
             //------
             _scoreManager = ScoreManager.Load();
+            //-----
+            _currentState = new MenuState(this, graphics, Content);
 
             _targetTexture = Content.Load<Texture2D>("ZombieT1");
             _font = Content.Load<SpriteFont>("Font");
@@ -172,6 +184,17 @@ namespace Zombie
             {
                 sprite.Update(gameTime, ZomList);
             }
+
+            if (_nextState != null)
+            {
+                _currentState = _nextState;
+
+                _nextState = null;
+            }
+
+            _currentState.Update(gameTime);
+
+            _currentState.PostUpdate(gameTime);
 
             PostUpdate();
             //
@@ -377,7 +400,10 @@ namespace Zombie
                   //  spriteBatch.DrawString(_font, string.Format("Player {0}: {1}", ++i, ((Player2)sprite).Score), new Vector2(10, fontY += 30), Color.Green);
             }
 
+
             spriteBatch.End();
+
+            _currentState.Draw(gameTime, spriteBatch);
 
             base.Draw(gameTime);
         }

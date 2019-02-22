@@ -54,7 +54,6 @@ namespace GameStates.Controls
         public Button(Texture2D texture, SpriteFont font)
         {
             _texture = texture;
-            Origin = new Vector2(_texture.Width / 2, _texture.Height / 2);
             
             _font = font;
 

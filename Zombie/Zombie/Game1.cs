@@ -28,12 +28,12 @@ namespace Zombie
             _nextState = state;
         }
         //
-        public static Random Random;
+        //public static Random Random;
         //
         public static int ScreenWidth;
         public static int ScreenHeight;
 
-        public double G = 2.0;
+        /*public double G = 2.0;
 
         public int GCount;
 
@@ -59,14 +59,14 @@ namespace Zombie
         //
         private Texture2D _targetTexture;
 
-        private bool _hasStarted = false;
+        private bool _hasStarted = false;*/
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             //
-            Random = new Random();
+            //Random = new Random();
 
         }
 
@@ -100,19 +100,19 @@ namespace Zombie
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             //------
-            _scoreManager = ScoreManager.Load();
+            //_scoreManager = ScoreManager.Load();
             //-----
             _currentState = new MenuState(this, graphics, Content);
 
-            _targetTexture = Content.Load<Texture2D>("ZombieT1");
+            /*_targetTexture = Content.Load<Texture2D>("ZombieT1");
             _font = Content.Load<SpriteFont>("Font");
 
             
             //-
-            Restart();
+            Restart();*/
         }
 
-        private void Restart()
+        /*private void Restart()
         {
             var playerTexture = Content.Load<Texture2D>("topDownSoldier2");
             //_targetTexture = Content.Load<Texture2D>("target2");
@@ -139,7 +139,7 @@ namespace Zombie
             _hasStarted = false;
             //_font = Content.Load<SpriteFont>("Font");
             //--------------------------------------------------------------------
-        }
+        }*/
 
         /// <summary>
         /// UnloadContent will be called once per game and is the place to unload
@@ -158,7 +158,7 @@ namespace Zombie
         protected override void Update(GameTime gameTime)
         {
             //-
-            if (Keyboard.GetState().IsKeyDown(Keys.Space))
+            /*if (Keyboard.GetState().IsKeyDown(Keys.Space))
                 _hasStarted = true;
 
             if (!_hasStarted)
@@ -183,7 +183,7 @@ namespace Zombie
             foreach(var sprite in _sprites.ToArray())
             {
                 sprite.Update(gameTime, ZomList);
-            }
+            }*/
 
             if (_nextState != null)
             {
@@ -196,16 +196,16 @@ namespace Zombie
 
             _currentState.PostUpdate(gameTime);
 
-            PostUpdate();
+            //PostUpdate();
             //
-            SpawnTarget();
+            //SpawnTarget();
 
 
 
             base.Update(gameTime);
         }
         //
-        private void SpawnTarget()
+        /*private void SpawnTarget()
         {
             if (_timer2 > G)
             {
@@ -273,9 +273,9 @@ namespace Zombie
                   
                 });
             }
-        }
+        }*/
 
-        private void PostUpdate()
+        /*private void PostUpdate()
         {
             //-----
             foreach(var spriteA in _sprites)
@@ -365,7 +365,7 @@ namespace Zombie
                 //Keep down part
                 
             }
-        }
+        }*/
 
         /// <summary>
         /// This is called when the game should draw itself.
@@ -375,7 +375,7 @@ namespace Zombie
         {
             GraphicsDevice.Clear(Color.Blue);
 
-            spriteBatch.Begin();
+           /* spriteBatch.Begin();
 
             // foreach(var sprite in _sprites)
             //     sprite.Draw(spriteBatch);
@@ -401,7 +401,7 @@ namespace Zombie
             }
 
 
-            spriteBatch.End();
+            spriteBatch.End();*/
 
             _currentState.Draw(gameTime, spriteBatch);
 

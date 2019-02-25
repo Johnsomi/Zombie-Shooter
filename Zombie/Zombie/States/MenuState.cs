@@ -19,7 +19,7 @@ namespace Zombie.States
         public MenuState(Game1 game, GraphicsDeviceManager graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
             var buttonTexture = _content.Load<Texture2D>("Button");
-            var buttonFont = _content.Load<SpriteFont>("Font");
+            var buttonFont = _content.Load<SpriteFont>("ButtonFont");
 
 
 

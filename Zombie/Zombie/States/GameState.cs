@@ -45,6 +45,8 @@ namespace Zombie.States
 
         private bool _hasStarted = false;
 
+        //private Texture2D background;
+
         public GameState(Game1 game, GraphicsDeviceManager graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
             Random = new Random();
@@ -53,9 +55,11 @@ namespace Zombie.States
 
             _targetTexture = _content.Load<Texture2D>("ZombieT1");
             _font = _content.Load<SpriteFont>("Font");
+            //background = _content.Load<Texture2D>("ZomGameBackground");
 
             Restart();
         }
+
 
         private void Restart()
         {
@@ -92,6 +96,10 @@ namespace Zombie.States
 
             // foreach(var sprite in _sprites)
             //     sprite.Draw(spriteBatch);
+            /*spriteBatch.Draw(background,
+                new Rectangle(0, 0, (int)ScreenWidth, (int)ScreenHeight),
+                new Rectangle(0, 0, background.Width, background.Height),
+                Color.White);*/
 
             for (int SpriteIndex = _sprites.Count - 1; SpriteIndex >= 0; SpriteIndex--)
             {

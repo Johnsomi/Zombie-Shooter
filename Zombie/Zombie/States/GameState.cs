@@ -32,7 +32,7 @@ namespace Zombie.States
         private ScoreManager _scoreManager;
 
         Sprite soldier;
-
+        
         private SpriteFont _font;
 
         private List<Sprite> _sprites;

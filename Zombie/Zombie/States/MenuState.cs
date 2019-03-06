@@ -31,13 +31,13 @@ namespace Zombie.States
 
             newGameButton.Click += NewGameButton_Click;
 
-            var loadGameButton = new Button(buttonTexture, buttonFont)
+            var HighscoresButton = new Button(buttonTexture, buttonFont)
             {
                 Position = new Vector2((ScreenWidth / 2) - (buttonTexture.Width / 2), ScreenHeight / 2),
-                Text = "Load Game",
+                Text = "Highscores",
             };
 
-            loadGameButton.Click += LoadGameButton_Click;
+            HighscoresButton.Click += HighscoresButton_Click;
 
             var quitGameButton = new Button(buttonTexture, buttonFont)
             {
@@ -50,7 +50,7 @@ namespace Zombie.States
             _components = new List<Component>()
             {
                 newGameButton,
-                loadGameButton,
+                HighscoresButton,
                 quitGameButton,
             };
         }
@@ -59,9 +59,9 @@ namespace Zombie.States
             _game.Exit();
         }
 
-        private void LoadGameButton_Click(object sender, EventArgs e)
+        private void HighscoresButton_Click(object sender, EventArgs e)
         {
-            Console.WriteLine("Load Game");
+            _game.ChangeState(new HighscoresState(_game, graphics, _content));
         }
 
         private void NewGameButton_Click(object sender, EventArgs e)
@@ -89,6 +89,11 @@ namespace Zombie.States
         {
             foreach (var component in _components)
                 component.Update(gameTime);
+        }
+
+        public override void LoadContent()
+        {
+            
         }
     }
 }

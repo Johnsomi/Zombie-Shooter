@@ -103,7 +103,8 @@ namespace Zombie
             //_scoreManager = ScoreManager.Load();
             //-----
             _currentState = new MenuState(this, graphics, Content);
-
+            _currentState.LoadContent();
+            _nextState = null;
             /*_targetTexture = Content.Load<Texture2D>("ZombieT1");
             _font = Content.Load<SpriteFont>("Font");
 
@@ -188,7 +189,7 @@ namespace Zombie
             if (_nextState != null)
             {
                 _currentState = _nextState;
-
+                _currentState.LoadContent();
                 _nextState = null;
             }
 

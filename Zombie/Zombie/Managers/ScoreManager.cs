@@ -49,9 +49,9 @@ namespace Zombie.Managers
 
             using (var reader = new StreamReader(new FileStream(_fileName, FileMode.Open)))
             {
-                var serilizer = new XmlSerializer(typeof(List<Score>));
+                var serializer = new XmlSerializer(typeof(List<Score>));
 
-                var scores = (List<Score>)serilizer.Deserialize(reader);
+                var scores = (List<Score>)serializer.Deserialize(reader);
 
                 return new ScoreManager(scores);
             }
@@ -59,7 +59,7 @@ namespace Zombie.Managers
 
         public void UpdateHighscores()
         {
-            Highscores = Scores.Take(5).ToList(); // Takes the first 5 elements
+            Highscores = Scores.Take(10).ToList(); // Takes the first 5 elements
         }
 
         public static void Save(ScoreManager scoreManager)
@@ -67,9 +67,9 @@ namespace Zombie.Managers
             // Overrides the file if it alreadt exists
             using (var writer = new StreamWriter(new FileStream(_fileName, FileMode.Create)))
             {
-                var serilizer = new XmlSerializer(typeof(List<Score>));
+                var serializer = new XmlSerializer(typeof(List<Score>));
 
-                serilizer.Serialize(writer, scoreManager.Scores);
+                serializer.Serialize(writer, scoreManager.Scores);
             }
         }
     }

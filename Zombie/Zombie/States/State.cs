@@ -45,6 +45,8 @@ namespace Zombie.States
             ScreenHeight = graphics.PreferredBackBufferHeight;
         }
 
+        public abstract void LoadContent();
+
         public abstract void Update(GameTime gameTime);
 
         #endregion

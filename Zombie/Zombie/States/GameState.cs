@@ -60,6 +60,11 @@ namespace Zombie.States
             Restart();
         }
 
+        public override void LoadContent()
+        {
+            
+        }
+
 
         private void Restart()
         {
@@ -109,7 +114,7 @@ namespace Zombie.States
                 sprite.Draw(spriteBatch);
 
             //_____
-            spriteBatch.DrawString(_font, "Highscores:\n" + string.Join("\n", _scoreManager.Highscores.Select(c => c.PlayerName + ": " + c.Value).ToArray()), new Vector2(10, ScreenHeight / 2), Color.Red);
+            //spriteBatch.DrawString(_font, "Highscores:\n" + string.Join("\n", _scoreManager.Highscores.Select(c => c.PlayerName + ": " + c.Value).ToArray()), new Vector2(10, ScreenHeight / 2), Color.Red);
 
             var fontY = 10;
             var i = 0;

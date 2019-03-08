@@ -61,9 +61,11 @@ namespace Zombie.States
 
             spriteBatch.End();
 
+            var WordLength = _font.MeasureString("Highscores:").X;
+
             spriteBatch.Begin();
 
-            spriteBatch.DrawString(_font, "Highscores:\n" + string.Join("\n", _scoreManager.Highscores.Select(c => c.PlayerName + ": " + c.Value).ToArray()), new Vector2((ScreenWidth / 2), 100), Color.Red);
+            spriteBatch.DrawString(_font, "Highscores:\n" + string.Join("\n", _scoreManager.Highscores.Select(c => c.PlayerName + ": " + c.Value).ToArray()), new Vector2((ScreenWidth / 2) - (WordLength / 2), 100), Color.Red);
 
             spriteBatch.End();
         }

@@ -30,6 +30,14 @@ namespace Zombie.States
                 component.Draw(gameTime, spriteBatch);
 
             spriteBatch.End();
+
+            var WordLength = _font.MeasureString("Enter Name").X;
+
+            spriteBatch.Begin();
+
+            spriteBatch.DrawString(_font, "Enter Name", new Vector2((ScreenWidth / 2) - (WordLength / 2), 40),Color.Red);
+
+            spriteBatch.End();
         }
 
         public override void LoadContent()

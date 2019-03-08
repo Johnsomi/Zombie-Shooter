@@ -20,6 +20,8 @@ namespace Zombie.States
 
         private ScoreManager _scoreManager;
 
+        
+
         public HighscoresState(Game1 game, GraphicsDeviceManager graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
 
@@ -39,7 +41,7 @@ namespace Zombie.States
                 new Button(buttonTexture, buttonFont)
                 {
                     Text = "Main Menu",
-                    Position = new Vector2(Game1.ScreenWidth / 2, 560),
+                    Position = new Vector2((ScreenWidth / 2) - (buttonTexture.Width/2), 560),
                     Click = new EventHandler(Button_MainMenu_Clicked),
                 },
             };
@@ -61,7 +63,7 @@ namespace Zombie.States
 
             spriteBatch.Begin();
 
-            spriteBatch.DrawString(_font, "Highscores:\n" + string.Join("\n", _scoreManager.Highscores.Select(c => c.PlayerName + ": " + c.Value).ToArray()), new Vector2(ScreenWidth / 2, 100), Color.Red);
+            spriteBatch.DrawString(_font, "Highscores:\n" + string.Join("\n", _scoreManager.Highscores.Select(c => c.PlayerName + ": " + c.Value).ToArray()), new Vector2((ScreenWidth / 2), 100), Color.Red);
 
             spriteBatch.End();
         }

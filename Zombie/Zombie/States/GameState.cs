@@ -9,13 +9,15 @@ using Microsoft.Xna.Framework.Graphics;
 using Zombie.Managers;
 using Zombie.Sprites;
 using Microsoft.Xna.Framework.Input;
+using Zombie.Controls;
 
 namespace Zombie.States
 {
     public class GameState : State
     {
         public static Random Random;
-        //
+
+        private List<Component> _components;
 
         public double G = 2.0;
 
@@ -62,9 +64,24 @@ namespace Zombie.States
 
         public override void LoadContent()
         {
-            
+            var buttonTexture = _content.Load<Texture2D>("Button");
+            var buttonFont = _content.Load<SpriteFont>("ButtonFont");
+
+            _components = new List<Component>()
+            {
+                new Button(buttonTexture, buttonFont)
+                {
+                    Text = "Main Menu",
+                    Position = new Vector2(20, Game1.ScreenHeight - 40),
+                    Click = new EventHandler(Button_MainMenu_Clicked),
+                },
+            };
         }
 
+        private void Button_MainMenu_Clicked(object sender, EventArgs e)
+        {
+            _game.ChangeState(new MenuState(_game, graphics, _content));
+        }
 
         private void Restart()
         {
@@ -97,6 +114,13 @@ namespace Zombie.States
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
+            spriteBatch.Begin();
+
+            foreach (var component in _components)
+                component.Draw(gameTime, spriteBatch);
+
+            spriteBatch.End();
+
             spriteBatch.Begin();
 
             // foreach(var sprite in _sprites)
@@ -134,6 +158,12 @@ namespace Zombie.States
 
         public override void Update(GameTime gameTime)
         {
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+                Button_MainMenu_Clicked(this, new EventArgs());
+
+            foreach (var component in _components)
+                component.Update(gameTime);
+
             if (Keyboard.GetState().IsKeyDown(Keys.Space))
                 _hasStarted = true;
 
@@ -221,7 +251,7 @@ namespace Zombie.States
                     {
                         _scoreManager.Add(new Models.Score()
                         {
-                            PlayerName = "Me",
+                            PlayerName = "Me2",
                             Value = _score,
                         }
                         );

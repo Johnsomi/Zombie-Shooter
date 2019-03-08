@@ -25,11 +25,19 @@ namespace Zombie.States
 
             var newGameButton = new Button(buttonTexture, buttonFont)
             {
-                Position = new Vector2((ScreenWidth / 2) - (buttonTexture.Width / 2), (ScreenHeight / 2) - (buttonTexture.Height * 2)),
+                Position = new Vector2((ScreenWidth / 2) - (buttonTexture.Width / 2), (ScreenHeight / 2) - (buttonTexture.Height * 4)),
                 Text = "New Game",
             };
 
             newGameButton.Click += NewGameButton_Click;
+
+            var UsernameButton = new Button(buttonTexture, buttonFont)
+            {
+                Position = new Vector2((ScreenWidth / 2) - (buttonTexture.Width / 2), (ScreenHeight / 2) - (buttonTexture.Height * 2)),
+                Text = "Set Name",
+            };
+
+            UsernameButton.Click += UsernameButton_Click;
 
             var HighscoresButton = new Button(buttonTexture, buttonFont)
             {
@@ -50,6 +58,7 @@ namespace Zombie.States
             _components = new List<Component>()
             {
                 newGameButton,
+                UsernameButton,
                 HighscoresButton,
                 quitGameButton,
             };
@@ -67,6 +76,11 @@ namespace Zombie.States
         private void NewGameButton_Click(object sender, EventArgs e)
         {
             _game.ChangeState(new GameState(_game, graphics, _content));
+        }
+
+        private void UsernameButton_Click(object sender, EventArgs e)
+        {
+            _game.ChangeState(new UsernameState(_game, graphics, _content));
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)

@@ -43,7 +43,7 @@ namespace Zombie.States
         public override void LoadContent()
         {
             _font = _content.Load<SpriteFont>("Font");
-
+            
             var buttonTexture = _content.Load<Texture2D>("Button");
             var buttonFont = _content.Load<SpriteFont>("ButtonFont");
 
@@ -72,7 +72,7 @@ namespace Zombie.States
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Button_MainMenu_Clicked(this, new EventArgs());
-
+            GameState.username = "blah";
             foreach (var component in _components)
                 component.Update(gameTime);
         }

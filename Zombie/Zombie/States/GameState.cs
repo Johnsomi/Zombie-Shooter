@@ -16,6 +16,7 @@ namespace Zombie.States
     public class GameState : State
     {
         public static Random Random;
+        public static string username="nope2";
 
         private List<Component> _components;
 
@@ -52,7 +53,7 @@ namespace Zombie.States
         public GameState(Game1 game, GraphicsDeviceManager graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
             Random = new Random();
-
+        
             _scoreManager = ScoreManager.Load();
 
             _targetTexture = _content.Load<Texture2D>("ZombieT1");
@@ -135,7 +136,10 @@ namespace Zombie.States
                 _sprites[SpriteIndex].Draw(spriteBatch);
             }
             foreach (var sprite in ZomList)
+            {
                 sprite.Draw(spriteBatch);
+            }
+                
 
             //_____
             //spriteBatch.DrawString(_font, "Highscores:\n" + string.Join("\n", _scoreManager.Highscores.Select(c => c.PlayerName + ": " + c.Value).ToArray()), new Vector2(10, ScreenHeight / 2), Color.Red);
@@ -251,7 +255,7 @@ namespace Zombie.States
                     {
                         _scoreManager.Add(new Models.Score()
                         {
-                            PlayerName = "Me2",
+                            PlayerName = username,
                             Value = _score,
                         }
                         );
@@ -347,7 +351,7 @@ namespace Zombie.States
                     yPos = Random.Next(SpawnLeft.Y, SpawnLeft.Y + SpawnLeft.Height);
                     ZomTimer = 0;
                 }
-                ZomList.Add(new Sprite(_targetTexture)
+                ZomList.Add(new Zombies(_targetTexture)
                 {
                     Position = new Vector2(xPos, yPos),
                     //

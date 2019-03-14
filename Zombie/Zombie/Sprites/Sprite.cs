@@ -24,6 +24,8 @@ namespace Zombie.Sprites
 
         private float _timer3 = 0;
 
+        public int health;
+
         //-
         public Rectangle HitBoxZ;
         //-
@@ -143,6 +145,18 @@ namespace Zombie.Sprites
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
+            if (health == 3)
+            {
+                Color = Color.Green;
+            }
+            if (health == 2)
+            {
+                Color = Color.Yellow;
+            }
+            if (health == 1)
+            {
+                Color = Color.Red;
+            }
             spriteBatch.Draw(_texture, Position, null, Color, _rotation, Origin, 1, SpriteEffects.None, 0);
             //spriteBatch.Draw(_texture, HitBoxZ, null, Color.Red);
         }

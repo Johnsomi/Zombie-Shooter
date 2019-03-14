@@ -38,16 +38,21 @@ namespace Zombie.Sprites
         //-----
         public override void OnCollide(Sprite sprite)
         {
-          /*  if (sprite == this.Parent)
-                return;
+            /*  if (sprite == this.Parent)
+                  return;
 
-            if (sprite is Bullet)
+              if (sprite is Bullet)
 
 
-            if (sprite is Sprite)
-                return;
-                */
-            sprite.IsRemoved = true;
+              if (sprite is Sprite)
+                  return;
+                  */
+            sprite.health = sprite.health - 1;
+            if (sprite.health == 0)
+            {
+                sprite.IsRemoved = true;
+            }
+            //sprite.IsRemoved = true;
             IsRemoved = true;
             //player.Score++;
         }

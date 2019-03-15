@@ -47,8 +47,8 @@ namespace Zombie.Sprites
               if (sprite is Sprite)
                   return;
                   */
-            sprite.health = sprite.health - 1;
-            if (sprite.health == 0)
+            sprite.zombieHealth = sprite.zombieHealth - 1;
+            if (sprite.zombieHealth == 0)
             {
                 sprite.IsRemoved = true;
             }

@@ -24,7 +24,7 @@ namespace Zombie.Sprites
 
         private float _timer3 = 0;
 
-        public int health;
+        public int zombieHealth;
 
         //-
         public Rectangle HitBoxZ;
@@ -45,7 +45,7 @@ namespace Zombie.Sprites
 
         public float playerVelocity = 4f;
 
-        public float ZombieVelocity = 3f;
+        public float ZombieVelocity = 1f;
         //-
         public float Speed;
 
@@ -145,17 +145,20 @@ namespace Zombie.Sprites
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            if (health == 3)
+            if (zombieHealth == 3)
             {
                 Color = Color.Green;
+                ZombieVelocity = 5f;
             }
-            if (health == 2)
+            if (zombieHealth == 2)
             {
                 Color = Color.Yellow;
+                ZombieVelocity = 3.5f;
             }
-            if (health == 1)
+            if (zombieHealth == 1)
             {
                 Color = Color.Red;
+                ZombieVelocity = 2f;
             }
             spriteBatch.Draw(_texture, Position, null, Color, _rotation, Origin, 1, SpriteEffects.None, 0);
             //spriteBatch.Draw(_texture, HitBoxZ, null, Color.Red);

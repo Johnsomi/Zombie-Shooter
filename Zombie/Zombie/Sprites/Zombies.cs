@@ -13,7 +13,9 @@ namespace Zombie.Sprites
         public Zombies(Texture2D texture) : base(texture)
         {
             Random random = new Random();
-            health = random.Next(1, 4);
+            zombieHealth = random.Next(1, 4);
+            //Random randomSpeed = new Random();
+            //ZombieVelocity = randomSpeed.Next(2, 5);
             //-
             //Speed = Game1.Random.Next(1, 6);
         }

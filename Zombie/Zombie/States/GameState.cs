@@ -10,13 +10,14 @@ using Zombie.Managers;
 using Zombie.Sprites;
 using Microsoft.Xna.Framework.Input;
 using Zombie.Controls;
+using Zombie.Core;
 
 namespace Zombie.States
 {
     public class GameState : State
     {
         public static Random Random;
-        public static string username="nope2";
+        public static string username="";
 
         private List<Component> _components;
 
@@ -48,6 +49,8 @@ namespace Zombie.States
 
         private bool _hasStarted = false;
 
+        
+
         //private Texture2D background;
 
         public GameState(Game1 game, GraphicsDeviceManager graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
@@ -67,6 +70,8 @@ namespace Zombie.States
         {
             var buttonTexture = _content.Load<Texture2D>("Button");
             var buttonFont = _content.Load<SpriteFont>("ButtonFont");
+
+            
 
             _components = new List<Component>()
             {
@@ -167,6 +172,8 @@ namespace Zombie.States
 
             foreach (var component in _components)
                 component.Update(gameTime);
+
+            
 
             if (Keyboard.GetState().IsKeyDown(Keys.Space))
                 _hasStarted = true;

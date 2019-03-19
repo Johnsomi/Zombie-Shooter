@@ -15,6 +15,7 @@ namespace Zombie.States
     public class UsernameState : State
     {
         private SpriteFont _font;
+        private SpriteFont ScoreFont;
 
         private List<Component> _components;
 
@@ -38,19 +39,29 @@ namespace Zombie.States
             spriteBatch.End();
 
             var WordLength = _font.MeasureString("Enter Name").X;
-
+            
+            
             spriteBatch.Begin();
-
+            
             spriteBatch.DrawString(_font, "Enter Name", new Vector2((ScreenWidth / 2) - (WordLength / 2), 40),Color.Red);
-            spriteBatch.DrawString(_font, GameState.username, new Vector2((ScreenWidth / 2) - (WordLength / 2), 70), Color.Red);
-
+            
+            try
+            {
+                var WordLength0 = ScoreFont.MeasureString(GameState.username.Substring(0, 1)).X;
+                spriteBatch.DrawString(ScoreFont, GameState.username.Substring(0, 1), new Vector2((ScreenWidth / 3) - (WordLength0 / 2), 100), Color.Red);
+                var WordLength1 = ScoreFont.MeasureString(GameState.username.Substring(1, 1)).X;
+                spriteBatch.DrawString(ScoreFont, GameState.username.Substring(1, 1), new Vector2((ScreenWidth / 2) - (WordLength1 / 2), 100), Color.Red);
+                var WordLength2 = ScoreFont.MeasureString(GameState.username.Substring(2, 1)).X;
+                spriteBatch.DrawString(ScoreFont, GameState.username.Substring(2, 1), new Vector2((ScreenWidth / 1.5f) - (WordLength2 / 2), 100), Color.Red);
+            }
+            catch (ArgumentOutOfRangeException) { }
             spriteBatch.End();
         }
 
         public override void LoadContent()
         {
             _font = _content.Load<SpriteFont>("Font");
-            
+            ScoreFont = _content.Load<SpriteFont>("ScoreFont");
             var buttonTexture = _content.Load<Texture2D>("Button");
             var buttonFont = _content.Load<SpriteFont>("ButtonFont");
 
@@ -82,7 +93,7 @@ namespace Zombie.States
                 Button_MainMenu_Clicked(this, new EventArgs());
             char key;
             bool newKeyEntered =TryConvertKeyboardInput(keyboardState, oldKeyboardState, out key);
-            if (newKeyEntered == true)
+            if (newKeyEntered == true && GameState.username.Length<3)
             {
                 GameState.username += key;
                 Debug.WriteLine(GameState.username);
@@ -123,32 +134,32 @@ namespace Zombie.States
                     switch (keys[newKeyIndex])
                     {
                         //Alphabet keys
-                        case Keys.A: if (shift) { key = 'A'; } else { key = 'a'; } return true;
-                        case Keys.B: if (shift) { key = 'B'; } else { key = 'b'; } return true;
-                        case Keys.C: if (shift) { key = 'C'; } else { key = 'c'; } return true;
-                        case Keys.D: if (shift) { key = 'D'; } else { key = 'd'; } return true;
-                        case Keys.E: if (shift) { key = 'E'; } else { key = 'e'; } return true;
-                        case Keys.F: if (shift) { key = 'F'; } else { key = 'f'; } return true;
-                        case Keys.G: if (shift) { key = 'G'; } else { key = 'g'; } return true;
-                        case Keys.H: if (shift) { key = 'H'; } else { key = 'h'; } return true;
-                        case Keys.I: if (shift) { key = 'I'; } else { key = 'i'; } return true;
-                        case Keys.J: if (shift) { key = 'J'; } else { key = 'j'; } return true;
-                        case Keys.K: if (shift) { key = 'K'; } else { key = 'k'; } return true;
-                        case Keys.L: if (shift) { key = 'L'; } else { key = 'l'; } return true;
-                        case Keys.M: if (shift) { key = 'M'; } else { key = 'm'; } return true;
-                        case Keys.N: if (shift) { key = 'N'; } else { key = 'n'; } return true;
-                        case Keys.O: if (shift) { key = 'O'; } else { key = 'o'; } return true;
-                        case Keys.P: if (shift) { key = 'P'; } else { key = 'p'; } return true;
-                        case Keys.Q: if (shift) { key = 'Q'; } else { key = 'q'; } return true;
-                        case Keys.R: if (shift) { key = 'R'; } else { key = 'r'; } return true;
-                        case Keys.S: if (shift) { key = 'S'; } else { key = 's'; } return true;
-                        case Keys.T: if (shift) { key = 'T'; } else { key = 't'; } return true;
-                        case Keys.U: if (shift) { key = 'U'; } else { key = 'u'; } return true;
-                        case Keys.V: if (shift) { key = 'V'; } else { key = 'v'; } return true;
-                        case Keys.W: if (shift) { key = 'W'; } else { key = 'w'; } return true;
-                        case Keys.X: if (shift) { key = 'X'; } else { key = 'x'; } return true;
-                        case Keys.Y: if (shift) { key = 'Y'; } else { key = 'y'; } return true;
-                        case Keys.Z: if (shift) { key = 'Z'; } else { key = 'z'; } return true;
+                        case Keys.A: { key = 'A'; } return true;
+                        case Keys.B: { key = 'B'; } return true;
+                        case Keys.C: { key = 'C'; } return true;
+                        case Keys.D: { key = 'D'; } return true;
+                        case Keys.E: { key = 'E'; } return true;
+                        case Keys.F: { key = 'F'; } return true;
+                        case Keys.G: { key = 'G'; } return true;
+                        case Keys.H: { key = 'H'; } return true;
+                        case Keys.I: { key = 'I'; } return true;
+                        case Keys.J: { key = 'J'; } return true;
+                        case Keys.K: { key = 'K'; } return true;
+                        case Keys.L: { key = 'L'; } return true;
+                        case Keys.M: { key = 'M'; } return true;
+                        case Keys.N: { key = 'N'; } return true;
+                        case Keys.O: { key = 'O'; } return true;
+                        case Keys.P: { key = 'P'; } return true;
+                        case Keys.Q: { key = 'Q'; } return true;
+                        case Keys.R: { key = 'R'; } return true;
+                        case Keys.S: { key = 'S'; } return true;
+                        case Keys.T: { key = 'T'; } return true;
+                        case Keys.U: { key = 'U'; } return true;
+                        case Keys.V: { key = 'V'; } return true;
+                        case Keys.W: { key = 'W'; } return true;
+                        case Keys.X: { key = 'X'; } return true;
+                        case Keys.Y: { key = 'Y'; } return true;
+                        case Keys.Z: { key = 'Z'; } return true;
 
                         //Decimal keys
                         case Keys.D0: if (shift) { key = ')'; } else { key = '0'; } return true;

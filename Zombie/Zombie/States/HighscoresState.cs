@@ -17,6 +17,7 @@ namespace Zombie.States
         private List<Component> _components;
 
         private SpriteFont _font;
+        private SpriteFont ScoreFont;
 
         private ScoreManager _scoreManager;
 
@@ -30,7 +31,7 @@ namespace Zombie.States
         public override void LoadContent()
         {
             _font = _content.Load<SpriteFont>("Font");
-
+            ScoreFont = _content.Load<SpriteFont>("ScoreFont");
             _scoreManager = ScoreManager.Load();
 
             var buttonTexture = _content.Load<Texture2D>("Button");
@@ -62,11 +63,10 @@ namespace Zombie.States
             spriteBatch.End();
 
             var WordLength = _font.MeasureString("Highscores:").X;
-
+            var WordLengthA = _font.MeasureString("");
             spriteBatch.Begin();
-
-            spriteBatch.DrawString(_font, "Highscores:\n" + string.Join("\n", _scoreManager.Highscores.Select(c => c.PlayerName + ": " + c.Value).ToArray()), new Vector2((ScreenWidth / 2) - (WordLength / 2), 100), Color.Red);
-
+            var i = 0;
+            spriteBatch.DrawString(_font, "Highscores:\n" + string.Join("\n", _scoreManager.Highscores.Select(c => ++i + ". " + c.PlayerName + ": " + c.Value).ToArray()), new Vector2((ScreenWidth / 2) - (WordLength / 2), 100), Color.Red);
             spriteBatch.End();
         }
 

@@ -358,15 +358,22 @@ namespace Zombie.States
                     yPos = Random.Next(SpawnLeft.Y, SpawnLeft.Y + SpawnLeft.Height);
                     ZomTimer = 0;
                 }
-                ZomList.Add(new Zombies(_targetTexture)
-                {
-                    Position = new Vector2(xPos, yPos),
-                    //
-                    FollowTarget = soldier,
-                    //
-                    FollowDistance = 10f,
+                ZomList.Add(GetZombies(xPos, yPos, soldier));
+            }
+        }
 
-                });
+        public Zombies GetZombies(int xPos, int yPos, Sprite soldier)
+        {
+            Random randomType = new Random();
+            int ZombieType = randomType.Next(0, 2);
+            if (ZombieType == 0)
+            {
+                //return new ZombieGiant();
+                return new ZombieGiant(_targetTexture, new Vector2(xPos, yPos), soldier, 10f);
+            }
+            else
+            {
+                return new Zombies(_targetTexture, new Vector2(xPos, yPos), soldier, 10f);
             }
         }
     }

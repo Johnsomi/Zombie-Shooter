@@ -52,6 +52,7 @@
     <Compile Include="Sprites\Bullet.cs" />
     <Compile Include="Sprites\Player.cs" />
     <Compile Include="Sprites\Sprite.cs" />
+    <Compile Include="Sprites\ZombieGiant.cs" />
     <Compile Include="Sprites\Zombies.cs" />
     <Compile Include="States\GameState.cs" />
     <Compile Include="States\HighscoresState.cs" />

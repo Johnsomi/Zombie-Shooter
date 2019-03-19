@@ -10,10 +10,13 @@ namespace Zombie.Sprites
 {
     public class Zombies : Sprite
     {
-        public Zombies(Texture2D texture) : base(texture)
+        public Zombies(Texture2D texture,Vector2 Position, Sprite FollowTarget, float FollowDistance) : base(texture)
         {
             Random random = new Random();
             zombieHealth = random.Next(1, 4);
+            this.Position = Position;
+            this.FollowTarget = FollowTarget;
+            this.FollowDistance = FollowDistance;
             //Random randomSpeed = new Random();
             //ZombieVelocity = randomSpeed.Next(2, 5);
             //-

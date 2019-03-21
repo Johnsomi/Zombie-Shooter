@@ -11,9 +11,9 @@ namespace Zombie.Core
 {
     public class Camera
     {
-        public Matrix Transform { get; private set; }
+        public Matrix Transform1 { get; set; }
 
-        public void CamFollow(Sprite target)
+        public void CamFollow(Player target)
         {
             var Position = Matrix.CreateTranslation(
                 -target.Position.X - (target.Rectangle.Width / 2),
@@ -21,10 +21,10 @@ namespace Zombie.Core
                 0);
 
             var offset = Matrix.CreateTranslation(
-                    GameState.ScreenWidth / 2,
-                    GameState.ScreenHeight / 2,
+                    State.ScreenWidth / 2,
+                    State.ScreenHeight / 2,
                     0);
-            Transform = Position * offset;
+            Transform1 = Position * offset;
         }
     }
 }

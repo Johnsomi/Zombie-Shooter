@@ -19,8 +19,10 @@ namespace Zombie.States
         public static Random Random;
         public static string username="";
 
-        private List<Component> _components;
+        private Camera _camera;
 
+        private List<Component> _components;
+        private List<Component> soldierComponents;
         public double G = 2.0;
 
         public int GCount;
@@ -35,7 +37,8 @@ namespace Zombie.States
 
         private ScoreManager _scoreManager;
 
-        Sprite soldier;
+        Player soldier;
+        
         
         private SpriteFont _font;
 
@@ -71,10 +74,12 @@ namespace Zombie.States
             var buttonTexture = _content.Load<Texture2D>("Button");
             var buttonFont = _content.Load<SpriteFont>("ButtonFont");
 
-            
+            //soldier = new Player(_content.Load<Texture2D>("topDownSoldier2"));
 
             _components = new List<Component>()
             {
+                
+
                 new Button(buttonTexture, buttonFont)
                 {
                     Text = "Main Menu",
@@ -91,6 +96,7 @@ namespace Zombie.States
 
         private void Restart()
         {
+            _camera = new Camera();
             var playerTexture = _content.Load<Texture2D>("topDownSoldier2");
             //_targetTexture = Content.Load<Texture2D>("target2");
             //------------------------------------------------------------------
@@ -100,6 +106,11 @@ namespace Zombie.States
                 Position = new Vector2((ScreenWidth / 4), (ScreenHeight / 2)),
                 Bullet = new Bullet(_content.Load<Texture2D>("circle")),
 
+            };
+
+            soldierComponents = new List<Component>()
+            {
+                soldier,
             };
 
             _sprites = new List<Sprite>()
@@ -120,6 +131,11 @@ namespace Zombie.States
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
+            spriteBatch.Begin(transformMatrix: _camera.Transform1);
+            foreach (var component in soldierComponents)
+                component.Draw(gameTime, spriteBatch);
+            spriteBatch.End();
+
             spriteBatch.Begin();
 
             foreach (var component in _components)
@@ -172,8 +188,9 @@ namespace Zombie.States
 
             foreach (var component in _components)
                 component.Update(gameTime);
-
-            
+            foreach (var component in soldierComponents)
+                component.Update(gameTime);
+            _camera.CamFollow(soldier);
 
             if (Keyboard.GetState().IsKeyDown(Keys.Space))
                 _hasStarted = true;

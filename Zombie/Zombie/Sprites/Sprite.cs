@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Zombie.Sprites
 {
-    public class Sprite : ICloneable
+    public class Sprite : Component, ICloneable
     {
         protected Texture2D _texture;
         protected float _rotation;
@@ -238,6 +238,16 @@ namespace Zombie.Sprites
             FollowDistance = followDistance;
 
             return this;
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            
+        }
+
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        {
+            
         }
     }
 }

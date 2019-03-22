@@ -46,8 +46,8 @@ namespace Zombie.Sprites
             _rotation = (float)Math.Atan2(DistanceY, DistanceX)+(float)(Math.PI*0.5f);
 
             //
-            Position = Vector2.Clamp(Position, new Vector2(0, 0), new Vector2(Game1.ScreenWidth - this.Rectangle.Width, Game1.ScreenHeight - this.Rectangle.Height));
-            BulletPosition = Vector2.Clamp(Position, new Vector2(0, 0), new Vector2(Game1.ScreenWidth - HitBox.Width, Game1.ScreenHeight - HitBox.Height));
+            //Position = Vector2.Clamp(Position, new Vector2(0, 0), new Vector2(Game1.ScreenWidth - this.Rectangle.Width, Game1.ScreenHeight - this.Rectangle.Height));
+            //BulletPosition = Vector2.Clamp(Position, new Vector2(0, 0), new Vector2(Game1.ScreenWidth - HitBox.Width, Game1.ScreenHeight - HitBox.Height));
 
 
             _previousKey = _currentKey;
@@ -128,7 +128,7 @@ namespace Zombie.Sprites
 
         }
 
-        public override void Draw(SpriteBatch spriteBatch)
+        public override void Draw(GameTime gameTime,SpriteBatch spriteBatch)
         {
             //spriteBatch.Draw(_texture, SpawnLocation, null, Color2, _rotation, OriginB, 1, SpriteEffects.None, 0);
             spriteBatch.Draw(_texture, Position, null, Color, _rotation , Origin, 1, SpriteEffects.None, 0);

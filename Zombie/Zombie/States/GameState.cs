@@ -17,12 +17,12 @@ namespace Zombie.States
     public class GameState : State
     {
         public static Random Random;
-        public static string username="";
-
+        public static string username = " ";
+        public static string secretName = "YUNOWERK";
         private Camera _camera;
 
         private List<Component> _components;
-        private List<Component> soldierComponents;
+        //private List<Component> soldierComponents;
         public double G = 2.0;
 
         public int GCount;
@@ -108,10 +108,10 @@ namespace Zombie.States
 
             };
 
-            soldierComponents = new List<Component>()
-            {
-                soldier,
-            };
+            //soldierComponents = new List<Component>()
+            //{
+                //soldier,
+            //};
 
             _sprites = new List<Sprite>()
             {
@@ -132,7 +132,7 @@ namespace Zombie.States
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             spriteBatch.Begin(transformMatrix: _camera.Transform1);
-            foreach (var component in soldierComponents)
+            foreach (var component in _sprites)
                 component.Draw(gameTime, spriteBatch);
             spriteBatch.End();
 
@@ -154,11 +154,11 @@ namespace Zombie.States
 
             for (int SpriteIndex = _sprites.Count - 1; SpriteIndex >= 0; SpriteIndex--)
             {
-                _sprites[SpriteIndex].Draw(spriteBatch);
+                _sprites[SpriteIndex].Draw(gameTime,spriteBatch);
             }
             foreach (var sprite in ZomList)
             {
-                sprite.Draw(spriteBatch);
+                sprite.Draw(gameTime,spriteBatch);
             }
                 
 
@@ -188,10 +188,12 @@ namespace Zombie.States
 
             foreach (var component in _components)
                 component.Update(gameTime);
-            foreach (var component in soldierComponents)
+            foreach (var component in _sprites)
                 component.Update(gameTime);
-            _camera.CamFollow(soldier);
-
+            if (_sprites.Count >= 1)
+            {
+                _camera.CamFollow(_sprites[0]);
+            }
             if (Keyboard.GetState().IsKeyDown(Keys.Space))
                 _hasStarted = true;
 
@@ -277,12 +279,23 @@ namespace Zombie.States
                     var soldier = sprite as Player;
                     if (soldier.HasDied)
                     {
-                        _scoreManager.Add(new Models.Score()
-                        {
-                            PlayerName = username,
-                            Value = _score,
+                        if (username.Equals("") && player.Score == 22) {
+                            _scoreManager.Add(new Models.Score()
+                            {
+                                PlayerName = secretName,
+                                Value = _score,
+                            }
+                            );
                         }
-                        );
+                        else
+                        {
+                            _scoreManager.Add(new Models.Score()
+                            {
+                                PlayerName = username,
+                                Value = _score,
+                            }
+                            );
+                        }
 
                         ScoreManager.Save(_scoreManager);
                         _score = 0;
@@ -302,10 +315,16 @@ namespace Zombie.States
 
                 if (ZomList[i].IsRemoved)
                 {
-                    //-----
-                    player.Score++;
-                    _score++;
-
+                    if (ZomList[i] is ZombieGiant)
+                    {
+                        player.Score = player.Score + 6;
+                        _score = _score + 6;
+                    }
+                    else
+                    {
+                        player.Score++;
+                        _score++;
+                    }
 
                     ZomList.RemoveAt(i);
                     i--;
@@ -375,17 +394,17 @@ namespace Zombie.States
                     yPos = Random.Next(SpawnLeft.Y, SpawnLeft.Y + SpawnLeft.Height);
                     ZomTimer = 0;
                 }
-                ZomList.Add(GetZombies(xPos, yPos, soldier));
+                //ZomList.Add(GetZombies(xPos, yPos, soldier));
             }
         }
 
         public Zombies GetZombies(int xPos, int yPos, Sprite soldier)
         {
             Random randomType = new Random();
-            int ZombieType = randomType.Next(0, 2);
+            int ZombieType = randomType.Next(0, 5);
             if (ZombieType == 0)
             {
-                //return new ZombieGiant();
+                
                 return new ZombieGiant(_targetTexture, new Vector2(xPos, yPos), soldier, 10f);
             }
             else

@@ -16,7 +16,7 @@ namespace Zombie.Sprites
         protected KeyboardState _currentKey;
         protected KeyboardState _previousKey;
 
-        public Vector2 Position;
+        public Vector2 Position { get; set; }
         public Vector2 Origin;
 
         //______
@@ -143,7 +143,7 @@ namespace Zombie.Sprites
             //
         }
 
-        public virtual void Draw(SpriteBatch spriteBatch)
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             if (zombieHealth == 3)
             {
@@ -160,6 +160,7 @@ namespace Zombie.Sprites
                 Color = Color.Red;
                 ZombieVelocity = 2f;
             }
+            
             spriteBatch.Draw(_texture, Position, null, Color, _rotation, Origin, 1, SpriteEffects.None, 0);
             //spriteBatch.Draw(_texture, HitBoxZ, null, Color.Red);
         }
@@ -245,9 +246,9 @@ namespace Zombie.Sprites
             
         }
 
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
-        {
+        //public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        //{
             
-        }
+        //}
     }
 }

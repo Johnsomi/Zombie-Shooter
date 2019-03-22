@@ -11,13 +11,13 @@ namespace Zombie.Core
 {
     public class Camera
     {
-        public Matrix Transform1 { get; set; }
+        public Matrix Transform1 { get; private set; }
 
-        public void CamFollow(Player target)
+        public void CamFollow(Sprite target)
         {
             var Position = Matrix.CreateTranslation(
-                -target.Position.X - (target.Rectangle.Width / 2),
-                -target.Position.Y - (target.Rectangle.Height / 2),
+                -target.Position.X,
+                -target.Position.Y,
                 0);
 
             var offset = Matrix.CreateTranslation(

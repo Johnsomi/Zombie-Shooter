@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Zombie.Core;
 
 namespace Zombie.Sprites
 {
@@ -19,6 +20,8 @@ namespace Zombie.Sprites
         private Vector2 Origin2;
 
         private Vector2 OriginB;
+
+       
 
         public Bullet Bullet;
         Vector2 SpawnLocation;
@@ -67,7 +70,7 @@ namespace Zombie.Sprites
 
             if (_currentKey.IsKeyDown(Keys.S))
                 Position -= Direction * (playerVelocity - 2f);
-
+            Camera.Update(this);
             if(_currentMouse.LeftButton == ButtonState.Pressed && _previousMouse.LeftButton == ButtonState.Released)
             {
                 var bullet = Bullet.Clone() as Bullet;

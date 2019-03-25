@@ -12,11 +12,11 @@ namespace Zombie.Sprites
     public class Sprite : Component, ICloneable
     {
         protected Texture2D _texture;
-        protected float _rotation;
+        public float _rotation;
         protected KeyboardState _currentKey;
         protected KeyboardState _previousKey;
 
-        public Vector2 Position { get; set; }
+        public Vector2 Position;
         public Vector2 Origin;
 
         //______

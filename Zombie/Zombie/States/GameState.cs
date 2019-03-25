@@ -131,19 +131,17 @@ namespace Zombie.States
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin(transformMatrix: _camera.Transform1);
-            foreach (var component in _sprites)
-                component.Draw(gameTime, spriteBatch);
+            var viewMatrix = Camera.Transform;
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, null, null, null, null, viewMatrix);
+            //foreach (var component in _sprites)
+              //  component.Draw(gameTime, spriteBatch);
             spriteBatch.End();
-
             spriteBatch.Begin();
 
             foreach (var component in _components)
                 component.Draw(gameTime, spriteBatch);
 
-            spriteBatch.End();
-
-            spriteBatch.Begin();
+            
 
             // foreach(var sprite in _sprites)
             //     sprite.Draw(spriteBatch);
@@ -188,8 +186,8 @@ namespace Zombie.States
 
             foreach (var component in _components)
                 component.Update(gameTime);
-            foreach (var component in _sprites)
-                component.Update(gameTime);
+            //foreach (var component in _sprites)
+              //  component.Update(gameTime);
             if (_sprites.Count >= 1)
             {
                 _camera.CamFollow(_sprites[0]);

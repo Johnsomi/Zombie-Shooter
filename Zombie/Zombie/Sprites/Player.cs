@@ -123,7 +123,7 @@ namespace Zombie.Sprites
             SpawnLocation = new Vector2(this.Position.X + (float)newX, Position.Y + (float)newY);
             bullet.Position = SpawnLocation;
             bullet.LinearVelocity = this.LinearVelocity * 2;
-            bullet.LifeSpan = 2f;
+            //bullet.LifeSpan = 2f;
             bullet.Parent = this;
 
             sprites.Add(bullet);

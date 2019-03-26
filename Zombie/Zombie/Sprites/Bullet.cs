@@ -17,7 +17,7 @@ namespace Zombie.Sprites
         public Bullet(Texture2D texture)
             : base(texture)
         {
-
+            LifeSpan = 2f;
         }
 
 

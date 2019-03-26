@@ -400,7 +400,7 @@ namespace Zombie.States
         public Zombies GetZombies(int xPos, int yPos, Sprite soldier)
         {
             Random randomType = new Random();
-            int ZombieType = randomType.Next(0, 1);
+            int ZombieType = randomType.Next(0, 10);
             if (ZombieType == 0)
             {
                 

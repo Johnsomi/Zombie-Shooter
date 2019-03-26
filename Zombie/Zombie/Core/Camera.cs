@@ -13,7 +13,7 @@ namespace Zombie.Core
 {
     public class Camera
     {
-        KeyboardState _currentKey;
+        /*KeyboardState _currentKey;
         KeyboardState _previousKey;
         static Vector2 Origin;
         static float _rotation;
@@ -61,6 +61,6 @@ namespace Zombie.Core
 
 
         }
-        
+        */
     }
 }

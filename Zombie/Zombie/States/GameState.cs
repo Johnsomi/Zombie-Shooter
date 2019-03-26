@@ -131,11 +131,11 @@ namespace Zombie.States
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            var viewMatrix = Camera.Transform;
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, null, null, null, null, viewMatrix);
+            //var viewMatrix = Camera.Transform;
+            //spriteBatch.Begin();//SpriteSortMode.Deferred, BlendState.NonPremultiplied, null, null, null, null, viewMatrix);
             //foreach (var component in _sprites)
               //  component.Draw(gameTime, spriteBatch);
-            spriteBatch.End();
+            //spriteBatch.End();
             spriteBatch.Begin();
 
             foreach (var component in _components)
@@ -190,7 +190,7 @@ namespace Zombie.States
               //  component.Update(gameTime);
             if (_sprites.Count >= 1)
             {
-                _camera.CamFollow(_sprites[0]);
+               // _camera.CamFollow(_sprites[0]);
             }
             if (Keyboard.GetState().IsKeyDown(Keys.Space))
                 _hasStarted = true;
@@ -392,7 +392,7 @@ namespace Zombie.States
                     yPos = Random.Next(SpawnLeft.Y, SpawnLeft.Y + SpawnLeft.Height);
                     ZomTimer = 0;
                 }
-                //ZomList.Add(GetZombies(xPos, yPos, soldier));
+                ZomList.Add(GetZombies(xPos, yPos, soldier));
             }
         }
 

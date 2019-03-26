@@ -38,7 +38,9 @@ namespace Zombie.States
         private ScoreManager _scoreManager;
 
         Player soldier;
-        
+
+        private Texture2D TestWeapon;
+        public float _weaponTimer;
         
         private SpriteFont _font;
 
@@ -124,6 +126,7 @@ namespace Zombie.States
             };
 
             //-
+            TestWeapon = _content.Load<Texture2D>("target2");
             _hasStarted = false;
             //_font = Content.Load<SpriteFont>("Font");
             //--------------------------------------------------------------------
@@ -201,8 +204,8 @@ namespace Zombie.States
             _timer2 += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             ZomTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
-
-
+            
+            _weaponTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
             foreach (var sprite in _sprites.ToArray())
             {
                 sprite.Update(gameTime, _sprites);
@@ -222,6 +225,8 @@ namespace Zombie.States
             PostUpdate(gameTime);
             //
             SpawnTarget();
+
+            WeaponSpawnTest();
         }
 
         
@@ -334,6 +339,21 @@ namespace Zombie.States
 
             }
         }
+        private void WeaponSpawnTest()
+        {
+            if(_weaponTimer > 1.0)
+            {
+                _weaponTimer = 0;
+
+                var weaponPosX = Random.Next(0, (int)ScreenWidth - TestWeapon.Width);
+                var weaponPosY = Random.Next(0, (int)ScreenHeight - TestWeapon.Height);
+
+                _sprites.Add(new Sprite(TestWeapon)
+                {
+                    Position = new Vector2(weaponPosX, weaponPosY),
+                });
+            }
+        }
 
         private void SpawnTarget()
         {
@@ -359,7 +379,7 @@ namespace Zombie.States
 
                 _timer2 = 0;
 
-                int SpawnSelector = Random.Next(0, 3);
+                int SpawnSelector = Random.Next(0, 4);
                 var xPos = 0;
                 var yPos = 0;
                 int XTop = ((int)ScreenWidth / 2) - (_targetTexture.Width * 2);
@@ -381,26 +401,26 @@ namespace Zombie.States
                     yPos = Random.Next(SpawnBottom.Y, SpawnBottom.Y + SpawnBottom.Height);
                 }
 
-                else
+                else if (SpawnSelector == 2)
                 {
                     xPos = Random.Next(SpawnRight.X, SpawnRight.X + SpawnRight.Width);
                     yPos = Random.Next(SpawnRight.Y, SpawnRight.Y + SpawnRight.Height);
                 }
 
-                if (ZomTimer >= 60)
+                else
                 {
                     xPos = Random.Next(SpawnLeft.X, SpawnLeft.X + SpawnLeft.Width);
                     yPos = Random.Next(SpawnLeft.Y, SpawnLeft.Y + SpawnLeft.Height);
-                    ZomTimer = 0;
+                    //ZomTimer = 0;
                 }
-                ZomList.Add(GetZombies(xPos, yPos, soldier));
+                //ZomList.Add(GetZombies(xPos, yPos, soldier));
             }
         }
 
         public Zombies GetZombies(int xPos, int yPos, Sprite soldier)
         {
             Random randomType = new Random();
-            int ZombieType = randomType.Next(0, 10);
+            int ZombieType = randomType.Next(0, 5);
             if (ZombieType == 0)
             {
                 

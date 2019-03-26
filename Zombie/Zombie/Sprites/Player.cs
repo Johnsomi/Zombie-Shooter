@@ -101,10 +101,15 @@ namespace Zombie.Sprites
                 if (sprite is Bullet)
                     continue;
                 //if (sprite is Player2)
-                  //  continue;
-
-                //-
+                //  continue;
                 if (sprite.Rectangle.Intersects(HitBox))
+                {
+                    sprite.IsRemoved = true;
+
+                }
+                //-
+
+                if (sprite.Rectangle.Intersects(HitBox) && sprite is Zombies)
                 {
                     
                     this.HasDied = true;

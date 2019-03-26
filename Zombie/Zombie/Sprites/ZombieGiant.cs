@@ -10,10 +10,11 @@ namespace Zombie.Sprites
 {
     public class ZombieGiant : Zombies
     {
-        public ZombieGiant(Texture2D texture, Vector2 Position, Sprite FollowTarget, float FollowDistance) : base(texture, Position, FollowTarget, FollowDistance)
+        public ZombieGiant(Texture2D texture, Vector2 Position, Sprite FollowTarget, float FollowDistance, Color color) : base(texture, Position, FollowTarget, FollowDistance, color)
         {
-            ZombieVelocity = 1f;
+            ZombieVelocity = 0.5f;
             zombieHealth = 25;
+            //color = Color.Red;
         }
     }
 }

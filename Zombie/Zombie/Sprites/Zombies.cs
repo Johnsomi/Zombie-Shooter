@@ -12,8 +12,8 @@ namespace Zombie.Sprites
     {
         public Zombies(Texture2D texture,Vector2 Position, Sprite FollowTarget, float FollowDistance) : base(texture)
         {
-            Random random = new Random();
-            zombieHealth = random.Next(1, 4);
+            //Random random = new Random();
+            zombieHealth = 3;
             this.Position = Position;
             this.FollowTarget = FollowTarget;
             this.FollowDistance = FollowDistance;
@@ -21,6 +21,11 @@ namespace Zombie.Sprites
             //ZombieVelocity = randomSpeed.Next(2, 5);
             //-
             //Speed = Game1.Random.Next(1, 6);
+        }
+
+        public Zombies(Texture2D texture, Vector2 Position, Sprite FollowTarget, float FollowDistance, Color color) : this(texture, Position, FollowTarget, FollowDistance)
+        {
+            Color = color;
         }
     }
 }

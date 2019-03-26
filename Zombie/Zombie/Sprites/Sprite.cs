@@ -22,7 +22,7 @@ namespace Zombie.Sprites
         //______
         public Vector2 BulletPosition;
 
-        private float _timer3 = 0;
+        //private float _timer3 = 0;
 
         public int zombieHealth;
 
@@ -45,7 +45,7 @@ namespace Zombie.Sprites
 
         public float playerVelocity = 4f;
 
-        public float ZombieVelocity = 1f;
+        public float ZombieVelocity = 3f;
         //-
         public float Speed;
 
@@ -123,17 +123,16 @@ namespace Zombie.Sprites
             //
             Follow();
 
-            _timer3 += (float)gameTime.ElapsedGameTime.TotalSeconds;
+            //_timer3 += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             
-
+            /*
             if (_timer3 > 3)
             {
                 ZombieVelocity = ZombieVelocity + 0.5f;
 
                 _timer3 = 0;
-            }
-
+            }*/
 
             //-
             //Origin3 = new Vector2(35, 30);
@@ -145,6 +144,7 @@ namespace Zombie.Sprites
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
+            /*
             if (zombieHealth == 3)
             {
                 Color = Color.Green;
@@ -160,7 +160,7 @@ namespace Zombie.Sprites
                 Color = Color.Red;
                 ZombieVelocity = 2f;
             }
-            
+            */
             spriteBatch.Draw(_texture, Position, null, Color, _rotation, Origin, 1, SpriteEffects.None, 0);
             //spriteBatch.Draw(_texture, HitBoxZ, null, Color.Red);
         }

@@ -19,7 +19,7 @@ namespace Zombie.States
         public static Random Random;
         public static string username = " ";
         public static string secretName = "YUNOWERK";
-        private Camera _camera;
+        //private Camera _camera;
 
         private List<Component> _components;
         //private List<Component> soldierComponents;
@@ -96,7 +96,7 @@ namespace Zombie.States
 
         private void Restart()
         {
-            _camera = new Camera();
+            //_camera = new Camera();
             var playerTexture = _content.Load<Texture2D>("topDownSoldier2");
             //_targetTexture = Content.Load<Texture2D>("target2");
             //------------------------------------------------------------------
@@ -317,6 +317,7 @@ namespace Zombie.States
                     {
                         player.Score = player.Score + 6;
                         _score = _score + 6;
+                        ZomList.Add(GiantDeath((int)sprite.Position.X, (int)sprite.Position.Y, soldier));
                     }
                     else
                     {
@@ -399,16 +400,22 @@ namespace Zombie.States
         public Zombies GetZombies(int xPos, int yPos, Sprite soldier)
         {
             Random randomType = new Random();
-            int ZombieType = randomType.Next(0, 5);
+            int ZombieType = randomType.Next(0, 1);
             if (ZombieType == 0)
             {
                 
-                return new ZombieGiant(_targetTexture, new Vector2(xPos, yPos), soldier, 10f);
+                return new ZombieGiant(_targetTexture, new Vector2(xPos, yPos), soldier, 10f, Color.Red);
             }
+            
             else
             {
                 return new Zombies(_targetTexture, new Vector2(xPos, yPos), soldier, 10f);
             }
+        }
+
+        public Zombies GiantDeath(int xPos, int yPos, Sprite soldier)
+        {
+            return new ZombieImp(_targetTexture, new Vector2(xPos, yPos), soldier, 10f, Color.Green);
         }
     }
 }

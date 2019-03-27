@@ -8,11 +8,12 @@ using System.Threading.Tasks;
 
 namespace Zombie.Sprites
 {
-    /*public class FlameThrower : Bullet
+    public class FlameThrower : Bullet
     {
-        public FlameThrower(Texture2D texture, Vector2 WeaponPos) : base(texture, WeaponPos)
+        
+        public FlameThrower(Texture2D texture) : base(texture)
         {
-
+            Color = Color.Red;
         }
-    }*/
+    }
 }

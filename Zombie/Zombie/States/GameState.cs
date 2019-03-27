@@ -107,6 +107,7 @@ namespace Zombie.States
             {
                 Position = new Vector2((ScreenWidth / 2), (ScreenHeight / 2)),
                 Bullet = new Bullet(_content.Load<Texture2D>("circle")),
+                flameBullet = new FlameThrower(_content.Load<Texture2D>("circle"))
 
             };
 
@@ -217,10 +218,10 @@ namespace Zombie.States
                 sprite.Update(gameTime, ZomList);
             }
 
-            foreach (var sprite in _sprites.ToArray())
+            /*foreach (var sprite in _sprites)
             {
                 sprite.Update(gameTime, ZomList);
-            }
+            }*/
 
             PostUpdate(gameTime);
             //
@@ -242,10 +243,12 @@ namespace Zombie.States
 
                     if (spriteA.Rectangle.Intersects(spriteB.HitBoxZ))
                         spriteA.OnCollide(spriteB);
+                    
                 }
             }
+            
             Player player = (Player)_sprites[0];
-
+           
             for (int i = 0; i < _sprites.Count; i++)
             {
                 //-
@@ -341,6 +344,9 @@ namespace Zombie.States
         }
         private void WeaponSpawnTest()
         {
+
+            //get rand number
+            //if rand num ==0 set TestWeapon to texture1
             if(_weaponTimer > 1.0)
             {
                 _weaponTimer = 0;
@@ -348,10 +354,8 @@ namespace Zombie.States
                 var weaponPosX = Random.Next(0, (int)ScreenWidth - TestWeapon.Width);
                 var weaponPosY = Random.Next(0, (int)ScreenHeight - TestWeapon.Height);
 
-                _sprites.Add(new Weapon(TestWeapon, new Vector2(weaponPosX, weaponPosY))
-                {
-                    //Position = new Vector2(weaponPosX, weaponPosY),
-                });
+                _sprites.Add(new Weapon(TestWeapon, new Vector2(weaponPosX, weaponPosY), 1)
+                );
             }
         }
 
@@ -413,7 +417,7 @@ namespace Zombie.States
                     yPos = Random.Next(SpawnLeft.Y, SpawnLeft.Y + SpawnLeft.Height);
                     //ZomTimer = 0;
                 }
-                //ZomList.Add(GetZombies(xPos, yPos, soldier));
+                ZomList.Add(GetZombies(xPos, yPos, soldier));
             }
         }
 

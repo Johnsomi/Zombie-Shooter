@@ -10,9 +10,11 @@ namespace Zombie.Sprites
 {
     public class Weapon : Sprite
     {
-        public Weapon(Texture2D texture, Vector2 WeaponPos) : base(texture)
+        public int weaponType;
+        public Weapon(Texture2D texture, Vector2 WeaponPos, int bulletType) : base(texture)
         {
             Position = WeaponPos;
+            weaponType = bulletType;
         }
         public override void Update(GameTime gameTime, List<Sprite> sprites)
         {

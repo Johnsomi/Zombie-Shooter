@@ -21,9 +21,11 @@ namespace Zombie.Sprites
 
         private Vector2 OriginB;
 
-       
+        
 
         public Bullet Bullet;
+        public Bullet DefaultBullet;
+        public FlameThrower flameBullet;
         Vector2 SpawnLocation;
 
         //-
@@ -71,11 +73,23 @@ namespace Zombie.Sprites
             if (_currentKey.IsKeyDown(Keys.S))
                 Position -= Direction * (playerVelocity - 2f);
             //Camera.Update(this);
-            if(_currentMouse.LeftButton == ButtonState.Pressed && _previousMouse.LeftButton == ButtonState.Released)
+            if(Bullet is FlameThrower)
             {
-                var bullet = Bullet.Clone() as Bullet;
-                AddBullet(sprites);
+                if (_currentMouse.LeftButton == ButtonState.Pressed)
+                {
+                    var bullet = Bullet.Clone() as Bullet;
+                    AddBullet(sprites);
+                }
             }
+            else
+            {
+                if(_currentMouse.LeftButton == ButtonState.Pressed && _previousMouse.LeftButton == ButtonState.Released)
+                {
+                    var bullet = Bullet.Clone() as Bullet;
+                    AddBullet(sprites);
+                }
+            }
+            
             
 
             /*if (_currentKey.IsKeyDown(Keys.Space) &&
@@ -98,13 +112,18 @@ namespace Zombie.Sprites
             {
                 if (sprite is Player)
                     continue;
+                
                 if (sprite is Bullet)
                     continue;
                 //if (sprite is Player2)
                 //  continue;
-                if (sprite.Rectangle.Intersects(HitBox))
+                if (sprite.Rectangle.Intersects(HitBox) && sprite is Weapon)
                 {
-                    
+                    Weapon weapon = (Weapon)sprite;
+                    if(weapon.weaponType ==1)
+                    {
+                        Bullet = flameBullet;
+                    }
                     sprite.IsRemoved = true;
 
                 }
@@ -145,6 +164,11 @@ namespace Zombie.Sprites
             //spriteBatch.Draw(_texture, Position, null, Color2, _rotation, OriginB, 1, SpriteEffects.None, 0);
             
 
+        }
+
+        public override void OnCollide(Sprite sprite)
+        {
+            IsRemoved = true;
         }
 
     }

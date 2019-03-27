@@ -186,7 +186,7 @@ namespace Zombie.States
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Button_MainMenu_Clicked(this, new EventArgs());
-
+            //button in game
             foreach (var component in _components)
                 component.Update(gameTime);
             //foreach (var component in _sprites)
@@ -348,9 +348,9 @@ namespace Zombie.States
                 var weaponPosX = Random.Next(0, (int)ScreenWidth - TestWeapon.Width);
                 var weaponPosY = Random.Next(0, (int)ScreenHeight - TestWeapon.Height);
 
-                _sprites.Add(new Sprite(TestWeapon)
+                _sprites.Add(new Weapon(TestWeapon, new Vector2(weaponPosX, weaponPosY))
                 {
-                    Position = new Vector2(weaponPosX, weaponPosY),
+                    //Position = new Vector2(weaponPosX, weaponPosY),
                 });
             }
         }

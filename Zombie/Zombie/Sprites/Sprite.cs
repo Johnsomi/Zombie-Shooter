@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Zombie.Sprites
 {
-    public class Sprite : Component, ICloneable
+    public class Sprite : ICloneable
     {
         protected Texture2D _texture;
         public float _rotation;
@@ -142,7 +142,7 @@ namespace Zombie.Sprites
             //
         }
 
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             /*
             if (zombieHealth == 3)
@@ -241,10 +241,10 @@ namespace Zombie.Sprites
             return this;
         }
 
-        public override void Update(GameTime gameTime)
+        /*public override void Update(GameTime gameTime)
         {
             
-        }
+        }*/
 
         //public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         //{

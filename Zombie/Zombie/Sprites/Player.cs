@@ -104,6 +104,7 @@ namespace Zombie.Sprites
                 //  continue;
                 if (sprite.Rectangle.Intersects(HitBox))
                 {
+                    
                     sprite.IsRemoved = true;
 
                 }

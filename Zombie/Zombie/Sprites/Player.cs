@@ -138,7 +138,7 @@ namespace Zombie.Sprites
                 //-
 
                if (sprite.HitBoxZ.Intersects(HitBox) && sprite is Zombies)
-                {
+               {
                     IsRemoved = true;
                     this.HasDied = true;
                     //Score++;

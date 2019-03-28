@@ -230,7 +230,7 @@ namespace Zombie.States
                 sprite.Update(gameTime, ZomList);
             }
 
-            foreach (var sprite in ZomList.ToArray())
+            foreach (var sprite in WeaponsList.ToArray())
             {
                 sprite.Update(gameTime, WeaponsList);
             }
@@ -263,12 +263,26 @@ namespace Zombie.States
                     
                 }
             }
+            foreach(var spriteA in _sprites)
+            {
+                foreach(var spriteB in WeaponsList)
+                {
+                    if (spriteA is Player)
+                    {
+                        if (spriteA == spriteB)
+                            continue;
+
+                        if (spriteB.Rectangle.Intersects(spriteA.HitBox))
+                            spriteB.OnCollide(spriteA);
+                    }
+                }
+            }
             try
             {
                 Player player = (Player)_sprites[0];
 
                 //Player player = (Player)_sprites[0];
-
+                //probably useless
                 for (int i = 0; i < _sprites.Count; i++)
                 {
                     //-
@@ -360,6 +374,11 @@ namespace Zombie.States
                     }
 
                     //Keep down part
+
+                }
+
+                for (int i = 0; i < WeaponsList.Count; i++)
+                {
 
                 }
             }

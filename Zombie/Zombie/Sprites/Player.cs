@@ -13,7 +13,7 @@ namespace Zombie.Sprites
     public class Player : Sprite
     {
         //-
-        Rectangle HitBox;
+        //Rectangle HitBox;
 
         Rectangle BulletBox;
         //-
@@ -51,8 +51,9 @@ namespace Zombie.Sprites
             _rotation = (float)Math.Atan2(DistanceY, DistanceX)+(float)(Math.PI*0.5f);
 
             //
-            //Position = Vector2.Clamp(Position, new Vector2(0, 0), new Vector2(Game1.ScreenWidth - this.Rectangle.Width, Game1.ScreenHeight - this.Rectangle.Height));
-            //BulletPosition = Vector2.Clamp(Position, new Vector2(0, 0), new Vector2(Game1.ScreenWidth - HitBox.Width, Game1.ScreenHeight - HitBox.Height));
+            Position = Vector2.Clamp(Position, new Vector2(0, 0), new Vector2(Game1.ScreenWidth - this.Rectangle.Width, Game1.ScreenHeight - this.Rectangle.Height));
+            BulletPosition = Vector2.Clamp(Position, new Vector2(0, 0), new Vector2(Game1.ScreenWidth - HitBox.Width, Game1.ScreenHeight - HitBox.Height));
+
 
 
             _previousKey = _currentKey;
@@ -89,17 +90,24 @@ namespace Zombie.Sprites
                     AddBullet(sprites);
                 }
             }
-            
-            
+
+
 
             /*if (_currentKey.IsKeyDown(Keys.Space) &&
                 _previousKey.IsKeyUp(Keys.Space))
             {
                 var bullet = Bullet.Clone() as Bullet;
                 AddBullet(sprites);
+
+            double newX = Origin.X * Math.Cos(_rotation);
+            double newY = Origin.X * Math.Sin(_rotation);
+            SpawnLocation = new Vector2(this.Position.X + (float)newX, Position.Y + (float)newY);
+
             }*/
             //-
-            HitBox = new Rectangle(this.Rectangle.X, this.Rectangle.Y, 80, 80);
+            double newX = (float)Math.Cos(MathHelper.ToRadians(90) + _rotation) * 20 - 40;
+            double newY = (float)Math.Sin(MathHelper.ToRadians(90) + _rotation) * 20 - 40;
+            HitBox = new Rectangle((int)(Position.X + newX), (int)(Position.Y + newY), 80, 80);
             //-
             Origin2 = new Vector2(50, 50);
 
@@ -129,13 +137,13 @@ namespace Zombie.Sprites
                 }
                 //-
 
-                if (sprite.Rectangle.Intersects(HitBox) && sprite is Zombies)
+               if (sprite.HitBoxZ.Intersects(HitBox) && sprite is Zombies)
                 {
-                    
+                    IsRemoved = true;
                     this.HasDied = true;
                     //Score++;
                     //sprite.IsRemoved = true;
-                }
+               }
             }
         }
 
@@ -147,7 +155,7 @@ namespace Zombie.Sprites
             double newY = OriginB.X * Math.Sin(_rotation);
             SpawnLocation = new Vector2(this.Position.X + (float)newX, Position.Y + (float)newY);
             bullet.Position = SpawnLocation;
-            bullet.LinearVelocity = this.LinearVelocity * 2;
+            bullet.LinearVelocity = this.LinearVelocity * 3;
             //bullet.LifeSpan = 2f;
             bullet.Parent = this;
 
@@ -160,7 +168,7 @@ namespace Zombie.Sprites
         {
             //spriteBatch.Draw(_texture, SpawnLocation, null, Color2, _rotation, OriginB, 1, SpriteEffects.None, 0);
             spriteBatch.Draw(_texture, Position, null, Color, _rotation , Origin, 1, SpriteEffects.None, 0);
-            //spriteBatch.Draw(_texture, HitBox, null, Color.Red, _rotation, Origin2, SpriteEffects.None, 0);
+            spriteBatch.Draw(_texture, HitBox, null, Color.Red);
             //spriteBatch.Draw(_texture, Position, null, Color2, _rotation, OriginB, 1, SpriteEffects.None, 0);
             
 

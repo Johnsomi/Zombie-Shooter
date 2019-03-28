@@ -26,6 +26,7 @@ namespace Zombie.Sprites
 
         public int zombieHealth;
 
+        public Rectangle HitBox;
         //-
         public Rectangle HitBoxZ;
         //-

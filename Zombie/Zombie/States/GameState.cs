@@ -47,6 +47,8 @@ namespace Zombie.States
         private List<Sprite> _sprites;
 
         private List<Sprite> ZomList;
+
+        private List<Sprite> WeaponsList;
         //
         private float _timer2;
         //
@@ -63,7 +65,7 @@ namespace Zombie.States
             Random = new Random();
         
             _scoreManager = ScoreManager.Load();
-
+            TestWeapon = _content.Load<Texture2D>("target2");
             _targetTexture = _content.Load<Texture2D>("ZombieT1");
             _font = _content.Load<SpriteFont>("Font");
             //background = _content.Load<Texture2D>("ZomGameBackground");
@@ -75,7 +77,7 @@ namespace Zombie.States
         {
             var buttonTexture = _content.Load<Texture2D>("Button");
             var buttonFont = _content.Load<SpriteFont>("ButtonFont");
-
+            
             //soldier = new Player(_content.Load<Texture2D>("topDownSoldier2"));
 
             _components = new List<Component>()
@@ -126,8 +128,13 @@ namespace Zombie.States
 
             };
 
+            WeaponsList = new List<Sprite>()
+            {
+
+            };
+
             //-
-            TestWeapon = _content.Load<Texture2D>("target2");
+            //TestWeapon = _content.Load<Texture2D>("target2");
             _hasStarted = false;
             //_font = Content.Load<SpriteFont>("Font");
             //--------------------------------------------------------------------
@@ -163,6 +170,11 @@ namespace Zombie.States
                 sprite.Draw(gameTime,spriteBatch);
             }
                 
+            //weapon try
+            foreach (var sprite in WeaponsList)
+            {
+                sprite.Draw(gameTime, spriteBatch);
+            }
 
             //_____
             //spriteBatch.DrawString(_font, "Highscores:\n" + string.Join("\n", _scoreManager.Highscores.Select(c => c.PlayerName + ": " + c.Value).ToArray()), new Vector2(10, ScreenHeight / 2), Color.Red);
@@ -218,6 +230,11 @@ namespace Zombie.States
                 sprite.Update(gameTime, ZomList);
             }
 
+            foreach (var sprite in ZomList.ToArray())
+            {
+                sprite.Update(gameTime, WeaponsList);
+            }
+
             /*foreach (var sprite in _sprites)
             {
                 sprite.Update(gameTime, ZomList);
@@ -241,105 +258,146 @@ namespace Zombie.States
                     if (spriteA == spriteB)
                         continue;
 
-                    if (spriteA.Rectangle.Intersects(spriteB.HitBoxZ))
+                    if (spriteA.HitBox.Intersects(spriteB.HitBoxZ))
                         spriteA.OnCollide(spriteB);
                     
                 }
             }
-            
-            Player player = (Player)_sprites[0];
-           
-            for (int i = 0; i < _sprites.Count; i++)
+            try
             {
-                //-
-                var sprite = _sprites[i];
+                Player player = (Player)_sprites[0];
 
-                if (_sprites[i].IsRemoved)
+                //Player player = (Player)_sprites[0];
+
+                for (int i = 0; i < _sprites.Count; i++)
                 {
-                    //-----
+                    //-
+                    var sprite = _sprites[i];
 
-                    if (sprite is Sprite)
+                    if (_sprites[i].IsRemoved)
                     {
-                        player.Score++;
+                        //-----
 
-
-                        if (sprite is Bullet)
+                        if (sprite is Zombies)
                         {
-                            player.Score--;
+                            player.Score++;
 
+
+                            if (sprite is Bullet)
+                            {
+                                player.Score--;
+
+                            }
                         }
+
+
+                        _sprites.RemoveAt(i);
+                        i--;
+
                     }
 
-
-                    _sprites.RemoveAt(i);
-                    i--;
-
-                }
-
-                //Keep down part
+                    //Keep down part
 
 
-                //-
-                if (sprite is Player)
-                {
-                    var soldier = sprite as Player;
-                    if (soldier.HasDied)
+                    //-
+                    if (sprite is Player)
                     {
-                        if (username.Equals("") && player.Score == 22) {
-                            _scoreManager.Add(new Models.Score()
+                        var soldier = sprite as Player;
+                        if (soldier.HasDied)
+                        {
+                            if (username.Equals("") && player.Score == 22)
                             {
-                                PlayerName = secretName,
-                                Value = _score,
+                                _scoreManager.Add(new Models.Score()
+                                {
+                                    PlayerName = secretName,
+                                    Value = _score,
+                                }
+                                );
                             }
-                            );
+                            else
+                            {
+                                _scoreManager.Add(new Models.Score()
+                                {
+                                    PlayerName = username,
+                                    Value = _score,
+                                }
+                                );
+                            }
+
+                            ScoreManager.Save(_scoreManager);
+                            _score = 0;
+
+                            GCount = 0;
+                            ZSCount = 0;
+                            G = 2.0;
+
+                            Restart();
+                        }
+                    }
+                }
+                for (int i = 0; i < ZomList.Count; i++)
+                {
+                    //-
+                    var sprite = ZomList[i];
+
+                    if (ZomList[i].IsRemoved)
+                    {
+                        if (ZomList[i] is ZombieGiant)
+                        {
+                            player.Score = player.Score + 6;
+                            _score = _score + 6;
+                            ZomList.Add(GiantDeath((int)sprite.Position.X, (int)sprite.Position.Y, soldier));
                         }
                         else
                         {
-                            _scoreManager.Add(new Models.Score()
-                            {
-                                PlayerName = username,
-                                Value = _score,
-                            }
-                            );
+                            player.Score++;
+                            _score++;
                         }
 
-                        ScoreManager.Save(_scoreManager);
-                        _score = 0;
+                        ZomList.RemoveAt(i);
+                        i--;
 
-                        GCount = 0;
-                        ZSCount = 0;
-                        G = 2.0;
-
-                        Restart();
                     }
+
+                    //Keep down part
+
                 }
             }
-            for (int i = 0; i < ZomList.Count; i++)
-            {
-                //-
-                var sprite = ZomList[i];
+            catch (ArgumentOutOfRangeException) {
 
-                if (ZomList[i].IsRemoved)
+
+                // var soldier = sprite as Player;
+                if (soldier.IsRemoved)
                 {
-                    if (ZomList[i] is ZombieGiant)
+                    if (username.Equals("") && soldier.Score == 22)
                     {
-                        player.Score = player.Score + 6;
-                        _score = _score + 6;
-                        ZomList.Add(GiantDeath((int)sprite.Position.X, (int)sprite.Position.Y, soldier));
+                        _scoreManager.Add(new Models.Score()
+                        {
+                            PlayerName = secretName,
+                            Value = _score,
+                        }
+                        );
                     }
                     else
                     {
-                        player.Score++;
-                        _score++;
+                        _scoreManager.Add(new Models.Score()
+                        {
+                            PlayerName = username,
+                            Value = _score,
+                        }
+                        );
                     }
 
-                    ZomList.RemoveAt(i);
-                    i--;
+                    ScoreManager.Save(_scoreManager);
+                    _score = 0;
 
-                }
+                    GCount = 0;
+                    ZSCount = 0;
+                    G = 2.0;
 
-                //Keep down part
-
+                    Restart();
+                }    
+                
             }
         }
         private void WeaponSpawnTest()
@@ -354,7 +412,7 @@ namespace Zombie.States
                 var weaponPosX = Random.Next(0, (int)ScreenWidth - TestWeapon.Width);
                 var weaponPosY = Random.Next(0, (int)ScreenHeight - TestWeapon.Height);
 
-                _sprites.Add(new Weapon(TestWeapon, new Vector2(weaponPosX, weaponPosY), 1)
+                WeaponsList.Add(new Weapon(TestWeapon, new Vector2(weaponPosX, weaponPosY), 1)
                 );
             }
         }

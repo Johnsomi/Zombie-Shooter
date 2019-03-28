@@ -31,7 +31,7 @@ namespace Zombie.Sprites
 
             Position += Direction * LinearVelocity;
 
-          
+            this.HitBox = Rectangle;
            
         }
 

@@ -281,12 +281,13 @@ namespace Zombie.States
             try
             {
                 Player player = (Player)_sprites[0];
-
+                
                 //Player player = (Player)_sprites[0];
                 //probably useless
                 for (int i = 0; i < _sprites.Count; i++)
                 {
                     //-
+                    //Player player = (Player)_sprites[0];
                     var sprite = _sprites[i];
 
                     if (_sprites[i].IsRemoved)
@@ -389,7 +390,8 @@ namespace Zombie.States
                     }
                 }
             }
-            catch (ArgumentOutOfRangeException) {
+            catch (Exception)
+            {
 
 
                 // var soldier = sprite as Player;

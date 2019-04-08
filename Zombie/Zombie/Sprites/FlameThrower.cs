@@ -14,6 +14,7 @@ namespace Zombie.Sprites
         public FlameThrower(Texture2D texture) : base(texture)
         {
             Color = Color.Red;
+            bulletDamage = 1;
         }
     }
 }

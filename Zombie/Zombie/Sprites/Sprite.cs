@@ -50,6 +50,8 @@ namespace Zombie.Sprites
         //-
         public float Speed;
 
+        public int bulletDamage = 5;
+
         public Sprite Parent;
 
         public float LifeSpan = 0f;

@@ -110,8 +110,8 @@ namespace Zombie.States
                 Position = new Vector2((ScreenWidth / 2), (ScreenHeight / 2)),
                 Bullet = new Bullet(_content.Load<Texture2D>("circle")),
                 flameBullet = new FlameThrower(_content.Load<Texture2D>("circle")),
-                DefaultBullet = new Bullet(_content.Load<Texture2D>("circle"))
-                
+                DefaultBullet = new Bullet(_content.Load<Texture2D>("circle")),
+                sniperBullet = new SniperRifle(_content.Load<Texture2D>("circle"))
             };
 
             //soldierComponents = new List<Component>()
@@ -440,16 +440,21 @@ namespace Zombie.States
                 var weaponPosX = Random.Next(0, (int)ScreenWidth - TestWeapon.Width);
                 var weaponPosY = Random.Next(0, (int)ScreenHeight - TestWeapon.Height);
                 Random weaponRandom = new Random();
-                int WeaponRandom = weaponRandom.Next(0, 2);
+                int WeaponRandom = weaponRandom.Next(0, 3);
                 if (WeaponRandom == 1)
                 { 
-                    WeaponsList.Add(new Weapon(TestWeapon, new Vector2(weaponPosX, weaponPosY), 1, Color.Green)
+                    WeaponsList.Add(new Weapon(TestWeapon, new Vector2(weaponPosX, weaponPosY), 1, Color.RosyBrown)
+                    );
+                }
+                else if (WeaponRandom == 2)
+                {
+                    WeaponsList.Add(new Weapon(TestWeapon, new Vector2(weaponPosX, weaponPosY), 2, Color.Black)
                     );
                 }
                 else
                 {
-                    WeaponsList.Add(new Weapon(TestWeapon, new Vector2(weaponPosX, weaponPosY), 0, Color.Red)
-                    );
+                    //WeaponsList.Add(new Weapon(TestWeapon, new Vector2(weaponPosX, weaponPosY), 0, Color.Red)
+                    //);
                 }
             }
         }

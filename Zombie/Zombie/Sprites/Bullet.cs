@@ -14,11 +14,13 @@ namespace Zombie.Sprites
 
         public int Score;
 
+
         public Bullet(Texture2D texture)
             : base(texture)
         {
             LifeSpan = 2f;
-
+            LinearVelocity = 12f;
+            
         }
 
 
@@ -48,8 +50,8 @@ namespace Zombie.Sprites
               if (sprite is Sprite)
                   return;
                   */
-            sprite.zombieHealth = sprite.zombieHealth - 1;
-            if (sprite.zombieHealth == 0)
+            sprite.zombieHealth = sprite.zombieHealth - bulletDamage;
+            if (sprite.zombieHealth <= 0)
             {
                 sprite.IsRemoved = true;
             }

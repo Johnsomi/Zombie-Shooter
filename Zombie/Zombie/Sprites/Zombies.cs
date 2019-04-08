@@ -13,7 +13,7 @@ namespace Zombie.Sprites
         public Zombies(Texture2D texture,Vector2 Position, Sprite FollowTarget, float FollowDistance) : base(texture)
         {
             //Random random = new Random();
-            zombieHealth = 3;
+            zombieHealth = 15;
             this.Position = Position;
             this.FollowTarget = FollowTarget;
             this.FollowDistance = FollowDistance;

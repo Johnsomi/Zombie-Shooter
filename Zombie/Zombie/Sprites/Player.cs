@@ -26,6 +26,7 @@ namespace Zombie.Sprites
         public Bullet Bullet;
         public Bullet DefaultBullet;
         public FlameThrower flameBullet;
+        public SniperRifle sniperBullet;
         Vector2 SpawnLocation;
 
         //-
@@ -45,6 +46,14 @@ namespace Zombie.Sprites
             if (Bullet is FlameThrower)
             {
                 
+                if (_timer > 10)
+                {
+                    Bullet = DefaultBullet;
+                }
+            }
+            if (Bullet is SniperRifle)
+            {
+
                 if (_timer > 10)
                 {
                     Bullet = DefaultBullet;
@@ -85,6 +94,14 @@ namespace Zombie.Sprites
             if(Bullet is FlameThrower)
             {
                 if (_currentMouse.LeftButton == ButtonState.Pressed)
+                {
+                    var bullet = Bullet.Clone() as Bullet;
+                    AddBullet(sprites);
+                }
+            }
+            else if(Bullet is SniperRifle)
+            {
+                if (_currentMouse.LeftButton == ButtonState.Pressed && _previousMouse.LeftButton == ButtonState.Released)
                 {
                     var bullet = Bullet.Clone() as Bullet;
                     AddBullet(sprites);
@@ -140,6 +157,10 @@ namespace Zombie.Sprites
                     {
                         Bullet = flameBullet;
                     }
+                    if(weapon.weaponType == 2)
+                    {
+                        Bullet = sniperBullet;
+                    }
                     sprite.IsRemoved = true;
 
                 }
@@ -163,7 +184,7 @@ namespace Zombie.Sprites
             double newY = OriginB.X * Math.Sin(_rotation);
             SpawnLocation = new Vector2(this.Position.X + (float)newX, Position.Y + (float)newY);
             bullet.Position = SpawnLocation;
-            bullet.LinearVelocity = this.LinearVelocity * 3;
+            //bullet.LinearVelocity = this.LinearVelocity * 3;
             //bullet.LifeSpan = 2f;
             bullet.Parent = this;
 

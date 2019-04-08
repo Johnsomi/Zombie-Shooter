@@ -18,6 +18,7 @@ namespace Zombie.Sprites
             : base(texture)
         {
             LifeSpan = 2f;
+
         }
 
 

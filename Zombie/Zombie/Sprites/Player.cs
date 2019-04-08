@@ -21,7 +21,7 @@ namespace Zombie.Sprites
 
         private Vector2 OriginB;
 
-        
+        public float _timer;
 
         public Bullet Bullet;
         public Bullet DefaultBullet;
@@ -41,7 +41,15 @@ namespace Zombie.Sprites
 
         public override void Update(GameTime gameTime, List<Sprite> sprites)
         {
-
+            _timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+            if (Bullet is FlameThrower)
+            {
+                
+                if (_timer > 10)
+                {
+                    Bullet = DefaultBullet;
+                }
+            }
             //___________________-
             _previousMouse = _currentMouse;
             _currentMouse = Mouse.GetState();

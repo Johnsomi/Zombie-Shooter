@@ -109,8 +109,9 @@ namespace Zombie.States
             {
                 Position = new Vector2((ScreenWidth / 2), (ScreenHeight / 2)),
                 Bullet = new Bullet(_content.Load<Texture2D>("circle")),
-                flameBullet = new FlameThrower(_content.Load<Texture2D>("circle"))
-
+                flameBullet = new FlameThrower(_content.Load<Texture2D>("circle")),
+                DefaultBullet = new Bullet(_content.Load<Texture2D>("circle"))
+                
             };
 
             //soldierComponents = new List<Component>()
@@ -379,7 +380,13 @@ namespace Zombie.States
 
                 for (int i = 0; i < WeaponsList.Count; i++)
                 {
+                    var sprite = WeaponsList[i];
 
+                    if (WeaponsList[i].IsRemoved)
+                    {
+                        WeaponsList.RemoveAt(i);
+                        i--;
+                    }
                 }
             }
             catch (ArgumentOutOfRangeException) {
@@ -424,15 +431,24 @@ namespace Zombie.States
 
             //get rand number
             //if rand num ==0 set TestWeapon to texture1
-            if(_weaponTimer > 1.0)
+            if (_weaponTimer > 1.0)
             {
                 _weaponTimer = 0;
 
                 var weaponPosX = Random.Next(0, (int)ScreenWidth - TestWeapon.Width);
                 var weaponPosY = Random.Next(0, (int)ScreenHeight - TestWeapon.Height);
-
-                WeaponsList.Add(new Weapon(TestWeapon, new Vector2(weaponPosX, weaponPosY), 1)
-                );
+                Random weaponRandom = new Random();
+                int WeaponRandom = weaponRandom.Next(0, 2);
+                if (WeaponRandom == 1)
+                { 
+                    WeaponsList.Add(new Weapon(TestWeapon, new Vector2(weaponPosX, weaponPosY), 1, Color.Green)
+                    );
+                }
+                else
+                {
+                    WeaponsList.Add(new Weapon(TestWeapon, new Vector2(weaponPosX, weaponPosY), 0, Color.Red)
+                    );
+                }
             }
         }
 

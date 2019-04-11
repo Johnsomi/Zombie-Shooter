@@ -10,16 +10,22 @@ namespace Zombie.Sprites
 {
     public class Weapon : Sprite
     {
+        private float Timer;
+
         public int weaponType;
         public Weapon(Texture2D texture, Vector2 WeaponPos, int bulletType, Color color) : base(texture)
         {
+            LifeSpan = 10f;
             Position = WeaponPos;
             this.Color = color;
             weaponType = bulletType;
         }
         public override void Update(GameTime gameTime, List<Sprite> sprites)
         {
-            
+            Timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            if (Timer > LifeSpan)
+                IsRemoved = true;
         }
         public override void OnCollide(Sprite sprite)
         {

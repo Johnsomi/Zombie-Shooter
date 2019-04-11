@@ -46,7 +46,7 @@ namespace Zombie.Sprites
 
         public float playerVelocity = 4f;
 
-        public float ZombieVelocity = 3f;
+        public float ZombieVelocity = 2f;
         //-
         public float Speed;
 

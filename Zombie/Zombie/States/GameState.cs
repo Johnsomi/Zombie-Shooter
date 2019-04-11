@@ -31,6 +31,8 @@ namespace Zombie.States
 
         public float ZomTimer;
 
+        public float difficultyTimer;
+
         public float ZombieVelocity = 2f;
 
         private int _score;
@@ -54,6 +56,8 @@ namespace Zombie.States
         //
         private Texture2D _targetTexture;
 
+        private Texture2D zombieGiantTexture;
+
         private bool _hasStarted = false;
 
         
@@ -68,6 +72,7 @@ namespace Zombie.States
             TestWeapon = _content.Load<Texture2D>("target2");
             _targetTexture = _content.Load<Texture2D>("ZombieT1");
             _font = _content.Load<SpriteFont>("Font");
+            zombieGiantTexture = _content.Load<Texture2D>("ZombieGiantT1"); 
             //background = _content.Load<Texture2D>("ZomGameBackground");
 
             Restart();
@@ -218,6 +223,8 @@ namespace Zombie.States
             _timer2 += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             ZomTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            difficultyTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
             
             _weaponTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
             foreach (var sprite in _sprites.ToArray())
@@ -433,20 +440,20 @@ namespace Zombie.States
 
             //get rand number
             //if rand num ==0 set TestWeapon to texture1
-            if (_weaponTimer > 1.0)
+            if (_weaponTimer > 8.0)
             {
                 _weaponTimer = 0;
 
                 var weaponPosX = Random.Next(0, (int)ScreenWidth - TestWeapon.Width);
                 var weaponPosY = Random.Next(0, (int)ScreenHeight - TestWeapon.Height);
                 Random weaponRandom = new Random();
-                int WeaponRandom = weaponRandom.Next(0, 3);
-                if (WeaponRandom == 1)
+                int WeaponRandom = weaponRandom.Next(0, 2);
+                if (WeaponRandom == 0)
                 { 
                     WeaponsList.Add(new Weapon(TestWeapon, new Vector2(weaponPosX, weaponPosY), 1, Color.RosyBrown)
                     );
                 }
-                else if (WeaponRandom == 2)
+                else if (WeaponRandom == 1)
                 {
                     WeaponsList.Add(new Weapon(TestWeapon, new Vector2(weaponPosX, weaponPosY), 2, Color.Black)
                     );
@@ -477,7 +484,7 @@ namespace Zombie.States
 
                 if (GCount == 2 && G > 0.4)
                 {
-                    G = G - 0.1;
+                    //G = G - 0.1;
                     GCount = 0;
                 }
 
@@ -520,21 +527,30 @@ namespace Zombie.States
                 ZomList.Add(GetZombies(xPos, yPos, soldier));
             }
         }
-
+        
         public Zombies GetZombies(int xPos, int yPos, Sprite soldier)
         {
             Random randomType = new Random();
-            int ZombieType = randomType.Next(0, 5);
-            if (ZombieType == 0)
+            
+            int ZombieType = randomType.Next(0, 200);
+            if (ZombieType <= 4)
+            {   
+                return new ZombieGiant(zombieGiantTexture, new Vector2(xPos, yPos), soldier, 10f, Color.Red);
+            }
+
+            
+            if(difficultyTimer > 20f & ZombieType <=19 & ZombieType >= 5)
             {
                 
-                return new ZombieGiant(_targetTexture, new Vector2(xPos, yPos), soldier, 10f, Color.Red);
+                return new Zombies(_targetTexture, new Vector2(xPos, yPos), soldier, 10f, Color.Orange);
+                
             }
             
             else
             {
                 return new Zombies(_targetTexture, new Vector2(xPos, yPos), soldier, 10f);
             }
+            
         }
 
         public Zombies GiantDeath(int xPos, int yPos, Sprite soldier)

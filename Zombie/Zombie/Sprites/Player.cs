@@ -86,10 +86,10 @@ namespace Zombie.Sprites
             //Direction = MousePosition - Position;
 
             if (_currentKey.IsKeyDown(Keys.W))
-                Position += Direction * (playerVelocity - 2f);
+                Position += Direction * (playerVelocity);
 
             if (_currentKey.IsKeyDown(Keys.S))
-                Position -= Direction * (playerVelocity - 2f);
+                Position -= Direction * (playerVelocity);
             //Camera.Update(this);
             if(Bullet is FlameThrower)
             {

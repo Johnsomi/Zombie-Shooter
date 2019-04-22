@@ -58,6 +58,7 @@
     <Compile Include="Sprites\ZombieGiant.cs" />
     <Compile Include="Sprites\ZombieImp.cs" />
     <Compile Include="Sprites\Zombies.cs" />
+    <Compile Include="Sprites\ZomDog.cs" />
     <Compile Include="States\GameState.cs" />
     <Compile Include="States\HighscoresState.cs" />
     <Compile Include="States\MenuState.cs" />

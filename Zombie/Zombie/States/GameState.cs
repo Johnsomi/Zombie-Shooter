@@ -58,6 +58,8 @@ namespace Zombie.States
 
         private Texture2D zombieGiantTexture;
 
+        private Texture2D TentacleFace;
+
         private bool _hasStarted = false;
 
         
@@ -72,7 +74,8 @@ namespace Zombie.States
             TestWeapon = _content.Load<Texture2D>("target2");
             _targetTexture = _content.Load<Texture2D>("ZombieT1");
             _font = _content.Load<SpriteFont>("Font");
-            zombieGiantTexture = _content.Load<Texture2D>("ZombieGiantT1"); 
+            zombieGiantTexture = _content.Load<Texture2D>("ZombieGiantT1");
+            TentacleFace = _content.Load<Texture2D>("Red-tentaclefaceT1");
             //background = _content.Load<Texture2D>("ZomGameBackground");
 
             Restart();
@@ -539,10 +542,10 @@ namespace Zombie.States
             }
 
             
-            if(difficultyTimer > 20f & ZombieType <=19 & ZombieType >= 5)
+            if(difficultyTimer > 20f & ZombieType <=30 & ZombieType >= 5)
             {
                 
-                return new Zombies(_targetTexture, new Vector2(xPos, yPos), soldier, 10f, Color.Orange);
+                return new ZomDog(_targetTexture, new Vector2(xPos, yPos), soldier, 10f, Color.Orange);
                 
             }
             

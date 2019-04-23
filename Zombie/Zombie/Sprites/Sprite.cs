@@ -30,6 +30,12 @@ namespace Zombie.Sprites
         //-
         public Rectangle HitBoxZ;
         //-
+        public Rectangle HitBoxD1;
+
+        public Rectangle HitBoxD2;
+
+        public Rectangle HitBoxD3;
+
         Vector2 Origin3;
         
         // Was = Color.White;
@@ -141,6 +147,13 @@ namespace Zombie.Sprites
             //Origin3 = new Vector2(35, 30);
            //HitBoxZ = new Rectangle(this.Rectangle.X, this.Rectangle.Y, 70, 60);
             HitBoxZ = new Rectangle(this.Rectangle.X-_texture.Width/4, this.Rectangle.Y- _texture.Height/4, (int)(_texture.Width/1.5), (int)(_texture.Height/1.5));
+
+            //double newX = (float)Math.Cos(MathHelper.ToRadians(90) + _rotation) * 20;
+            //double newY = (float)Math.Sin(MathHelper.ToRadians(90) + _rotation) * 20;
+            //HitBoxD1 = new Rectangle((int)(Position.X + newX), (int)(Position.Y + newY), 80, 80);
+            //HitBoxD1 = new Rectangle(this.Rectangle.X - _texture.Width, this.Rectangle.Y - _texture.Height, (int)(_texture.Width/4), (int)(_texture.Height/4));
+            //HitBoxD2 = new Rectangle(this.Rectangle.X - _texture.Width / 4, this.Rectangle.Y - _texture.Height, (int)(_texture.Width / 4), (int)(_texture.Height / 4));
+            //HitBoxD3 = new Rectangle(this.Rectangle.X - _texture.Width / 4, this.Rectangle.Y - _texture.Height, (int)(_texture.Width / 4), (int)(_texture.Height / 4));
             //-
             //
         }
@@ -165,7 +178,8 @@ namespace Zombie.Sprites
             }
             */
             spriteBatch.Draw(_texture, Position, null, Color, _rotation, Origin, 1, SpriteEffects.None, 0);
-            spriteBatch.Draw(_texture, HitBoxZ, null, Color.Red);
+            spriteBatch.Draw(_texture, HitBoxZ, null, Color.Black);
+            //spriteBatch.Draw(_texture, HitBoxD1, null, Color.White);
         }
 
         //-----

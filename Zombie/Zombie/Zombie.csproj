@@ -54,6 +54,7 @@
     <Compile Include="Sprites\Player.cs" />
     <Compile Include="Sprites\SniperRifle.cs" />
     <Compile Include="Sprites\Sprite.cs" />
+    <Compile Include="Sprites\TentacleFace.cs" />
     <Compile Include="Sprites\Weapon.cs" />
     <Compile Include="Sprites\ZombieGiant.cs" />
     <Compile Include="Sprites\ZombieImp.cs" />

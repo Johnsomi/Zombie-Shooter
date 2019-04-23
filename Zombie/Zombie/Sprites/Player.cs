@@ -139,6 +139,7 @@ namespace Zombie.Sprites
             BulletBox = new Rectangle(this.Rectangle.X, this.Rectangle.Y, 80, 80);
 
             OriginB = new Vector2(16, 0);
+            //Was 16
             
             
             foreach (var sprite in sprites)
@@ -166,13 +167,31 @@ namespace Zombie.Sprites
                 }
                 //-
 
-               if (sprite.HitBoxZ.Intersects(HitBox) && sprite is Zombies)
-               {
+                if (sprite.HitBoxZ.Intersects(HitBox) && sprite is Zombies)
+                {
                     IsRemoved = true;
                     this.HasDied = true;
                     //Score++;
                     //sprite.IsRemoved = true;
-               }
+                }
+
+                if (sprite.HitBoxD1.Intersects(HitBox) && sprite is Zombies)
+                {
+                    IsRemoved = true;
+                    this.HasDied = true;
+                }
+
+                if (sprite.HitBoxD2.Intersects(HitBox) && sprite is Zombies)
+                {
+                    IsRemoved = true;
+                    this.HasDied = true;
+                }
+
+                if (sprite.HitBoxD3.Intersects(HitBox) && sprite is Zombies)
+                {
+                    IsRemoved = true;
+                    this.HasDied = true;
+                }
             }
         }
 

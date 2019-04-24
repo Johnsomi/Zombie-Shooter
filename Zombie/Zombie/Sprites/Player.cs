@@ -175,19 +175,13 @@ namespace Zombie.Sprites
                     //sprite.IsRemoved = true;
                 }
 
-                if (sprite.HitBoxD1.Intersects(HitBox) && sprite is Zombies)
+                if (sprite.HitBoxD1.Intersects(HitBox) && sprite is TentacleFace)
                 {
                     IsRemoved = true;
                     this.HasDied = true;
                 }
 
-                if (sprite.HitBoxD2.Intersects(HitBox) && sprite is Zombies)
-                {
-                    IsRemoved = true;
-                    this.HasDied = true;
-                }
-
-                if (sprite.HitBoxD3.Intersects(HitBox) && sprite is Zombies)
+                if (sprite.HitBoxD2.Intersects(HitBox) && sprite is TentacleFace)
                 {
                     IsRemoved = true;
                     this.HasDied = true;

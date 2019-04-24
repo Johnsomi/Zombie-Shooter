@@ -14,6 +14,7 @@ namespace Zombie.Sprites
         {
             ZombieVelocity = 0.5f;
             zombieHealth = 250;
+            
             //color = Color.Red;
         }
     }

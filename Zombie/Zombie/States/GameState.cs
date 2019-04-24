@@ -282,18 +282,24 @@ namespace Zombie.States
                     if (spriteA == spriteB)
                         continue;
 
-                    if (spriteA.HitBox.Intersects(spriteB.HitBoxZ))
-                        spriteA.OnCollide(spriteB);
 
-                    else if (spriteA.HitBox.Intersects(spriteB.HitBoxD1))
-                        spriteA.OnCollide(spriteB);
+                    if (!(spriteB is TentacleFace))
+                    { 
+                        if (spriteA.HitBox.Intersects(spriteB.HitBoxZ))
+                            spriteA.OnCollide(spriteB);
+                    }
 
-                    else if (spriteA.HitBox.Intersects(spriteB.HitBoxD2))
-                        spriteA.OnCollide(spriteB);
+                    if (spriteB is TentacleFace)
+                    { 
+                        if (spriteA.HitBox.Intersects(spriteB.HitBoxD1))
+                            spriteA.OnCollide(spriteB);
 
-                    else if (spriteA.HitBox.Intersects(spriteB.HitBoxD3))
-                        spriteA.OnCollide(spriteB);
+                        else if (spriteA.HitBox.Intersects(spriteB.HitBoxD2))
+                            spriteA.OnCollide(spriteB);
 
+                        else if (spriteA.HitBox.Intersects(spriteB.HitBoxD3))
+                            spriteA.OnCollide(spriteB);
+                    }
                 }
             }
             foreach(var spriteA in _sprites)
@@ -570,10 +576,15 @@ namespace Zombie.States
                 return new ZomDog(_targetTexture, new Vector2(xPos, yPos), soldier, 10f, Color.Orange);
                 
             }
+
+            if(difficultyTimer > 45f & ZombieType <= 199 & ZombieType >= 195)
+            {
+                return new TentacleFace(TentacleFace, new Vector2(xPos, yPos), soldier, 10f, Color.White);
+            }
             
             else
             {
-                return new Zombies(_targetTexture, new Vector2(xPos, yPos), soldier, 10f);
+                return new Zombies(_targetTexture, new Vector2(xPos, yPos), soldier, 10f, Color.White);
             }
             
         }

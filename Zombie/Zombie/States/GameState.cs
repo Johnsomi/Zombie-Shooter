@@ -29,9 +29,11 @@ namespace Zombie.States
 
         public int ZSCount;
 
-        public float ZomTimer;
+        public float enemySpawnTimer;
 
         public float difficultyTimer;
+
+        public float totalGameTime;
 
         public float ZombieVelocity = 2f;
 
@@ -158,9 +160,9 @@ namespace Zombie.States
             //spriteBatch.End();
             spriteBatch.Begin();
 
-            foreach (var component in _components)
-                component.Draw(gameTime, spriteBatch);
-
+           // foreach (var component in _components)
+            //    component.Draw(gameTime, spriteBatch);
+            
             
 
             // foreach(var sprite in _sprites)
@@ -197,7 +199,8 @@ namespace Zombie.States
                 //if (sprite is Player2)
                 //  spriteBatch.DrawString(_font, string.Format("Player {0}: {1}", ++i, ((Player2)sprite).Score), new Vector2(10, fontY += 30), Color.Green);
             }
-
+            foreach (var component in _components)
+                component.Draw(gameTime, spriteBatch);
 
             spriteBatch.End();
         }
@@ -225,10 +228,20 @@ namespace Zombie.States
 
             _timer2 += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            ZomTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+            enemySpawnTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             difficultyTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            totalGameTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
+
             
+
+            if (enemySpawnTimer > 5.0)
+            {
+                GCount++;
+                enemySpawnTimer = 0;
+            }
+
             _weaponTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
             foreach (var sprite in _sprites.ToArray())
             {
@@ -482,7 +495,7 @@ namespace Zombie.States
         {
             if (_timer2 > G)
             {
-                GCount++;
+                //GCount++;
 
                 ZSCount++;
 
@@ -494,9 +507,9 @@ namespace Zombie.States
 
                 }
 
-                if (GCount == 2 && G > 0.4)
+                if (GCount == 3 && G > 0.4)
                 {
-                    //G = G - 0.1;
+                    G = G - 0.1;
                     GCount = 0;
                 }
 
@@ -534,7 +547,7 @@ namespace Zombie.States
                 {
                     xPos = Random.Next(SpawnLeft.X, SpawnLeft.X + SpawnLeft.Width);
                     yPos = Random.Next(SpawnLeft.Y, SpawnLeft.Y + SpawnLeft.Height);
-                    //ZomTimer = 0;
+                    
                 }
                 ZomList.Add(GetZombies(xPos, yPos, soldier));
             }

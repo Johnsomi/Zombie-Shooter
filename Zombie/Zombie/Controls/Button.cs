@@ -64,7 +64,7 @@ namespace Zombie.Controls
 
             if (_isHovering)
                 colour = Color.Gray;
-
+            
             spriteBatch.Draw(_texture, Rectangle, colour);
 
             if (!string.IsNullOrEmpty(Text))
@@ -82,7 +82,7 @@ namespace Zombie.Controls
             _currentMouse = Mouse.GetState();
 
             var mouseRectangle = new Rectangle(_currentMouse.X, _currentMouse.Y - 25, 1, 1);
-
+            
             _isHovering = false;
 
             if (mouseRectangle.Intersects(Rectangle))

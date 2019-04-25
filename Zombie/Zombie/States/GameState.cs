@@ -294,10 +294,7 @@ namespace Zombie.States
                         if (spriteA.HitBox.Intersects(spriteB.HitBoxD1))
                             spriteA.OnCollide(spriteB);
 
-                        else if (spriteA.HitBox.Intersects(spriteB.HitBoxD2))
-                            spriteA.OnCollide(spriteB);
-
-                        else if (spriteA.HitBox.Intersects(spriteB.HitBoxD3))
+                        if (spriteA.HitBox.Intersects(spriteB.HitBoxD2))
                             spriteA.OnCollide(spriteB);
                     }
                 }

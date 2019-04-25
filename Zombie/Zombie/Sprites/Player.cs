@@ -209,7 +209,7 @@ namespace Zombie.Sprites
         public override void Draw(GameTime gameTime,SpriteBatch spriteBatch)
         {
             //spriteBatch.Draw(_texture, SpawnLocation, null, Color2, _rotation, OriginB, 1, SpriteEffects.None, 0);
-            spriteBatch.Draw(_texture, Position, null, Color, _rotation , Origin, 1, SpriteEffects.None, 0);
+            spriteBatch.Draw(_texture, Position, null, Color, _rotation , Origin, Game1.screenScale, SpriteEffects.None, 0);
             spriteBatch.Draw(_texture, HitBox, null, Color.Red);
             //spriteBatch.Draw(_texture, Position, null, Color2, _rotation, OriginB, 1, SpriteEffects.None, 0);
             

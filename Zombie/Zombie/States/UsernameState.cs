@@ -43,16 +43,16 @@ namespace Zombie.States
             
             spriteBatch.Begin();
             
-            spriteBatch.DrawString(_font, "Enter Name", new Vector2((ScreenWidth / 2) - (WordLength / 2), 40),Color.Red);
+            spriteBatch.DrawString(_font, "Enter Name", new Vector2((Game1.ScreenWidth / 2) - (WordLength / 2), 40),Color.Red);
             
             try
             {
                 var WordLength0 = ScoreFont.MeasureString(GameState.username.Substring(0, 1)).X;
-                spriteBatch.DrawString(ScoreFont, GameState.username.Substring(0, 1), new Vector2((ScreenWidth / 3) - (WordLength0 / 2), 100), Color.Red);
+                spriteBatch.DrawString(ScoreFont, GameState.username.Substring(0, 1), new Vector2((Game1.ScreenWidth / 3) - (WordLength0 / 2), 100), Color.Red);
                 var WordLength1 = ScoreFont.MeasureString(GameState.username.Substring(1, 1)).X;
-                spriteBatch.DrawString(ScoreFont, GameState.username.Substring(1, 1), new Vector2((ScreenWidth / 2) - (WordLength1 / 2), 100), Color.Red);
+                spriteBatch.DrawString(ScoreFont, GameState.username.Substring(1, 1), new Vector2((Game1.ScreenWidth / 2) - (WordLength1 / 2), 100), Color.Red);
                 var WordLength2 = ScoreFont.MeasureString(GameState.username.Substring(2, 1)).X;
-                spriteBatch.DrawString(ScoreFont, GameState.username.Substring(2, 1), new Vector2((ScreenWidth / 1.5f) - (WordLength2 / 2), 100), Color.Red);
+                spriteBatch.DrawString(ScoreFont, GameState.username.Substring(2, 1), new Vector2((Game1.ScreenWidth / 1.5f) - (WordLength2 / 2), 100), Color.Red);
             }
             catch (ArgumentOutOfRangeException) { }
             spriteBatch.End();

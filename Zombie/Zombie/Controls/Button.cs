@@ -64,15 +64,16 @@ namespace Zombie.Controls
 
             if (_isHovering)
                 colour = Color.Gray;
+            Rectangle scaledRectangle = new Rectangle(Rectangle.X, Rectangle.Y, (int)(Rectangle.Width * Game1.screenScale), (int)(Rectangle.Height * Game1.screenScale));
+            spriteBatch.Draw(_texture, scaledRectangle, colour);
             
-            spriteBatch.Draw(_texture, Rectangle, colour);
-
             if (!string.IsNullOrEmpty(Text))
             {
-                var x = (Rectangle.X + (Rectangle.Width / 2)) - (_font.MeasureString(Text).X / 2);
-                var y = (Rectangle.Y + (Rectangle.Height / 2)) - (_font.MeasureString(Text).Y / 2);
+                var x = (scaledRectangle.X + (scaledRectangle.Width / 2)) - (_font.MeasureString(Text).X / 2);
+                var y = (scaledRectangle.Y + (scaledRectangle.Height / 2)) - (_font.MeasureString(Text).Y / 2);
 
                 spriteBatch.DrawString(_font, Text, new Vector2(x, y), PenColour);
+
             }
         }
         

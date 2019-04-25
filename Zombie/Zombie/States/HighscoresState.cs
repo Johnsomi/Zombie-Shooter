@@ -18,7 +18,7 @@ namespace Zombie.States
 
         private SpriteFont _font;
         private SpriteFont ScoreFont;
-
+        private SpriteFont buttonFont;
         private ScoreManager _scoreManager;
 
         
@@ -35,14 +35,14 @@ namespace Zombie.States
             _scoreManager = ScoreManager.Load();
 
             var buttonTexture = _content.Load<Texture2D>("Button");
-            var buttonFont = _content.Load<SpriteFont>("ButtonFont");
-
+            buttonFont = _content.Load<SpriteFont>("ButtonFont");
+            
             _components = new List<Component>()
             {
                 new Button(buttonTexture, buttonFont)
                 {
                     Text = "Main Menu",
-                    Position = new Vector2((ScreenWidth / 2) - (buttonTexture.Width/2), 560),
+                    Position = new Vector2((Game1.ScreenWidth / 2) - (buttonTexture.Width/2), 560),
                     Click = new EventHandler(Button_MainMenu_Clicked),
                 },
             };
@@ -66,7 +66,8 @@ namespace Zombie.States
             var WordLengthA = _font.MeasureString("");
             spriteBatch.Begin();
             var i = 0;
-            spriteBatch.DrawString(_font, "Highscores:\n" + string.Join("\n", _scoreManager.Highscores.Select(c => ++i + ". " + c.PlayerName + ": " + c.Value).ToArray()), new Vector2((ScreenWidth / 2) - (WordLength / 2), 100), Color.Red);
+            spriteBatch.DrawString(_font, "Highscores:\n" + string.Join("\n", _scoreManager.Highscores.Select(c => ++i + ". " + c.PlayerName + ": " + c.Value).ToArray()), new Vector2((Game1.ScreenWidth / 2) - (WordLength / 2), 100), Color.Red);
+       
             spriteBatch.End();
         }
 
@@ -82,6 +83,8 @@ namespace Zombie.States
 
             foreach (var component in _components)
                 component.Update(gameTime);
+
+            
         }
     }
 }

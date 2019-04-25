@@ -25,7 +25,7 @@ namespace Zombie.States
 
             var newGameButton = new Button(buttonTexture, buttonFont)
             {
-                Position = new Vector2((ScreenWidth / 2) - (buttonTexture.Width / 2), (ScreenHeight / 2) - (buttonTexture.Height * 4)),
+                Position = new Vector2((Game1.ScreenWidth / 2) - (buttonTexture.Width / 2), (Game1.ScreenHeight / 2) - (buttonTexture.Height * 4)),
                 Text = "New Game",
             };
 
@@ -33,7 +33,7 @@ namespace Zombie.States
 
             var UsernameButton = new Button(buttonTexture, buttonFont)
             {
-                Position = new Vector2((ScreenWidth / 2) - (buttonTexture.Width / 2), (ScreenHeight / 2) - (buttonTexture.Height * 2)),
+                Position = new Vector2((Game1.ScreenWidth / 2) - (buttonTexture.Width / 2), (Game1.ScreenHeight / 2) - (buttonTexture.Height * 2)),
                 Text = "Set Name",
             };
 
@@ -41,7 +41,7 @@ namespace Zombie.States
 
             var HighscoresButton = new Button(buttonTexture, buttonFont)
             {
-                Position = new Vector2((ScreenWidth / 2) - (buttonTexture.Width / 2), ScreenHeight / 2),
+                Position = new Vector2((Game1.ScreenWidth / 2) - (buttonTexture.Width / 2), Game1.ScreenHeight / 2),
                 Text = "Highscores",
             };
 
@@ -49,7 +49,7 @@ namespace Zombie.States
 
             var quitGameButton = new Button(buttonTexture, buttonFont)
             {
-                Position = new Vector2((ScreenWidth / 2) - (buttonTexture.Width / 2), (ScreenHeight / 2) + (buttonTexture.Height * 2)),
+                Position = new Vector2((Game1.ScreenWidth / 2) - (buttonTexture.Width / 2), (Game1.ScreenHeight / 2) + (buttonTexture.Height * 2)),
                 Text = "Quit",
             };
 

@@ -19,8 +19,8 @@ namespace Zombie.States
 
         protected Game1 _game;
 
-        public static float ScreenWidth;
-        public static float ScreenHeight;
+        //public static float ScreenWidth;
+        //public static float ScreenHeight;
 
         #endregion
 
@@ -41,8 +41,9 @@ namespace Zombie.States
 
 
             //
-            ScreenWidth = graphics.PreferredBackBufferWidth;
-            ScreenHeight = graphics.PreferredBackBufferHeight;
+            //ScreenWidth = graphics.PreferredBackBufferWidth;
+            //ScreenHeight = graphics.PreferredBackBufferHeight;
+
         }
 
         public abstract void LoadContent();

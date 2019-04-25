@@ -117,7 +117,7 @@ namespace Zombie.States
             //
             soldier = new Player(playerTexture)
             {
-                Position = new Vector2((ScreenWidth / 2), (ScreenHeight / 2)),
+                Position = new Vector2((Game1.ScreenWidth / 2), (Game1.ScreenHeight / 2)),
                 Bullet = new Bullet(_content.Load<Texture2D>("circle")),
                 flameBullet = new FlameThrower(_content.Load<Texture2D>("circle")),
                 DefaultBullet = new Bullet(_content.Load<Texture2D>("circle")),
@@ -156,7 +156,7 @@ namespace Zombie.States
             //var viewMatrix = Camera.Transform;
             //spriteBatch.Begin();//SpriteSortMode.Deferred, BlendState.NonPremultiplied, null, null, null, null, viewMatrix);
             //foreach (var component in _sprites)
-              //  component.Draw(gameTime, spriteBatch);
+            //component.Draw(gameTime, spriteBatch);
             //spriteBatch.End();
             spriteBatch.Begin();
 
@@ -472,8 +472,8 @@ namespace Zombie.States
             {
                 _weaponTimer = 0;
 
-                var weaponPosX = Random.Next(0, (int)ScreenWidth - TestWeapon.Width);
-                var weaponPosY = Random.Next(0, (int)ScreenHeight - TestWeapon.Height);
+                var weaponPosX = Random.Next(0, (int)Game1.ScreenWidth - TestWeapon.Width);
+                var weaponPosY = Random.Next(0, (int)Game1.ScreenHeight - TestWeapon.Height);
                 Random weaponRandom = new Random();
                 int WeaponRandom = weaponRandom.Next(0, 2);
                 if (WeaponRandom == 0)
@@ -521,13 +521,13 @@ namespace Zombie.States
                 int SpawnSelector = Random.Next(0, 4);
                 var xPos = 0;
                 var yPos = 0;
-                int XTop = ((int)ScreenWidth / 2) - (_targetTexture.Width * 2);
+                int XTop = ((int)Game1.ScreenWidth / 2) - (_targetTexture.Width * 2);
 
-                Rectangle SpawnTop = new Rectangle(XTop, 1, (int)ScreenWidth - XTop - _targetTexture.Width, 1);
-                Rectangle SpawnBottom = new Rectangle(XTop, ((int)ScreenHeight - 1 - _targetTexture.Height), (int)ScreenWidth - XTop - _targetTexture.Width, 1);
+                Rectangle SpawnTop = new Rectangle(XTop, 1, (int)Game1.ScreenWidth - XTop - _targetTexture.Width, 1);
+                Rectangle SpawnBottom = new Rectangle(XTop, ((int)Game1.ScreenHeight - 1 - _targetTexture.Height), (int)Game1.ScreenWidth - XTop - _targetTexture.Width, 1);
 
-                Rectangle SpawnRight = new Rectangle(((int)ScreenWidth - 1 - _targetTexture.Width), 1, 1, ((int)ScreenHeight - _targetTexture.Height));
-                Rectangle SpawnLeft = new Rectangle(1, 1, 1, ((int)ScreenHeight - _targetTexture.Height));
+                Rectangle SpawnRight = new Rectangle(((int)Game1.ScreenWidth - 1 - _targetTexture.Width), 1, 1, ((int)Game1.ScreenHeight - _targetTexture.Height));
+                Rectangle SpawnLeft = new Rectangle(1, 1, 1, ((int)Game1.ScreenHeight - _targetTexture.Height));
                 if (SpawnSelector == 0)
                 {
                     xPos = Random.Next(SpawnTop.X, SpawnTop.X + SpawnTop.Width);

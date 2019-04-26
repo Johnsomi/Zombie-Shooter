@@ -146,12 +146,13 @@ namespace Zombie.Sprites
            //HitBoxZ = new Rectangle(this.Rectangle.X, this.Rectangle.Y, 70, 60);
             HitBoxZ = new Rectangle(this.Rectangle.X-_texture.Width/4, this.Rectangle.Y- _texture.Height/4, (int)((_texture.Width/1.5) * Game1.screenScale.X), (int)(_texture.Height/1.5 * Game1.screenScale.Y));
 
-            double newX = (float)Math.Cos(MathHelper.ToRadians(0) + _rotation) * 110 - 80;
-            double newY = (float)Math.Sin(MathHelper.ToRadians(0) + _rotation) * 110 - 80;
-            HitBoxD1 = new Rectangle((int)(Position.X + newX), (int)(Position.Y + newY), 160, 160);
-            double newX2 = (float)Math.Cos(MathHelper.ToRadians(180) + _rotation) * 110 - 80;
-            double newY2 = (float)Math.Sin(MathHelper.ToRadians(180) + _rotation) * 110 - 80;
-            HitBoxD2 = new Rectangle((int)(Position.X + newX2), (int)(Position.Y + newY2), 160, 160);
+            double newX = (float)Math.Cos(MathHelper.ToRadians(0) + _rotation) * 110 - (int)(80 * Game1.screenScale.X);
+            double newY = (float)Math.Sin(MathHelper.ToRadians(0) + _rotation) * 110 - (int)(80 * Game1.screenScale.Y);
+            HitBoxD1 = new Rectangle((int)(Position.X + newX), (int)(Position.Y + newY), (int)(160 * Game1.screenScale.X), (int)(160 * Game1.screenScale.Y));
+
+            double newX2 = (float)Math.Cos(MathHelper.ToRadians(180) + _rotation) * 110 - (int)(80 * Game1.screenScale.X);
+            double newY2 = (float)Math.Sin(MathHelper.ToRadians(180) + _rotation) * 110 - (int)(80 * Game1.screenScale.Y);
+            HitBoxD2 = new Rectangle((int)(Position.X + newX2), (int)(Position.Y + newY2), (int)(160 * Game1.screenScale.X), (int)(160 * Game1.screenScale.Y));
             
         }
 

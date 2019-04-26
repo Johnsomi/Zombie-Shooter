@@ -33,7 +33,7 @@ namespace Zombie
         public static int ScreenWidth;
         public static int ScreenHeight;
 
-        public static float screenScale;
+        public static Vector2 screenScale;
         /*public double G = 2.0;
 
         public int GCount;
@@ -89,7 +89,8 @@ namespace Zombie
             ScreenWidth = graphics.PreferredBackBufferWidth;
             ScreenHeight = graphics.PreferredBackBufferHeight;
 
-            screenScale = Game1.ScreenWidth / 1920f;
+
+            screenScale = new Vector2((ScreenWidth / 1920f),(ScreenHeight / 1080f));
 
 
             base.Initialize();

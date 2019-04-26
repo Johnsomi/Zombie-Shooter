@@ -19,7 +19,7 @@ namespace Zombie.Sprites
             : base(texture)
         {
             LifeSpan = 2f;
-            LinearVelocity = 12f;
+            LinearVelocity = 15f;
             
         }
 

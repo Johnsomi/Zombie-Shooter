@@ -83,7 +83,7 @@ namespace Zombie.Sprites
         {
             get
             {
-                return new Rectangle((int)Position.X, (int)Position.Y, (int)(_texture.Width * Game1.screenScale.X), (int)(_texture.Height * Game1.screenScale.Y));
+                return new Rectangle((int)(Position.X), (int)(Position.Y), (int)(_texture.Width * Game1.screenScale.X), (int)(_texture.Height * Game1.screenScale.Y));
             }
         }
 

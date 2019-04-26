@@ -138,7 +138,7 @@ namespace Zombie.Sprites
 
             BulletBox = new Rectangle(this.Rectangle.X, this.Rectangle.Y, (int)(80 * Game1.screenScale.X), (int)(80 * Game1.screenScale.Y));
 
-            OriginB = new Vector2(16, 0);
+            OriginB = new Vector2((int)(16 * Game1.screenScale.X), 0);
             //Was 16
             
             

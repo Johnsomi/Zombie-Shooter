@@ -83,7 +83,7 @@ namespace Zombie.Sprites
         {
             get
             {
-                return new Rectangle((int)Position.X, (int)Position.Y, _texture.Width, _texture.Height);
+                return new Rectangle((int)Position.X, (int)Position.Y, (int)(_texture.Width * Game1.screenScale.X), (int)(_texture.Height * Game1.screenScale.Y));
             }
         }
 
@@ -144,7 +144,7 @@ namespace Zombie.Sprites
             //-
             //Origin3 = new Vector2(35, 30);
            //HitBoxZ = new Rectangle(this.Rectangle.X, this.Rectangle.Y, 70, 60);
-            HitBoxZ = new Rectangle(this.Rectangle.X-_texture.Width/4, this.Rectangle.Y- _texture.Height/4, (int)(_texture.Width/1.5), (int)(_texture.Height/1.5));
+            HitBoxZ = new Rectangle(this.Rectangle.X-_texture.Width/4, this.Rectangle.Y- _texture.Height/4, (int)((_texture.Width/1.5) * Game1.screenScale.X), (int)(_texture.Height/1.5 * Game1.screenScale.Y));
 
             double newX = (float)Math.Cos(MathHelper.ToRadians(0) + _rotation) * 110 - 80;
             double newY = (float)Math.Sin(MathHelper.ToRadians(0) + _rotation) * 110 - 80;
@@ -183,9 +183,9 @@ namespace Zombie.Sprites
             //{
                 spriteBatch.Draw(_texture, Position, null, Color, _rotation, Origin, Game1.screenScale, SpriteEffects.None, 0);
             //}
-            spriteBatch.Draw(_texture, HitBoxZ, null, Color.White);
-            spriteBatch.Draw(_texture, HitBoxD1, null, Color.Black);
-            spriteBatch.Draw(_texture, HitBoxD2, null, Color.Black);
+            spriteBatch.Draw(_texture, HitBoxZ, null, Color.Black);
+            //spriteBatch.Draw(_texture, HitBoxD1, null, Color.Black);
+            //spriteBatch.Draw(_texture, HitBoxD2, null, Color.Black);
         }
 
         //-----

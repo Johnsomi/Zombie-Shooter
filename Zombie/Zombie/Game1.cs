@@ -89,9 +89,25 @@ namespace Zombie
             ScreenWidth = graphics.PreferredBackBufferWidth;
             ScreenHeight = graphics.PreferredBackBufferHeight;
 
+            if (ScreenWidth == 1920 & ScreenHeight == 1080 || ScreenWidth == 1600 & ScreenHeight == 900 || ScreenWidth == 1366 & ScreenHeight == 768 || ScreenWidth == 1280 & ScreenHeight == 720)
+            {
+                screenScale = new Vector2((ScreenWidth / 1920f), (ScreenHeight / 1080f));
+            }
 
-            screenScale = new Vector2((ScreenWidth / 1920f),(ScreenHeight / 1080f));
+            else if (ScreenWidth == 1680 & ScreenHeight == 1050 || ScreenWidth == 1440 & ScreenHeight == 900 || ScreenWidth == 1280 & ScreenHeight == 800)
+            {
+                screenScale = new Vector2(ScreenWidth / 1680f, ScreenHeight / 1050f);
+            }
 
+            else if (ScreenWidth == 1400 & ScreenHeight == 1050 || ScreenWidth == 1280 & ScreenHeight == 960 || ScreenWidth == 1152 & ScreenHeight == 864 || ScreenWidth == 1024 & ScreenHeight == 768 || ScreenWidth == 800 & ScreenHeight == 600)
+            {
+                screenScale = new Vector2(ScreenWidth / 1400f, ScreenHeight / 1050f);
+            }
+
+            else
+            {
+                screenScale = new Vector2(0, 0);
+            }
 
             base.Initialize();
         }

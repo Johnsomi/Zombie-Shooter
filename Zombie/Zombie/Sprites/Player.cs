@@ -130,13 +130,13 @@ namespace Zombie.Sprites
 
             }*/
             //-
-            double newX = (float)Math.Cos(MathHelper.ToRadians(90) + _rotation) * 20 - 40;
-            double newY = (float)Math.Sin(MathHelper.ToRadians(90) + _rotation) * 20 - 40;
-            HitBox = new Rectangle((int)(Position.X + newX), (int)(Position.Y + newY), 80, 80);
+            double newX = (float)Math.Cos(MathHelper.ToRadians(90) + _rotation) * 20 - (int)(40 * Game1.screenScale.X);
+            double newY = (float)Math.Sin(MathHelper.ToRadians(90) + _rotation) * 20 - (int)(40 * Game1.screenScale.Y);
+            HitBox = new Rectangle((int)(Position.X + newX), (int)(Position.Y + newY), (int)(80 * Game1.screenScale.X), (int)(80 * Game1.screenScale.Y));
             //-
             Origin2 = new Vector2(50, 50);
 
-            BulletBox = new Rectangle(this.Rectangle.X, this.Rectangle.Y, 80, 80);
+            BulletBox = new Rectangle(this.Rectangle.X, this.Rectangle.Y, (int)(80 * Game1.screenScale.X), (int)(80 * Game1.screenScale.Y));
 
             OriginB = new Vector2(16, 0);
             //Was 16

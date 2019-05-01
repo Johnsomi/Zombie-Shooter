@@ -64,7 +64,7 @@ namespace Zombie.Controls
 
             if (_isHovering)
                 colour = Color.Gray;
-            Rectangle scaledRectangle = new Rectangle(Rectangle.X, Rectangle.Y, (int)(Rectangle.Width ), (int)(Rectangle.Height));
+            Rectangle scaledRectangle = new Rectangle(Rectangle.X, Rectangle.Y, (int)(Rectangle.Width), (int)(Rectangle.Height));
             spriteBatch.Draw(_texture, scaledRectangle, colour);
             
             if (!string.IsNullOrEmpty(Text))

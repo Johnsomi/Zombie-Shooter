@@ -39,7 +39,7 @@ namespace Zombie.Controls
         {
             get
             {
-                return new Rectangle((int)Position.X, (int)Position.Y, _texture.Width, _texture.Height);
+                return new Rectangle((int)Position.X, (int)Position.Y, (int)(_texture.Width * Game1.screenScale.X), (int)(_texture.Height * Game1.screenScale.Y));
             }
         }
 
@@ -64,13 +64,13 @@ namespace Zombie.Controls
 
             if (_isHovering)
                 colour = Color.Gray;
-            Rectangle scaledRectangle = new Rectangle(Rectangle.X, Rectangle.Y, (int)(Rectangle.Width * Game1.screenScale.X), (int)(Rectangle.Height * Game1.screenScale.Y));
+            Rectangle scaledRectangle = new Rectangle(Rectangle.X, Rectangle.Y, (int)(Rectangle.Width ), (int)(Rectangle.Height));
             spriteBatch.Draw(_texture, scaledRectangle, colour);
             
             if (!string.IsNullOrEmpty(Text))
             {
-                var x = (scaledRectangle.X + (scaledRectangle.Width / 2)) - (_font.MeasureString(Text).X / 2);
-                var y = (scaledRectangle.Y + (scaledRectangle.Height / 2)) - (_font.MeasureString(Text).Y / 2);
+                var x = (scaledRectangle.X + (scaledRectangle.Width / 2)) - (_font.MeasureString(Text).X / 2 * Game1.screenScale.X);
+                var y = (scaledRectangle.Y + (scaledRectangle.Height / 2)) - (_font.MeasureString(Text).Y / 2 * Game1.screenScale.Y);
 
                 //spriteBatch.DrawString(_font, Text, new Vector2(x, y), PenColour);
                 spriteBatch.DrawString(_font, Text, new Vector2(x, y), PenColour, 0, new Vector2(0, 0), Game1.screenScale, SpriteEffects.None, 0);
@@ -83,7 +83,7 @@ namespace Zombie.Controls
             _previousMouse = _currentMouse;
             _currentMouse = Mouse.GetState();
 
-            var mouseRectangle = new Rectangle(_currentMouse.X, _currentMouse.Y - 25, 1, 1);
+            var mouseRectangle = new Rectangle(_currentMouse.X, _currentMouse.Y - (int)(25 * Game1.screenScale.Y), 1, 1);
             
             _isHovering = false;
 

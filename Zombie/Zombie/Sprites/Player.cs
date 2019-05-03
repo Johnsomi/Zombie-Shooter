@@ -15,7 +15,8 @@ namespace Zombie.Sprites
         //-
         //Rectangle HitBox;
 
-        Rectangle BulletBox;
+        //Rectangle BulletBox;
+
         //-
         private Vector2 Origin2;
 
@@ -138,7 +139,7 @@ namespace Zombie.Sprites
             //-
             Origin2 = new Vector2(50, 50);
 
-            BulletBox = new Rectangle(this.Rectangle.X, this.Rectangle.Y, (int)(80 * Game1.screenScale.X), (int)(80 * Game1.screenScale.Y));
+            //BulletBox = new Rectangle(this.Rectangle.X, this.Rectangle.Y, (int)(80 * Game1.screenScale.X), (int)(80 * Game1.screenScale.Y));
 
             OriginB = new Vector2((int)(16 * Game1.screenScale.X), 0);
             //Was 16

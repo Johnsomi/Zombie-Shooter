@@ -10,6 +10,9 @@ namespace Zombie.Sprites
 {
     public class Zombies : Sprite
     {
+        public float changedZombieVelocity;
+        public double CZVasD;
+
         public Zombies(Texture2D texture,Vector2 Position, Sprite FollowTarget, float FollowDistance) : base(texture)
         {
             //Random random = new Random();
@@ -17,6 +20,11 @@ namespace Zombie.Sprites
             this.Position = Position;
             this.FollowTarget = FollowTarget;
             this.FollowDistance = FollowDistance;
+
+            CZVasD = Math.Sqrt((double)(Game1.screenScale.X * Game1.screenScale.Y));
+            changedZombieVelocity = (float)CZVasD;
+
+            ZombieVelocity = ZombieVelocity * changedZombieVelocity;
             //Random randomSpeed = new Random();
             //ZombieVelocity = randomSpeed.Next(2, 5);
             //-

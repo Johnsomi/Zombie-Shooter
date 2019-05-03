@@ -12,7 +12,7 @@ namespace Zombie.Sprites
     {
         public ZombieGiant(Texture2D texture, Vector2 Position, Sprite FollowTarget, float FollowDistance, Color color) : base(texture, Position, FollowTarget, FollowDistance, color)
         {
-            ZombieVelocity = 0.5f;
+            ZombieVelocity = 0.5f * changedZombieVelocity;
             zombieHealth = 100;
             //color = Color.Red;
         }

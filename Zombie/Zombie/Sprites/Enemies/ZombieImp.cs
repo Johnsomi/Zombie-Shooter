@@ -12,7 +12,7 @@ namespace Zombie.Sprites
     {
         public ZombieImp(Texture2D texture, Vector2 Position, Sprite FollowTarget, float FollowDistance, Color color) : base(texture, Position, FollowTarget, FollowDistance, color)
         {
-            ZombieVelocity = 5f;
+            ZombieVelocity = 5f * changedZombieVelocity;
             zombieHealth = 3;
             //color = Color.DarkSlateBlue;
         }

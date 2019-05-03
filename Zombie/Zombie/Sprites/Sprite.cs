@@ -51,6 +51,12 @@ namespace Zombie.Sprites
         public float playerVelocity = 4f;
 
         public float ZombieVelocity = 2f;
+
+        //public float changedZombieVelocity;
+        //public double CZVasD;
+
+        
+
         //-
         public float Speed;
 
@@ -128,6 +134,12 @@ namespace Zombie.Sprites
         public virtual void Update(GameTime gameTime, List<Sprite> sprites)
         {
             //
+            
+            //CZVasD = Math.Sqrt((double)(Game1.screenScale.X * Game1.screenScale.Y));
+            //changedZombieVelocity = (float)CZVasD;
+            
+            //ZombieVelocity = ZombieVelocity * changedZombieVelocity;
+            
             Follow();
 
             //_timer3 += (float)gameTime.ElapsedGameTime.TotalSeconds;

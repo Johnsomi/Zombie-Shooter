@@ -12,7 +12,7 @@ namespace Zombie.Sprites
     {
         public ZomDog(Texture2D texture, Vector2 Position, Sprite FollowTarget, float FollowDistance, Color color) : base(texture, Position, FollowTarget, FollowDistance, color)
         {
-            ZombieVelocity = 4f;
+            ZombieVelocity = 4f * changedZombieVelocity;
             zombieHealth = 10;
         }
     }

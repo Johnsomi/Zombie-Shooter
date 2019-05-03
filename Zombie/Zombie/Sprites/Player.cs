@@ -63,8 +63,8 @@ namespace Zombie.Sprites
             _previousMouse = _currentMouse;
             _currentMouse = Mouse.GetState();
             Vector2 MousePosition = new Vector2(_currentMouse.X, _currentMouse.Y);
-            float DistanceX = MousePosition.X - (Position.X + Origin.X);
-            float DistanceY = MousePosition.Y - (Position.Y + Origin.Y);
+            float DistanceX = MousePosition.X - (Position.X); //+ Origin.X);
+            float DistanceY = MousePosition.Y - (Position.Y); //+ Origin.Y);
             //DistanceX = DistanceX * Game1.screenScale.X;
             //DistanceY = DistanceY * Game1.screenScale.Y;
             _rotation = (float)Math.Atan2(DistanceY, DistanceX)+(float)(Math.PI*0.5f);

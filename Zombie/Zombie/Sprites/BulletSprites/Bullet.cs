@@ -14,12 +14,19 @@ namespace Zombie.Sprites
 
         public int Score;
 
+        public float changedBulletVelocity;
+        public double CBVasD;
 
         public Bullet(Texture2D texture)
             : base(texture)
         {
             LifeSpan = 2f;
-            LinearVelocity = 15f;
+
+            CBVasD = Math.Sqrt((double)(Game1.screenScale.X * Game1.screenScale.Y));
+            changedBulletVelocity = (float)CBVasD;
+
+            
+            LinearVelocity = 15f * changedBulletVelocity;
             
         }
 
@@ -34,7 +41,11 @@ namespace Zombie.Sprites
 
             Position += Direction * LinearVelocity;
 
-            this.HitBox = Rectangle;
+            double BX = (float)Math.Cos(MathHelper.ToRadians(90) + _rotation) - (int)(_texture.Width/2 * Game1.screenScale.X);
+            double BY = (float)Math.Sin(MathHelper.ToRadians(90) + _rotation) - (int)(_texture.Height/2 * Game1.screenScale.Y);
+            this.HitBox = new Rectangle((int)(Position.X + BX), (int)(Position.Y + BY), (int)(_texture.Width * Game1.screenScale.X), (int)(_texture.Height * Game1.screenScale.Y));
+
+            //this.HitBox = Rectangle;
             //HitBox = new Rectangle((int)(Position.X), (int)(Position.Y), (int)(_texture.Width * Game1.screenScale.X), (int)(_texture.Height * Game1.screenScale.Y));
         }
 

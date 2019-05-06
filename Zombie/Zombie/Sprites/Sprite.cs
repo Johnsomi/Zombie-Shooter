@@ -196,8 +196,8 @@ namespace Zombie.Sprites
             //{
                 spriteBatch.Draw(_texture, Position, null, Color, _rotation, Origin, Game1.screenScale, SpriteEffects.None, 0);
             //}
-            spriteBatch.Draw(_texture, HitBoxZ, null, Color.Black);
-            //spriteBatch.Draw(_texture, Rectangle, Color.White);
+            spriteBatch.Draw(_texture, HitBox, null, Color.Black);
+            spriteBatch.Draw(_texture, HitBoxZ, Color.White);
             //spriteBatch.Draw(_texture, HitBoxD1, null, Color.Black);
             //spriteBatch.Draw(_texture, HitBoxD2, null, Color.Black);
         }

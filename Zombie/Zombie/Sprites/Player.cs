@@ -16,7 +16,7 @@ namespace Zombie.Sprites
         //Rectangle HitBox;
 
         //Rectangle BulletBox;
-
+        
         //-
         private Vector2 Origin2;
 

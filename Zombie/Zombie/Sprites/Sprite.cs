@@ -155,8 +155,8 @@ namespace Zombie.Sprites
 
             //-
             //Origin3 = new Vector2(35, 30);
-           //HitBoxZ = new Rectangle(this.Rectangle.X, this.Rectangle.Y, 70, 60);
-            HitBoxZ = new Rectangle(this.Rectangle.X-_texture.Width/4, this.Rectangle.Y- _texture.Height/4, (int)((_texture.Width/1.5) * Game1.screenScale.X), (int)(_texture.Height/1.5 * Game1.screenScale.Y));
+            //HitBoxZ = new Rectangle(this.Rectangle.X, this.Rectangle.Y, 70, 60);
+            HitBoxZ = new Rectangle(this.Rectangle.X-_texture.Width/3, this.Rectangle.Y- _texture.Height/3, (int)((_texture.Width/1.5) * Game1.screenScale.X), (int)(_texture.Height/1.5 * Game1.screenScale.Y));
 
             double newX = (float)Math.Cos(MathHelper.ToRadians(0) + _rotation) * 110 - (int)(80 * Game1.screenScale.X);
             double newY = (float)Math.Sin(MathHelper.ToRadians(0) + _rotation) * 110 - (int)(80 * Game1.screenScale.Y);

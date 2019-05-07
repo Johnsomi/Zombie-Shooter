@@ -46,6 +46,11 @@ namespace Zombie.Sprites
                     player.Bullet = player.sniperBullet;
                     player._timer = 0;
                 }
+                else if(weaponType == 3)
+                {
+                    player.Bullet = player.shotGun;
+                    player._timer = 0;
+                }
                 IsRemoved = true;
 
             }

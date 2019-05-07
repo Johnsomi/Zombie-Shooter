@@ -28,6 +28,7 @@ namespace Zombie.Sprites
         public Bullet DefaultBullet;
         public FlameThrower flameBullet;
         public SniperRifle sniperBullet;
+        public ShotGun shotGun;
         Vector2 SpawnLocation;
 
         //-
@@ -110,6 +111,14 @@ namespace Zombie.Sprites
                     AddBullet(sprites);
                 }
             }
+            else if (Bullet is ShotGun)
+            {
+                if (_currentMouse.LeftButton == ButtonState.Pressed && _previousMouse.LeftButton == ButtonState.Released)
+                {
+                    var bullet = Bullet.Clone() as Bullet;
+                    AddBullet(sprites);
+                }
+            }
             else
             {
                 if(_currentMouse.LeftButton == ButtonState.Pressed && _previousMouse.LeftButton == ButtonState.Released)
@@ -164,6 +173,10 @@ namespace Zombie.Sprites
                     if(weapon.weaponType == 2)
                     {
                         Bullet = sniperBullet;
+                    }
+                    if(weapon.weaponType == 3)
+                    {
+                        Bullet = shotGun;
                     }
                     sprite.IsRemoved = true;
 

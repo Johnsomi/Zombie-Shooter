@@ -162,10 +162,11 @@ namespace Zombie.Sprites
 
             //BulletBox = new Rectangle(this.Rectangle.X, this.Rectangle.Y, (int)(80 * Game1.screenScale.X), (int)(80 * Game1.screenScale.Y));
 
-            OriginB = new Vector2((int)(16 * Game1.screenScale.X), 0);
+            //OriginB = new Vector2((int)(16 * Game1.screenScale.X), 20);
+            OriginB = new Vector2((int)(70 * Game1.screenScale.X), 0);
             //Was 16
-            
-            
+
+
             foreach (var sprite in sprites)
             {
                 if (sprite is Player)
@@ -222,8 +223,10 @@ namespace Zombie.Sprites
             var bullet = Bullet.Clone() as Bullet;
             bullet.Direction = new Vector2((float)Math.Cos(MathHelper.ToRadians(90+offset) - _rotation), -(float)Math.Sin(MathHelper.ToRadians(90+offset) - _rotation));
             //bullet.Direction = this.Direction;
-            double newX = OriginB.X * Math.Cos(_rotation);
-            double newY = OriginB.X * Math.Sin(_rotation);
+            double newX = OriginB.X * Math.Cos(_rotation+MathHelper.ToRadians(-75));
+            double newY = OriginB.X * Math.Sin(_rotation+MathHelper.ToRadians(-75));
+            //double newX2 = OriginB.Y * Math.Cos(_rotation);
+            //double newY2 = OriginB.Y * Math.Sin(_rotation);
             SpawnLocation = new Vector2(this.Position.X + (float)newX, Position.Y + (float)newY);
             bullet.Position = SpawnLocation;
             //bullet.LinearVelocity = this.LinearVelocity * 3;

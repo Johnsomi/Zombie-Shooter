@@ -51,6 +51,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sprites\BulletSprites\Bullet.cs" />
     <Compile Include="Sprites\BulletSprites\FlameThrower.cs" />
+    <Compile Include="Sprites\BulletSprites\ShotGun.cs" />
     <Compile Include="Sprites\Player.cs" />
     <Compile Include="Sprites\BulletSprites\SniperRifle.cs" />
     <Compile Include="Sprites\Sprite.cs" />

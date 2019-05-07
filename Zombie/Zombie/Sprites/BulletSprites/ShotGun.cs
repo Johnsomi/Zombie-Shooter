@@ -14,7 +14,7 @@ namespace Zombie.Sprites
         {
             Color = Color.Red;
             bulletDamage = 5;
-            LifeSpan = 1f;
+            LifeSpan = 0.5f;
             LinearVelocity = 25f * changedBulletVelocity;
         }
     }

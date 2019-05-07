@@ -61,6 +61,14 @@ namespace Zombie.Sprites
                     Bullet = DefaultBullet;
                 }
             }
+            if (Bullet is ShotGun)
+            {
+
+                if (_timer > 10)
+                {
+                    Bullet = DefaultBullet;
+                }
+            }
             //___________________-
             _previousMouse = _currentMouse;
             _currentMouse = Mouse.GetState();
@@ -100,7 +108,7 @@ namespace Zombie.Sprites
                 if (_currentMouse.LeftButton == ButtonState.Pressed)
                 {
                     var bullet = Bullet.Clone() as Bullet;
-                    AddBullet(sprites);
+                    AddBullet(sprites, 0);
                 }
             }
             else if(Bullet is SniperRifle)
@@ -108,7 +116,7 @@ namespace Zombie.Sprites
                 if (_currentMouse.LeftButton == ButtonState.Pressed && _previousMouse.LeftButton == ButtonState.Released)
                 {
                     var bullet = Bullet.Clone() as Bullet;
-                    AddBullet(sprites);
+                    AddBullet(sprites, 0);
                 }
             }
             else if (Bullet is ShotGun)
@@ -116,7 +124,11 @@ namespace Zombie.Sprites
                 if (_currentMouse.LeftButton == ButtonState.Pressed && _previousMouse.LeftButton == ButtonState.Released)
                 {
                     var bullet = Bullet.Clone() as Bullet;
-                    AddBullet(sprites);
+                    AddBullet(sprites, 0);
+                    AddBullet(sprites, 8);
+                    AddBullet(sprites, 16);
+                    AddBullet(sprites, -8);
+                    AddBullet(sprites, -16);
                 }
             }
             else
@@ -124,7 +136,7 @@ namespace Zombie.Sprites
                 if(_currentMouse.LeftButton == ButtonState.Pressed && _previousMouse.LeftButton == ButtonState.Released)
                 {
                     var bullet = Bullet.Clone() as Bullet;
-                    AddBullet(sprites);
+                    AddBullet(sprites, 0);
                 }
             }
 
@@ -205,10 +217,11 @@ namespace Zombie.Sprites
             }
         }
 
-        private void AddBullet(List<Sprite> sprites)
+        private void AddBullet(List<Sprite> sprites,int offset)
         {
             var bullet = Bullet.Clone() as Bullet;
-            bullet.Direction = this.Direction;
+            bullet.Direction = new Vector2((float)Math.Cos(MathHelper.ToRadians(90+offset) - _rotation), -(float)Math.Sin(MathHelper.ToRadians(90+offset) - _rotation));
+            //bullet.Direction = this.Direction;
             double newX = OriginB.X * Math.Cos(_rotation);
             double newY = OriginB.X * Math.Sin(_rotation);
             SpawnLocation = new Vector2(this.Position.X + (float)newX, Position.Y + (float)newY);

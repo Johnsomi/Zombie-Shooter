@@ -73,7 +73,7 @@ namespace Zombie.States
             Random = new Random();
         
             _scoreManager = ScoreManager.Load();
-            TestWeapon = _content.Load<Texture2D>("target2");
+            TestWeapon = _content.Load<Texture2D>("target2-grey");
             _targetTexture = _content.Load<Texture2D>("ZombieT1");
             _font = _content.Load<SpriteFont>("Font");
             zombieGiantTexture = _content.Load<Texture2D>("ZombieGiantT1");

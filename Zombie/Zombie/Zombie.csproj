@@ -53,6 +53,7 @@
     <Compile Include="Sprites\BulletSprites\FlameThrower.cs" />
     <Compile Include="Sprites\BulletSprites\ShotGun.cs" />
     <Compile Include="Sprites\Enemies\Exploder.cs" />
+    <Compile Include="Sprites\Enemies\ExploderDeath.cs" />
     <Compile Include="Sprites\Enemies\Spitter.cs" />
     <Compile Include="Sprites\Player.cs" />
     <Compile Include="Sprites\BulletSprites\SniperRifle.cs" />

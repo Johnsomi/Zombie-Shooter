@@ -60,6 +60,8 @@ namespace Zombie.States
 
         private Texture2D zombieGiantTexture;
 
+        private Texture2D ExploderDeathSlime;
+
         private Texture2D TentacleFace;
 
         private bool _hasStarted = false;
@@ -78,6 +80,7 @@ namespace Zombie.States
             _font = _content.Load<SpriteFont>("Font");
             zombieGiantTexture = _content.Load<Texture2D>("ZombieGiantT1");
             TentacleFace = _content.Load<Texture2D>("Red-tentaclefaceT1");
+            ExploderDeathSlime = _content.Load<Texture2D>("Slime-Explosion-PlaceHolder");
             //background = _content.Load<Texture2D>("ZomGameBackground");
 
             Restart();
@@ -396,10 +399,24 @@ namespace Zombie.States
                     {
                         if (ZomList[i] is ZombieGiant)
                         {
-                            player.Score = player.Score + 6;
-                            _score = _score + 6;
+                            player.Score = player.Score + 4;
+                            _score = _score + 4;
                             ZomList.Add(GiantDeath((int)sprite.Position.X, (int)sprite.Position.Y, soldier));
                         }
+
+                        if(ZomList[i] is Exploder)
+                        {
+                            player.Score = player.Score + 0;
+                            _score = _score + 0;
+                            ZomList.Add(ExploderDeath((int)sprite.Position.X, (int)sprite.Position.Y, soldier));
+                        }
+
+                        if(ZomList[i] is ExploderDeath)
+                        {
+                            player.Score = player.Score + 0;
+                            _score = _score + 0;
+                        }
+
                         else
                         {
                             player.Score++;
@@ -580,7 +597,7 @@ namespace Zombie.States
 
             if(difficultyTimer > 35f & ZombieType <= 49 & ZombieType >= 30)
             {
-                
+                return new Exploder(_targetTexture, new Vector2(xPos, yPos), soldier, 10f, Color.DarkGreen);
             }
 
             if(difficultyTimer > 45f & ZombieType <= 199 & ZombieType >= 195)
@@ -600,6 +617,11 @@ namespace Zombie.States
         public Zombies GiantDeath(int xPos, int yPos, Sprite soldier)
         {
             return new ZombieImp(_targetTexture, new Vector2(xPos, yPos), soldier, 10f, Color.Green);
+        }
+
+        public Zombies ExploderDeath(int xPos, int yPos, Sprite soldier)
+        {
+            return new ExploderDeath(ExploderDeathSlime, new Vector2(xPos, yPos), soldier, 0f, Color.White);
         }
     }
 }

@@ -83,7 +83,7 @@ namespace Zombie.Controls
             _previousMouse = _currentMouse;
             _currentMouse = Mouse.GetState();
 
-            var mouseRectangle = new Rectangle(_currentMouse.X, _currentMouse.Y - (int)(25f * Game1.screenScale.Y), 1, 1);
+            var mouseRectangle = new Rectangle(_currentMouse.X, _currentMouse.Y - (int)(26f * Game1.screenScale.Y), 1, 1);
             
             _isHovering = false;
 

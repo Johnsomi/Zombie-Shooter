@@ -533,7 +533,7 @@ namespace Zombie.States
 
                 }
 
-                if (GCount == 3 && G > 0.4)
+                if (GCount == 3 && G > 0.6)
                 {
                     G = G - 0.1;
                     GCount = 0;

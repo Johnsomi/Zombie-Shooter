@@ -573,10 +573,13 @@ namespace Zombie.States
             }
 
             
-            if(difficultyTimer > 20f & ZombieType <=30 & ZombieType >= 5)
-            {
-                
+            if(difficultyTimer > 20f & ZombieType <=29 & ZombieType >= 5)
+            { 
                 return new ZomDog(_targetTexture, new Vector2(xPos, yPos), soldier, 10f, Color.Orange);
+            }
+
+            if(difficultyTimer > 35f & ZombieType <= 49 & ZombieType >= 30)
+            {
                 
             }
 
@@ -584,6 +587,8 @@ namespace Zombie.States
             {
                 return new TentacleFace(TentacleFace, new Vector2(xPos, yPos), soldier, 10f, Color.White);
             }
+
+            
             
             else
             {

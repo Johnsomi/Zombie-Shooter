@@ -33,6 +33,8 @@ namespace Zombie.States
 
         public float difficultyTimer;
 
+        //public float SpitTimer;
+
         public float totalGameTime;
 
         public float ZombieVelocity = 2f;
@@ -62,6 +64,8 @@ namespace Zombie.States
 
         private Texture2D ExploderDeathSlime;
 
+        private Texture2D ZombiesSpit;
+
         private Texture2D TentacleFace;
 
         private bool _hasStarted = false;
@@ -81,6 +85,7 @@ namespace Zombie.States
             zombieGiantTexture = _content.Load<Texture2D>("ZombieGiantT1");
             TentacleFace = _content.Load<Texture2D>("Red-tentaclefaceT1");
             ExploderDeathSlime = _content.Load<Texture2D>("Slime-Explosion-PlaceHolder");
+            ZombiesSpit = _content.Load<Texture2D>("circle");
             //background = _content.Load<Texture2D>("ZomGameBackground");
 
             Restart();
@@ -246,6 +251,7 @@ namespace Zombie.States
                 enemySpawnTimer = 0;
             }
 
+            
             _weaponTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
             foreach (var sprite in _sprites.ToArray())
             {
@@ -285,7 +291,6 @@ namespace Zombie.States
                 {
                     if (spriteA == spriteB)
                         continue;
-
 
                     if (!(spriteB is TentacleFace))
                     { 
@@ -605,11 +610,15 @@ namespace Zombie.States
                 return new TentacleFace(TentacleFace, new Vector2(xPos, yPos), soldier, 10f, Color.White);
             }
 
-            
+            if(difficultyTimer > 55f & ZombieType <=69 & ZombieType >= 50)
+            {
+                return new Spitter(_targetTexture, ZombiesSpit, new Vector2(xPos, yPos), soldier, 10f, Color.Turquoise);
+            }
             
             else
             {
-                return new Zombies(_targetTexture, new Vector2(xPos, yPos), soldier, 10f, Color.White);
+                //return new Zombies(_targetTexture, new Vector2(xPos, yPos), soldier, 10f, Color.White);
+                return new Spitter(_targetTexture, ZombiesSpit, new Vector2(xPos, yPos), soldier, 10f, Color.Turquoise);
             }
             
         }
@@ -623,5 +632,7 @@ namespace Zombie.States
         {
             return new ExploderDeath(ExploderDeathSlime, new Vector2(xPos, yPos), soldier, 0f, Color.White);
         }
+
+        
     }
 }

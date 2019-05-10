@@ -54,7 +54,7 @@ namespace Zombie.Sprites
 
         //public float changedZombieVelocity;
         //public double CZVasD;
-
+        //public Vector2 SpitPosition;
         
 
         //-
@@ -143,7 +143,7 @@ namespace Zombie.Sprites
             Follow();
 
             //_timer3 += (float)gameTime.ElapsedGameTime.TotalSeconds;
-
+            //SpitPosition += Direction * ZombieVelocity;
             
             /*
             if (_timer3 > 3)

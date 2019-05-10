@@ -80,8 +80,8 @@ namespace Zombie.Sprites
             _rotation = (float)Math.Atan2(DistanceY, DistanceX)+(float)(Math.PI*0.5f);
 
             //
-            Position = Vector2.Clamp(Position, new Vector2(0, 0), new Vector2(Game1.ScreenWidth - this.Rectangle.Width, Game1.ScreenHeight - this.Rectangle.Height));
-            BulletPosition = Vector2.Clamp(Position, new Vector2(0, 0), new Vector2(Game1.ScreenWidth - HitBox.Width, Game1.ScreenHeight - HitBox.Height));
+            this.Position = Vector2.Clamp(Position, new Vector2(0, 0), new Vector2(Game1.ScreenWidth, Game1.ScreenHeight));
+            BulletPosition = Vector2.Clamp(Position, new Vector2(0, 0), new Vector2(Game1.ScreenWidth, Game1.ScreenHeight));
 
 
 

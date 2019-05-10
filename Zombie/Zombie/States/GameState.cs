@@ -385,7 +385,7 @@ namespace Zombie.States
                             GCount = 0;
                             ZSCount = 0;
                             G = 2.0;
-
+                            difficultyTimer = 0;
                             Restart();
                         }
                     }

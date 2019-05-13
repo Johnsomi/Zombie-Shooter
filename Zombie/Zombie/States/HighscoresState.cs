@@ -42,7 +42,7 @@ namespace Zombie.States
                 new Button(buttonTexture, buttonFont)
                 {
                     Text = "Main Menu",
-                    Position = new Vector2((Game1.ScreenWidth / 2) - (buttonTexture.Width/2 * Game1.screenScale.X), 560 * Game1.screenScale.Y),
+                    Position = new Vector2(Game1.ScreenWidth - (buttonTexture.Width / 2 * Game1.screenScale.X) - (buttonTexture.Width * Game1.screenScale.X), 40 * Game1.screenScale.Y),
                     Click = new EventHandler(Button_MainMenu_Clicked),
                 },
             };

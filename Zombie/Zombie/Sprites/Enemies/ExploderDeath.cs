@@ -15,7 +15,7 @@ namespace Zombie.Sprites
         public ExploderDeath(Texture2D texture, Vector2 Position, Sprite FollowTarget, float FollowDistance, Color color) : base(texture, Position, FollowTarget, FollowDistance, color)
         {
             ZombieVelocity = 0f * changedZombieVelocity;
-            zombieHealth = 999999;
+            zombieHealth = -10000;
             //color = Color.Red;
             LifeSpan = 10f;
         }

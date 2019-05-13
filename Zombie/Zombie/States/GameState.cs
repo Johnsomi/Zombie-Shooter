@@ -19,6 +19,7 @@ namespace Zombie.States
         public static Random Random;
         public static string username = " ";
         public static string secretName = "YUNOWERK";
+        public static string HardModeName = "666";
         //private Camera _camera;
 
         private List<Component> _components;
@@ -204,7 +205,7 @@ namespace Zombie.States
             foreach (var sprite in _sprites)
             {
                 if (sprite is Player)
-                    spriteBatch.DrawString(_font, string.Format("Player {0}: {1}", ++i, ((Player)sprite).Score), new Vector2(10, fontY += 30), Color.Green);
+                    spriteBatch.DrawString(_font, string.Format("Player {0}: {1}", ++i, ((Player)sprite).Score), new Vector2(10, fontY += 30), Color.Red);
                 //if (sprite is Player2)
                 //  spriteBatch.DrawString(_font, string.Format("Player {0}: {1}", ++i, ((Player2)sprite).Score), new Vector2(10, fontY += 30), Color.Green);
             }
@@ -240,6 +241,13 @@ namespace Zombie.States
             enemySpawnTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             difficultyTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            if (username.Equals("666"))
+            {
+                difficultyTimer = difficultyTimer + 100;
+                G = 1.0;
+                
+            }
 
             totalGameTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
@@ -386,7 +394,7 @@ namespace Zombie.States
 
                             ScoreManager.Save(_scoreManager);
                             _score = 0;
-
+                            _weaponTimer = 0;
                             GCount = 0;
                             ZSCount = 0;
                             G = 2.0;
@@ -476,7 +484,7 @@ namespace Zombie.States
 
                     ScoreManager.Save(_scoreManager);
                     _score = 0;
-
+                    _weaponTimer = 0;
                     GCount = 0;
                     ZSCount = 0;
                     G = 2.0;

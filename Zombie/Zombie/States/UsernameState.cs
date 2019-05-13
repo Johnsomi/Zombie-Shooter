@@ -70,8 +70,15 @@ namespace Zombie.States
                 new Button(buttonTexture, buttonFont)
                 {
                     Text = "Main Menu",
-                    Position = new Vector2(Game1.ScreenWidth - (buttonTexture.Width / 2) - (buttonTexture.Width), 40),
+                    Position = new Vector2(Game1.ScreenWidth - (buttonTexture.Width / 2 * Game1.screenScale.X) - (buttonTexture.Width * Game1.screenScale.X), 80 * Game1.screenScale.Y),
                     Click = new EventHandler(Button_MainMenu_Clicked),
+                },
+
+                new Button(buttonTexture, buttonFont)
+                {
+                    Text = "Start Game",
+                    Position = new Vector2(Game1.ScreenWidth - (buttonTexture.Width / 2 * Game1.screenScale.X) - (buttonTexture.Width * Game1.screenScale.X), 40 * Game1.screenScale.Y),
+                    Click = new EventHandler(NewGameButton_Clicked),
                 },
             };
         }
@@ -79,6 +86,11 @@ namespace Zombie.States
         private void Button_MainMenu_Clicked(object sender, EventArgs e)
         {
             _game.ChangeState(new MenuState(_game, graphics, _content));
+        }
+
+        private void NewGameButton_Clicked(object sender, EventArgs e)
+        {
+            _game.ChangeState(new GameState(_game, graphics, _content));
         }
 
         public override void PostUpdate(GameTime gameTime)

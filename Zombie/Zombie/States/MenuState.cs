@@ -22,19 +22,19 @@ namespace Zombie.States
             var buttonFont = _content.Load<SpriteFont>("ButtonFont");
 
 
-
+            /*
             var newGameButton = new Button(buttonTexture, buttonFont)
             {
                 Position = new Vector2((Game1.ScreenWidth / 2) - (buttonTexture.Width / 2 * Game1.screenScale.X), (Game1.ScreenHeight / 2) - (buttonTexture.Height * 4 * Game1.screenScale.Y)),
                 Text = "New Game",
-            };
+            };*/
 
-            newGameButton.Click += NewGameButton_Click;
+            //newGameButton.Click += NewGameButton_Click;
 
             var UsernameButton = new Button(buttonTexture, buttonFont)
             {
                 Position = new Vector2((Game1.ScreenWidth / 2) - (buttonTexture.Width * Game1.screenScale.X / 2), (Game1.ScreenHeight / 2) - (buttonTexture.Height * 2 * Game1.screenScale.Y)),
-                Text = "Set Name",
+                Text = "New Game",
             };
 
             UsernameButton.Click += UsernameButton_Click;
@@ -57,7 +57,7 @@ namespace Zombie.States
 
             _components = new List<Component>()
             {
-                newGameButton,
+                //newGameButton,
                 UsernameButton,
                 HighscoresButton,
                 quitGameButton,

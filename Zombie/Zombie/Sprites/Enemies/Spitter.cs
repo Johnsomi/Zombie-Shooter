@@ -28,7 +28,7 @@ namespace Zombie.Sprites
             //Position += Direction * ZombieVelocity;
             if (_timer > 2f)
             {
-                sprites.Add(new ZombieSpit(spitTexture, Position, null, 0, Color.Green));
+                sprites.Add(new ZombieSpit(spitTexture, Position, FollowTarget, 0, Color));
                 _timer = 0f;
             }
             //_timer = 0;

@@ -605,7 +605,7 @@ namespace Zombie.States
                 return new Exploder(_targetTexture, new Vector2(xPos, yPos), soldier, 10f, Color.DarkGreen);
             }
 
-            if(difficultyTimer > 45f & ZombieType <= 199 & ZombieType >= 195)
+            if(difficultyTimer > 45f & ZombieType <= 198 & ZombieType >= 195)
             {
                 return new TentacleFace(TentacleFace, new Vector2(xPos, yPos), soldier, 10f, Color.White);
             }
@@ -617,8 +617,8 @@ namespace Zombie.States
             
             else
             {
-                //return new Zombies(_targetTexture, new Vector2(xPos, yPos), soldier, 10f, Color.White);
-                return new Spitter(_targetTexture, ZombiesSpit, new Vector2(xPos, yPos), soldier, 10f, Color.Turquoise);
+                return new Zombies(_targetTexture, new Vector2(xPos, yPos), soldier, 10f, Color.White);
+                //return new Spitter(_targetTexture, ZombiesSpit, new Vector2(xPos, yPos), soldier, 10f, Color.Turquoise);
             }
             
         }

@@ -253,11 +253,11 @@ namespace Zombie.States
 
             
 
-            if (enemySpawnTimer > 5.0)
-            {
-                GCount++;
-                enemySpawnTimer = 0;
-            }
+            //if (enemySpawnTimer > 5.0)
+            //{
+              //  GCount++;
+                //enemySpawnTimer = 0;
+            //}
 
             
             _weaponTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -349,12 +349,12 @@ namespace Zombie.States
                         if (sprite is Zombies)
                         {
                             player.Score++;
-
+                            _score++;
 
                             if (sprite is Bullet)
                             {
                                 player.Score--;
-
+                                _score--;
                             }
                         }
 
@@ -430,12 +430,19 @@ namespace Zombie.States
                             _score = _score + 0;
                         }
 
+                        if(ZomList[i] is TentacleFace)
+                        {
+                            player.Score = player.Score + 9;
+                            _score = _score + 9;
+                        }
+
                         else
                         {
                             player.Score++;
                             _score++;
                         }
 
+                        GCount++;
                         ZomList.RemoveAt(i);
                         i--;
 
@@ -546,7 +553,7 @@ namespace Zombie.States
 
                 }
 
-                if (GCount == 3 && G > 0.6)
+                if (GCount == 3 && G > 0.5)
                 {
                     G = G - 0.1;
                     GCount = 0;
@@ -596,14 +603,14 @@ namespace Zombie.States
         {
             Random randomType = new Random();
             
-            int ZombieType = randomType.Next(0, 200);
+            int ZombieType = randomType.Next(0, 201);
             if (ZombieType <= 4)
             {   
                 return new ZombieGiant(zombieGiantTexture, new Vector2(xPos, yPos), soldier, 10f, Color.Red);
             }
 
             
-            if(difficultyTimer > 20f & ZombieType <=29 & ZombieType >= 5)
+            if(difficultyTimer > 20f & ZombieType <= 29 & ZombieType >= 5)
             { 
                 return new ZomDog(_targetTexture, new Vector2(xPos, yPos), soldier, 10f, Color.Orange);
             }
@@ -613,7 +620,7 @@ namespace Zombie.States
                 return new Exploder(_targetTexture, new Vector2(xPos, yPos), soldier, 10f, Color.DarkGreen);
             }
 
-            if(difficultyTimer > 45f & ZombieType <= 198 & ZombieType >= 195)
+            if(difficultyTimer > 45f & ZombieType <= 199 & ZombieType >= 195)
             {
                 return new TentacleFace(TentacleFace, new Vector2(xPos, yPos), soldier, 10f, Color.White);
             }
@@ -622,7 +629,42 @@ namespace Zombie.States
             {
                 return new Spitter(_targetTexture, ZombiesSpit, new Vector2(xPos, yPos), soldier, 10f, Color.Turquoise);
             }
-            
+
+            if(difficultyTimer > 60f & ZombieType <= 79 & ZombieType >= 70)
+            {
+                return new ZombieGiant(zombieGiantTexture, new Vector2(xPos, yPos), soldier, 10f, Color.Red);
+            }
+
+            if (difficultyTimer > 65f & ZombieType <= 99 & ZombieType >= 80)
+            {
+                return new ZomDog(_targetTexture, new Vector2(xPos, yPos), soldier, 10f, Color.Orange);
+            }
+
+            if (difficultyTimer > 70f & ZombieType <= 194 & ZombieType >= 190)
+            {
+                return new TentacleFace(TentacleFace, new Vector2(xPos, yPos), soldier, 10f, Color.White);
+            }
+
+            if (difficultyTimer > 75f & ZombieType <= 119 & ZombieType >= 100)
+            {
+                return new Exploder(_targetTexture, new Vector2(xPos, yPos), soldier, 10f, Color.DarkGreen);
+            }
+
+            if (difficultyTimer > 80f & ZombieType <= 139 & ZombieType >= 120)
+            {
+                return new Spitter(_targetTexture, ZombiesSpit, new Vector2(xPos, yPos), soldier, 10f, Color.Turquoise);
+            }
+
+            if (difficultyTimer > 85f & ZombieType <= 189 & ZombieType >= 185)
+            {
+                return new TentacleFace(TentacleFace, new Vector2(xPos, yPos), soldier, 10f, Color.White);
+            }
+
+            if (difficultyTimer > 90f & ZombieType <= 159 & ZombieType >= 140)
+            {
+                return new ZombieGiant(zombieGiantTexture, new Vector2(xPos, yPos), soldier, 10f, Color.Red);
+            }
+
             else
             {
                 return new Zombies(_targetTexture, new Vector2(xPos, yPos), soldier, 10f, Color.White);

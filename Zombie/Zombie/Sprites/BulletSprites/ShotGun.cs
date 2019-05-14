@@ -13,7 +13,7 @@ namespace Zombie.Sprites
         public ShotGun(Texture2D texture) : base(texture)
         {
             Color = Color.Brown;
-            bulletDamage = 5;
+            bulletDamage = bulletDamage - 1;
             LifeSpan = 0.5f;
             LinearVelocity = 20f * changedBulletVelocity;
         }

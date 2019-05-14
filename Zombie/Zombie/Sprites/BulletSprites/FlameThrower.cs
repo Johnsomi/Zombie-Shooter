@@ -14,7 +14,7 @@ namespace Zombie.Sprites
         public FlameThrower(Texture2D texture) : base(texture)
         {
             Color = Color.Red;
-            bulletDamage = 1;
+            bulletDamage = bulletDamage - 4;
             LifeSpan = 1f;
             LinearVelocity = 10f * changedBulletVelocity;
         }

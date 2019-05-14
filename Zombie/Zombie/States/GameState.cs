@@ -18,7 +18,7 @@ namespace Zombie.States
     {
         public static Random Random;
         public static string username = " ";
-        public static string secretName = "YUNOWERK";
+        public static string secretName = "#BEAST";
         public static string HardModeName = "666";
         //private Camera _camera;
 
@@ -30,7 +30,7 @@ namespace Zombie.States
 
         public int ZSCount;
 
-        public float enemySpawnTimer;
+        //public float enemySpawnTimer;
 
         public float difficultyTimer;
 
@@ -238,7 +238,7 @@ namespace Zombie.States
 
             _timer2 += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            enemySpawnTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+            //enemySpawnTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             difficultyTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
 

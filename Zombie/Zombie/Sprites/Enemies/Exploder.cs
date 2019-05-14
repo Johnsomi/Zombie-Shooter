@@ -13,7 +13,7 @@ namespace Zombie.Sprites
         public Exploder(Texture2D texture, Vector2 Position, Sprite FollowTarget, float FollowDistance, Color color) : base(texture, Position, FollowTarget, FollowDistance, color)
         {
             ZombieVelocity = 3f * changedZombieVelocity;
-            zombieHealth = 10;
+            this.zombieHealth = 10;
             //color = Color.Red;
 
         }

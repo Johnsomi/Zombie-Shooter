@@ -63,17 +63,20 @@ namespace Zombie.Sprites
                   */
             
             sprite.zombieHealth = sprite.zombieHealth - bulletDamage;
-            if (sprite.zombieHealth <= -1001)
+            if (sprite.zombieHealth <= -1000)
             {
                 sprite.IsRemoved = false;
                 
             }
-            if (sprite.zombieHealth <= 0 & sprite.zombieHealth >= -1000)
+            if (sprite.zombieHealth <= 0 && sprite.zombieHealth >= -999)
             {
                 sprite.IsRemoved = true;
                 IsRemoved = true;
             }
-            
+            if (sprite.zombieHealth >= -999)
+            {
+                IsRemoved = true;
+            }
             //sprite.IsRemoved = true;
             //IsRemoved = true;
             //player.Score++;

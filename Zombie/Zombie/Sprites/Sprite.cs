@@ -191,17 +191,13 @@ namespace Zombie.Sprites
                 ZombieVelocity = 2f;
             }
             */
-            //if (Game1.ScreenWidth == 1920 && Game1.ScreenHeight == 1080)
-            //{
-            //    spriteBatch.Draw(_texture, Position, null, Color, _rotation, Origin, 1, SpriteEffects.None, 0);
-            //}
+            
+            spriteBatch.Draw(_texture, Position, null, Color, _rotation, Origin, Game1.screenScale, SpriteEffects.None, 0);
+            
 
-            //if(Game1.ScreenWidth == 1600 && Game1.ScreenHeight == 900)
-            //{
-                spriteBatch.Draw(_texture, Position, null, Color, _rotation, Origin, Game1.screenScale, SpriteEffects.None, 0);
-            //}
-            spriteBatch.Draw(_texture, HitBox, null, Color.Black);
-            spriteBatch.Draw(_texture, HitBoxZ, Color.White);
+            //spriteBatch.Draw(_texture, HitBox, null, Color.Black);
+            //spriteBatch.Draw(_texture, HitBoxZ, Color.White);
+
             //spriteBatch.Draw(_texture, HitBoxD1, null, Color.Black);
             //spriteBatch.Draw(_texture, HitBoxD2, null, Color.Black);
         }

@@ -18,8 +18,8 @@ namespace Zombie.States
     {
         public static Random Random;
         public static string username = " ";
-        public static string secretName = "#BEAST";
-        public static string HardModeName = "666";
+        public static string secretName = "BTT";
+        public static string HardModeName = "TTB";
         //private Camera _camera;
 
         private List<Component> _components;
@@ -242,7 +242,7 @@ namespace Zombie.States
 
             difficultyTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            if (username.Equals("666"))
+            if (username.Equals("TTB"))
             {
                 difficultyTimer = difficultyTimer + 100;
                 G = 1.0;
@@ -553,7 +553,7 @@ namespace Zombie.States
 
                 }
 
-                if (GCount == 3 && G > 0.5)
+                if (GCount == 3 && G >= 0.5)
                 {
                     G = G - 0.1;
                     GCount = 0;

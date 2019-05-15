@@ -15,7 +15,6 @@ namespace Zombie.Sprites
             ZombieVelocity = 3f * changedZombieVelocity;
             this.zombieHealth = 10;
             //color = Color.Red;
-
         }
         
     }

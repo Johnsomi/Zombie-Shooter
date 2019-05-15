@@ -30,6 +30,7 @@ namespace Zombie.Sprites
         public SniperRifle sniperBullet;
         public ShotGun shotGun;
         public Lazer lazerBullet;
+        public Blackhole cannonBullet;
         Vector2 SpawnLocation;
 
         //-
@@ -71,6 +72,14 @@ namespace Zombie.Sprites
                 }
             }
             if (Bullet is Lazer)
+            {
+
+                if (_timer > 10)
+                {
+                    Bullet = DefaultBullet;
+                }
+            }
+            if (Bullet is Blackhole)
             {
 
                 if (_timer > 10)
@@ -148,6 +157,14 @@ namespace Zombie.Sprites
                     AddBullet(sprites, -16);
                 }
             }
+            else if (Bullet is Blackhole)
+            {
+                if (_currentMouse.LeftButton == ButtonState.Pressed && _previousMouse.LeftButton == ButtonState.Released)
+                {
+                    var bullet = Bullet.Clone() as Bullet;
+                    AddBullet(sprites, 0);
+                }
+            }
             else
             {
                 if(_currentMouse.LeftButton == ButtonState.Pressed && _previousMouse.LeftButton == ButtonState.Released)
@@ -200,17 +217,21 @@ namespace Zombie.Sprites
                     {
                         Bullet = flameBullet;
                     }
-                    if(weapon.weaponType >= 2)
+                    if(weapon.weaponType == 2)
                     {
                         Bullet = sniperBullet;
                     }
-                    if(weapon.weaponType >= 3)
+                    if(weapon.weaponType == 3)
                     {
                         Bullet = shotGun;
                     }
                     if(weapon.weaponType == 4)
                     {
                         Bullet = lazerBullet;
+                    }
+                    if(weapon.weaponType == 5)
+                    {
+                        Bullet = cannonBullet;
                     }
                     sprite.IsRemoved = true;
 

@@ -131,7 +131,8 @@ namespace Zombie.States
                 flameBullet = new FlameThrower(_content.Load<Texture2D>("circle")),
                 DefaultBullet = new Bullet(_content.Load<Texture2D>("circle")),
                 sniperBullet = new SniperRifle(_content.Load<Texture2D>("circle")),
-                shotGun = new ShotGun(_content.Load<Texture2D>("circle"))
+                shotGun = new ShotGun(_content.Load<Texture2D>("circle")),
+                lazerBullet = new Lazer(_content.Load<Texture2D>("circle"))
             };
 
             //soldierComponents = new List<Component>()
@@ -513,20 +514,25 @@ namespace Zombie.States
                 var weaponPosX = Random.Next(0, (int)Game1.ScreenWidth - TestWeapon.Width);
                 var weaponPosY = Random.Next(0, (int)Game1.ScreenHeight - TestWeapon.Height);
                 Random weaponRandom = new Random();
-                int WeaponRandom = weaponRandom.Next(0, 3);
-                if (WeaponRandom == 0)
+                int WeaponRandom = weaponRandom.Next(1, 23);
+                if (WeaponRandom >= 1 && WeaponRandom <= 6)
                 { 
                     WeaponsList.Add(new Weapon(TestWeapon, new Vector2(weaponPosX, weaponPosY), 1, Color.RosyBrown)
                     );
                 }
-                else if (WeaponRandom == 1)
+                else if (WeaponRandom >= 7 && WeaponRandom <= 12)
                 {
                     WeaponsList.Add(new Weapon(TestWeapon, new Vector2(weaponPosX, weaponPosY), 2, Color.Black)
                     );
                 }
-                else if (WeaponRandom == 2)
+                else if (WeaponRandom >= 13 && WeaponRandom <= 18)
                 {
                     WeaponsList.Add(new Weapon(TestWeapon, new Vector2(weaponPosX, weaponPosY), 3, Color.Aqua)
+                    );
+                }
+                else if (WeaponRandom >= 19 && WeaponRandom <= 21)
+                {
+                    WeaponsList.Add(new Weapon(TestWeapon, new Vector2(weaponPosX, weaponPosY), 4, Color.Green)
                     );
                 }
                 else

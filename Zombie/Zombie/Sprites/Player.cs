@@ -29,6 +29,7 @@ namespace Zombie.Sprites
         public FlameThrower flameBullet;
         public SniperRifle sniperBullet;
         public ShotGun shotGun;
+        public Lazer lazerBullet;
         Vector2 SpawnLocation;
 
         //-
@@ -62,6 +63,14 @@ namespace Zombie.Sprites
                 }
             }
             if (Bullet is ShotGun)
+            {
+
+                if (_timer > 10)
+                {
+                    Bullet = DefaultBullet;
+                }
+            }
+            if (Bullet is Lazer)
             {
 
                 if (_timer > 10)
@@ -104,6 +113,14 @@ namespace Zombie.Sprites
                 Position -= Direction * (playerVelocity);
             //Camera.Update(this);
             if(Bullet is FlameThrower)
+            {
+                if (_currentMouse.LeftButton == ButtonState.Pressed)
+                {
+                    var bullet = Bullet.Clone() as Bullet;
+                    AddBullet(sprites, 0);
+                }
+            }
+            else if (Bullet is Lazer)
             {
                 if (_currentMouse.LeftButton == ButtonState.Pressed)
                 {
@@ -179,17 +196,21 @@ namespace Zombie.Sprites
                 if (sprite.Rectangle.Intersects(HitBox) && sprite is Weapon)
                 {
                     Weapon weapon = (Weapon)sprite;
-                    if(weapon.weaponType ==1)
+                    if(weapon.weaponType == 1)
                     {
                         Bullet = flameBullet;
                     }
-                    if(weapon.weaponType == 2)
+                    if(weapon.weaponType >= 2)
                     {
                         Bullet = sniperBullet;
                     }
-                    if(weapon.weaponType == 3)
+                    if(weapon.weaponType >= 3)
                     {
                         Bullet = shotGun;
+                    }
+                    if(weapon.weaponType == 4)
+                    {
+                        Bullet = lazerBullet;
                     }
                     sprite.IsRemoved = true;
 

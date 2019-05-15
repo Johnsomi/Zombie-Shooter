@@ -80,6 +80,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sprites\BulletSprites\Bullet.cs" />
     <Compile Include="Sprites\BulletSprites\FlameThrower.cs" />
+    <Compile Include="Sprites\BulletSprites\Lazer.cs" />
     <Compile Include="Sprites\BulletSprites\ShotGun.cs" />
     <Compile Include="Sprites\Enemies\Exploder.cs" />
     <Compile Include="Sprites\Enemies\ExploderDeath.cs" />

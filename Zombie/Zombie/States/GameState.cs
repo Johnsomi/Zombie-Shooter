@@ -69,6 +69,8 @@ namespace Zombie.States
 
         private Texture2D TentacleFace;
 
+        private Texture2D GiygasTexture;
+
         private bool _hasStarted = false;
 
         
@@ -87,6 +89,7 @@ namespace Zombie.States
             TentacleFace = _content.Load<Texture2D>("Red-tentaclefaceT1");
             ExploderDeathSlime = _content.Load<Texture2D>("Slime-Explosion-PlaceHolder");
             ZombiesSpit = _content.Load<Texture2D>("circle");
+            GiygasTexture = _content.Load<Texture2D>("giygasT2");
             //background = _content.Load<Texture2D>("ZomGameBackground");
 
             Restart();
@@ -438,6 +441,12 @@ namespace Zombie.States
                             _score = _score + 9;
                         }
 
+                        if(ZomList[i] is Giygas)
+                        {
+                            player.Score = player.Score + 74;
+                            _score = _score + 74;
+                        }
+
                         else
                         {
                             player.Score++;
@@ -675,6 +684,11 @@ namespace Zombie.States
             if (difficultyTimer > 90f & ZombieType <= 159 & ZombieType >= 140)
             {
                 return new ZombieGiant(zombieGiantTexture, new Vector2(xPos, yPos), soldier, 10f, Color.Red);
+            }
+
+            if (difficultyTimer > 120f & ZombieType == 200)
+            {
+                return new Giygas(GiygasTexture, new Vector2(xPos, yPos), soldier, 10f, Color.White);
             }
 
             else

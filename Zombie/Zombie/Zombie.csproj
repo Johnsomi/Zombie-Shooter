@@ -85,6 +85,7 @@
     <Compile Include="Sprites\BulletSprites\ShotGun.cs" />
     <Compile Include="Sprites\Enemies\Exploder.cs" />
     <Compile Include="Sprites\Enemies\ExploderDeath.cs" />
+    <Compile Include="Sprites\Enemies\Giygas.cs" />
     <Compile Include="Sprites\Enemies\Spitter.cs" />
     <Compile Include="Sprites\Enemies\ZombieSpit.cs" />
     <Compile Include="Sprites\Player.cs" />

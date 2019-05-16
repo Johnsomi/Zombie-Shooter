@@ -91,6 +91,7 @@ namespace Zombie.Sprites
             _previousMouse = _currentMouse;
             _currentMouse = Mouse.GetState();
             Vector2 MousePosition = new Vector2(_currentMouse.X, _currentMouse.Y);
+            //MousePosition = Vector2.Clamp(MousePosition, new Vector2(0, 0), new Vector2(Game1.ScreenWidth, Game1.ScreenHeight));
             float DistanceX = MousePosition.X - (Position.X); //+ Origin.X);
             float DistanceY = MousePosition.Y - (Position.Y); //+ Origin.Y);
             //DistanceX = DistanceX * Game1.screenScale.X;

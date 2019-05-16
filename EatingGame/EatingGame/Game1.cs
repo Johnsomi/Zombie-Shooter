@@ -132,7 +132,7 @@ namespace EatingGame
 
         private void SpawnFood()
         {
-            if (_timer > 0.01)
+            if (_timer > 0.25)
             {
                 _timer = 0;
 

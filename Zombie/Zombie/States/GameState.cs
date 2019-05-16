@@ -254,6 +254,7 @@ namespace Zombie.States
                 
             }
 
+
             totalGameTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             
